@@ -1,0 +1,47 @@
+﻿@model ShopWatch.Models.NHAPHANG
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>NHAPHANG</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.NGAYNHAP, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="date" id="NGAYNHAP" name="NGAYNHAP" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+            @Html.ValidationMessageFor(model => model.NGAYNHAP, "", new { @class = "text-danger" })
+        </div>
+    </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">MANV</label>
+            <div class="col-md-10">
+                <label class="control-label col-md-2">@Session["MaNV"]</label>
+
+                @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">TENNHANVIEN:</label>
+            <div class="col-md-10">
+                <label class="control-label col-md-2">@Session["TenHienThi"]</label>
+                @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Tạo phiếu" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+

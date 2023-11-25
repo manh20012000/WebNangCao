@@ -1,0 +1,78 @@
+﻿@model IEnumerable<ShopWatch.Models.CHITIETPHIEUNHAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Index", "CHITIETPHIEUNHAPs1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="input-group mb-3">
+                    <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="table-container">
+    <table class="tablet">
+        <tr>
+            <th style=" padding: 15px; text-align: center;">
+                @Html.DisplayNameFor(model => model.SOLUONG)
+            </th>
+            <th style=" padding: 15px; text-align:center;">
+                @Html.DisplayNameFor(model => model.GIANHAP)
+            </th>
+            <th style=" padding: 15px; text-align: center;">
+                @Html.DisplayNameFor(model => model.MATHANG.TENHANG)
+            </th>
+            <th style=" padding: 15px; text-align: center;">
+                @Html.DisplayNameFor(model => model.NHAPHANG.MANHAPHANG)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GIANHAP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MATHANG.TENHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAPHANG.MANHAPHANG)
+                </td>
+                <td class="text-center">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1"
+                                    type="button"
+                                    class="btn btn-outline-secondary dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                Tùy chọn
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+
+                                @Html.ActionLink("DetailReceipt", "DetailReceipt", new { id = item.MACTPHIEUNHAP })
+                                @Html.ActionLink("Delete", "deleteReceipt", new { id = item.MACTPHIEUNHAP }, new { @class = "delete-button" })
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    </div>

@@ -1,0 +1,32 @@
+﻿.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+}
+
+.grid-item {
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.product-actions{
+    justify-content:space-between;
+    display:flex
+}
+.nameThem {
+    padding: 0px 30px 0px 0px
+}
+.form-horizontal,.form-group {
+    padding: 0px 30px 0px 0px
+}
+.product-imagelist {
+    width: 80px;
+    height: 60px
+}
+.btn-default {
+    background: #00ff90;
+    width: 15%
+}
+.fbodyconten {
+    padding: 20px;
+}

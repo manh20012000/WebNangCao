@@ -1,0 +1,150 @@
+﻿@model IEnumerable<ShopWatch.Models.NHAPHANG>
+@using PagedList;
+@using PagedList.Mvc;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Index", "NHAPHANGs", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="input-group mb-3">
+                    <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào tìm kiếm" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+ <style>
+     .table-container {
+         max-height: 300px;
+         overflow-y: auto; 
+     }
+
+     /* Style cho bảng, chỉ để minh họa */
+     table {
+         width: 100%; 
+         border-collapse: collapse;
+     }
+
+     /* Style cho các cell và header của bảng */
+     td, th {
+         border: 1px solid #ddd;
+         padding: 8px;
+         text-align: left;
+     }
+ </style>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box ">
+            <div class="box-header">
+
+            </div>
+            <div class="box-body table-container">
+                <table id="example" class="table table-bordered table-striped">
+                    <tr>
+                        <th class="text-center" id="hang">
+                            <label>STT</label>
+                        </th>
+                        <th class="text-center" id="hang">
+                            <label>THANHTIEN</label>
+                        </th>
+                        <th class="text-center" id="hang">
+                            <label>NGAYNHAP</label>
+
+                        </th>
+                        <th class="text-center" id="hang">
+                            <label>TENNV</label>
+                        </th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {  
+                <tr>
+                    <td class="text-center tble">
+                        @ViewBag.STT;
+                    </td>
+                    <td class="text-center tble">
+                        @Html.DisplayFor(modelItem => item.THANHTIEN)
+                    </td>
+                    <td class="text-center tble ">
+                        @String.Format("{0:dd/MM/yyyy}", item.NGAYNHAP)
+                       
+                    </td>
+                    <td class="text-center tble ">
+                        @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
+                    </td>
+                    <td class="text-center tble ">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1"
+                                        type="button"
+                                        class="btn btn-outline-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Tùy chọn
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                    @Html.ActionLink("Create", "Create", "CHITIETPHIEUNHAPs1", new { id = item.MANHAPHANG }, "")--
+                                    @*    @Html.ActionLink("EditNhapHang", "EditNhapHang", new { id = item.MANHAPHANG })|*@
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.MANHAPHANG })
+                                  
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </td>
+
+                </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@*<table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.THANHTIEN)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NGAYNHAP)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NHANVIEN.TENNV)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.THANHTIEN)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYNHAP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MANHAPHANG }) |
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MANHAPHANG })
+                </td>
+            </tr>
+        }
+
+    </table>
+*@

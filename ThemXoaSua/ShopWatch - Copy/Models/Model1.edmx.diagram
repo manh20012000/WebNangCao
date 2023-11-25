@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8f77f890218d4386b6327cbfb736a1e6" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="DHModel.CHITIETHOADON" Width="1.5" PointX="5.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.CHITIETPHIEUNHAP" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.GIOHANG" Width="1.5" PointX="8.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.HOADON" Width="1.5" PointX="3" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.KHACHHANG" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.MATHANG" Width="1.5" PointX="0.75" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.NHANVIEN" Width="1.5" PointX="1.5" PointY="12" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.NHAPHANG" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.SANPHAMODER" Width="1.5" PointX="3" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.sysdiagram" Width="1.5" PointX="2.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="DHModel.TAIKHOAN" Width="1.5" PointX="1.5" PointY="15.125" IsExpanded="true" />
+        <AssociationConnector Association="DHModel.FK__CHITIETHO__MASAN__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__CHITIETHOA__MAHD__4D94879B" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__CHITIETPH__MAMAT__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__CHITIETPH__MANHA__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__GIOHANG__MAKHACH__52593CB8" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__GIOHANG__MASANPH__5165187F" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__HOADON__MAKHACHH__4AB81AF0" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__KHACHHANG__EMAIL__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__SANPHAMOD__MAMAT__47DBAE45" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__NHANVIEN__EMAIL__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="DHModel.FK__NHAPHANG__MANV__412EB0B6" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<ShopWatch.Models.CHITIETPHIEUNHAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.THANHTIEN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYNHAP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHAPHANG.MANHAPHANG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NHANVIEN.TENNV)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.THANHTIEN)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NGAYNHAP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHAPHANG.MANHAPHANG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NHANVIEN.TENNV)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MACTPHIEUNHAP }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.MACTPHIEUNHAP }) |*@
+            @Html.ActionLink("Delete", "Delete", new { id=item.MACTPHIEUNHAP })
+        </td>
+    </tr>
+}
+
+</table>

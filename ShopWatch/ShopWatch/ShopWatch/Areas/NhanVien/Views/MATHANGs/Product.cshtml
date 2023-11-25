@@ -1,0 +1,119 @@
+﻿@model IPagedList<ShopWatch.Models.MATHANG>
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Product";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Product", "MATHANGs", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="input-group mb-3">
+                    <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá hoặc tên sp" aria-label="Search" aria-describedby="basic-addon2">
+                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box ">
+            <div class="box-header">
+
+            </div><!-- /.box-header -->
+            <div class="box-body">
+                <table id="example" class="tablet" >
+                    <tr style="background-color:#04AA6D; color: white;">
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>TENHANG</label>
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>ANHSANPHAM</label>
+
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>NGAYSANXUAT</label>
+
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label> LOAI</label>
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>KICHTHUOC</label>
+
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>TENHANGSANXUAT</label>
+
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>GIAHANG</label>
+
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>BAOHANH</label>
+
+                        </th>
+
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td class="text-center" style=" background-color:coral; }">
+                                @Html.DisplayFor(modelItem => item.TENHANG)
+                            </td>
+                            <td class="text-center">
+                                <img src="@item.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-image" style="width:50%;height:30%;" />
+                            </td>
+                            <td class="text-center">
+                                @String.Format("{0:dd/MM/yyyy}", item.NGAYSANXUAT) 
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.TENHANGSANXUAT)
+                            </td>
+                            <td class="text-center ">
+                                @Html.DisplayFor(modelItem => item.KICHTHUOC) MM
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.LOAI)
+                            </td>
+                            <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+                                @Html.DisplayFor(modelItem => item.GIAHANG)
+                            </td>
+                            <td class="text-center">
+                                @Html.DisplayFor(modelItem => item.BAOHANH)
+                            </td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                                    <div class="btn-group" role="group">
+                                        <button id="btnGroupDrop1"
+                                                type="button"
+                                                class="btn btn-outline-secondary dropdown-toggle"
+                                                data-bs-toggle="dropdown"
+                                                aria-haspopup="true"
+                                                aria-expanded="false">
+                                            Tùy chọn
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
+                                            @Html.ActionLink("EditProduct", "EditProduct", new { id = item.MAMATHANG }, new { @class = "edit-button" })
+                                            @Html.ActionLink("Delete", "Delete", new { id = item.MAMATHANG }, new { @class = "delete-button" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div><!-- /.box-body -->
+        </div><!-- /.box -->
+    </div><!-- /.col -->
+</div><!-- /.row -->
+
+@Html.PagedListPager(Model, page => Url.Action("Product", new { page }))

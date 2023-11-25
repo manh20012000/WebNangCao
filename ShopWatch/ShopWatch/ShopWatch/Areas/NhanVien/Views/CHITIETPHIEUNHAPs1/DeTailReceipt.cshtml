@@ -1,0 +1,81 @@
+﻿@model ShopWatch.Models.CHITIETPHIEUNHAP
+
+@{
+    ViewBag.Title = "DeTailReceipt";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .details-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+    #dp a {
+        text-decoration: none; /* Loại bỏ dấu gạch chân */
+        color: black; /* Màu chữ của liên kết */
+    }
+    #dp{
+        width:157px;
+        height:40px;
+        background-color:coral;
+        border-radius:40px;
+        text-align:center;
+        justify-content:center;
+        align-content:center;
+        margin-top:20px;
+        padding-top:10px;
+    }
+</style>
+<div class="container">
+    <center style="background: linear-gradient(to bottom, white, purple);">
+        <h3 style="font-weight:900">DeTailReceipt</h3>
+        <div class="details-container">
+            <h5 style="font-weight:900">Mã mặt hàng : @ViewBag.product.MAMATHANG</h5>
+            <h5 style="font-weight:900">Tên hàng: @ViewBag.product.TENHANG </h5>
+            <h5 style="font-weight:900">Giá hàng: @ViewBag.product.GIAHANG VND</h5>
+            <p>Ảnh sản phẩm: <img style="width:150px;height:150px" src="@ViewBag.product.ANHSANPHAM"></p>'
+            <h5 style="font-weight:900">Tên nhân viên : @ViewBag.Receipt.MANV </h5>
+            <h5 style="font-weight:900">Tên nhân viên : @ViewBag.Receipt.NGAYNHAP </h5>
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.SOLUONG)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.SOLUONG)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.GIANHAP)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.GIANHAP)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.NHAPHANG.MANHAPHANG)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.NHAPHANG.MANHAPHANG)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.MATHANG.TENHANG)
+                </dt>
+
+         
+
+            </dl>
+            <center id="dp" >
+                @Html.ActionLink("Edit", "Edit", new { id = Model.MACTPHIEUNHAP })
+
+            </center>
+        </div>
+    </center>
+
+</div>
+

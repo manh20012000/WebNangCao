@@ -1,0 +1,37 @@
+﻿.product-imagelist {
+    width: 80px;
+    height:60px
+}
+.btn-default{
+    background:#00ff90;
+    width:25%
+}
+.bodyconten {
+    padding: 20px;
+}
+.form-horizontal{
+    padding-left:4%;
+}
+.edit-button {
+    background-color: green; /* Màu xanh cho nút Edit */
+    color: white; /* Màu chữ trắng để nút dễ đọc */
+    padding: 5px 10px; /* Điều chỉnh padding nếu cần thiết */
+    text-decoration: none; /* Loại bỏ gạch chân mặc định cho liên kết */
+}
+.delete-button {
+    background-color: red; /* Màu đỏ cho nút Delete */
+    color: white; /* Màu chữ trắng để nút dễ đọc */
+    padding: 5px 10px; /* Điều chỉnh padding nếu cần thiết */
+    text-decoration: none; /* Loại bỏ gạch chân mặc định cho liên kết */
+}
+.createbtrap{
+
+}
+
+/*.pagination a {*/
+    /* Áp dụng các thuộc tính CSS cho thẻ <a> trong phân trang */
+    /*color: #007BFF;*/ /* Màu chữ */
+    /*text-decoration: none;*/ /* Loại bỏ gạch chân */
+    /*width:60px;
+    height:50px;
+}*/

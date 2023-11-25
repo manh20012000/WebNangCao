@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DHModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="CHITIETHOADON">
+    <Key>
+      <PropertyRef Name="MACTHD" />
+    </Key>
+    <Property Name="MAHD" Type="Int32" />
+    <Property Name="MASANPHAMODER" Type="Int32" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="DONGIAMUA" Type="Double" />
+    <Property Name="MACTHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <NavigationProperty Name="SANPHAMODER" Relationship="Self.FK__CHITIETHO__MASAN__4E88ABD4" FromRole="CHITIETHOADON" ToRole="SANPHAMODER" />
+    <NavigationProperty Name="HOADON" Relationship="Self.FK__CHITIETHOA__MAHD__4D94879B" FromRole="CHITIETHOADON" ToRole="HOADON" />
+  </EntityType>
+  <EntityType Name="CHITIETPHIEUNHAP">
+    <Key>
+      <PropertyRef Name="MACTPHIEUNHAP" />
+    </Key>
+    <Property Name="MAMATHANG" Type="Int32" />
+    <Property Name="MACTPHIEUNHAP" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="MANHAPHANG" Type="Int32" />
+    <Property Name="DONGIAPHIEU" Type="Double" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK__CHITIETPH__MAMAT__440B1D61" FromRole="CHITIETPHIEUNHAP" ToRole="MATHANG" />
+    <NavigationProperty Name="NHAPHANG" Relationship="Self.FK__CHITIETPH__MANHA__44FF419A" FromRole="CHITIETPHIEUNHAP" ToRole="NHAPHANG" />
+  </EntityType>
+  <EntityType Name="GIOHANG">
+    <Key>
+      <PropertyRef Name="MAGIOHANG" />
+    </Key>
+    <Property Name="MAGIOHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SOLUONG" Type="Int32" />
+    <Property Name="MASANPHAMODER" Type="Int32" />
+    <Property Name="MAKHACHHANG" Type="Int32" />
+    <Property Name="NGAYTHEM" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__GIOHANG__MAKHACH__52593CB8" FromRole="GIOHANG" ToRole="KHACHHANG" />
+    <NavigationProperty Name="SANPHAMODER" Relationship="Self.FK__GIOHANG__MASANPH__5165187F" FromRole="GIOHANG" ToRole="SANPHAMODER" />
+  </EntityType>
+  <EntityType Name="HOADON">
+    <Key>
+      <PropertyRef Name="MAHD" />
+    </Key>
+    <Property Name="MAHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NGAYMUA" Type="DateTime" Precision="0" />
+    <Property Name="TONGTIEN" Type="Double" />
+    <Property Name="MAKHACHHANG" Type="Int32" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK__CHITIETHOA__MAHD__4D94879B" FromRole="HOADON" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="KHACHHANG" Relationship="Self.FK__HOADON__MAKHACHH__4AB81AF0" FromRole="HOADON" ToRole="KHACHHANG" />
+  </EntityType>
+  <EntityType Name="KHACHHANG">
+    <Key>
+      <PropertyRef Name="MAKHACHHANG" />
+    </Key>
+    <Property Name="MAKHACHHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENKHACHHANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DIACHI" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="GIOHANGs" Relationship="Self.FK__GIOHANG__MAKHACH__52593CB8" FromRole="KHACHHANG" ToRole="GIOHANG" />
+    <NavigationProperty Name="HOADONs" Relationship="Self.FK__HOADON__MAKHACHH__4AB81AF0" FromRole="KHACHHANG" ToRole="HOADON" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__KHACHHANG__EMAIL__3C69FB99" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
+  </EntityType>
+  <EntityType Name="MATHANG">
+    <Key>
+      <PropertyRef Name="MAMATHANG" />
+    </Key>
+    <Property Name="MAMATHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENHANG" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ANHSANPHAM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="NGAYSANXUAT" Type="DateTime" Precision="0" />
+    <Property Name="TENHANGSANXUAT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DONGIA" Type="Double" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK__CHITIETPH__MAMAT__440B1D61" FromRole="MATHANG" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="SANPHAMODERs" Relationship="Self.FK__SANPHAMOD__MAMAT__47DBAE45" FromRole="MATHANG" ToRole="SANPHAMODER" />
+  </EntityType>
+  <EntityType Name="NHANVIEN">
+    <Key>
+      <PropertyRef Name="MANV" />
+    </Key>
+    <Property Name="MANV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TENNV" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="NGAYSINH" Type="DateTime" Precision="0" />
+    <Property Name="SDT" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TAIKHOAN" Relationship="Self.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="NHANVIEN" ToRole="TAIKHOAN" />
+    <NavigationProperty Name="NHAPHANGs" Relationship="Self.FK__NHAPHANG__MANV__412EB0B6" FromRole="NHANVIEN" ToRole="NHAPHANG" />
+  </EntityType>
+  <EntityType Name="NHAPHANG">
+    <Key>
+      <PropertyRef Name="MANHAPHANG" />
+    </Key>
+    <Property Name="MANHAPHANG" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="THANHTIEN" Type="Double" />
+    <Property Name="NGAYNHAP" Type="DateTime" Precision="0" />
+    <Property Name="MANV" Type="Int32" />
+    <NavigationProperty Name="CHITIETPHIEUNHAPs" Relationship="Self.FK__CHITIETPH__MANHA__44FF419A" FromRole="NHAPHANG" ToRole="CHITIETPHIEUNHAP" />
+    <NavigationProperty Name="NHANVIEN" Relationship="Self.FK__NHAPHANG__MANV__412EB0B6" FromRole="NHAPHANG" ToRole="NHANVIEN" />
+  </EntityType>
+  <EntityType Name="SANPHAMODER">
+    <Key>
+      <PropertyRef Name="MASANPHAMODER" />
+    </Key>
+    <Property Name="MASANPHAMODER" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MAMATHANG" Type="Int32" />
+    <Property Name="GIAHANG" Type="Double" />
+    <Property Name="BAOHANH" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CHITIETHOADONs" Relationship="Self.FK__CHITIETHO__MASAN__4E88ABD4" FromRole="SANPHAMODER" ToRole="CHITIETHOADON" />
+    <NavigationProperty Name="GIOHANGs" Relationship="Self.FK__GIOHANG__MASANPH__5165187F" FromRole="SANPHAMODER" ToRole="GIOHANG" />
+    <NavigationProperty Name="MATHANG" Relationship="Self.FK__SANPHAMOD__MAMAT__47DBAE45" FromRole="SANPHAMODER" ToRole="MATHANG" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="EMAIL" />
+    </Key>
+    <Property Name="EMAIL" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="MATKHAU" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="XACTHUC" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="KHACHHANGs" Relationship="Self.FK__KHACHHANG__EMAIL__3C69FB99" FromRole="TAIKHOAN" ToRole="KHACHHANG" />
+    <NavigationProperty Name="NHANVIENs" Relationship="Self.FK__NHANVIEN__EMAIL__398D8EEE" FromRole="TAIKHOAN" ToRole="NHANVIEN" />
+  </EntityType>
+  <Association Name="FK__CHITIETHO__MASAN__4E88ABD4">
+    <End Role="SANPHAMODER" Type="Self.SANPHAMODER" Multiplicity="0..1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAMODER">
+        <PropertyRef Name="MASANPHAMODER" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MASANPHAMODER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETHOA__MAHD__4D94879B">
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="0..1" />
+    <End Role="CHITIETHOADON" Type="Self.CHITIETHOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HOADON">
+        <PropertyRef Name="MAHD" />
+      </Principal>
+      <Dependent Role="CHITIETHOADON">
+        <PropertyRef Name="MAHD" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETPH__MAMAT__440B1D61">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="MAMATHANG" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="MAMATHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__CHITIETPH__MANHA__44FF419A">
+    <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="0..1" />
+    <End Role="CHITIETPHIEUNHAP" Type="Self.CHITIETPHIEUNHAP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHAPHANG">
+        <PropertyRef Name="MANHAPHANG" />
+      </Principal>
+      <Dependent Role="CHITIETPHIEUNHAP">
+        <PropertyRef Name="MANHAPHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GIOHANG__MAKHACH__52593CB8">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Principal>
+      <Dependent Role="GIOHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__GIOHANG__MASANPH__5165187F">
+    <End Role="SANPHAMODER" Type="Self.SANPHAMODER" Multiplicity="0..1" />
+    <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAMODER">
+        <PropertyRef Name="MASANPHAMODER" />
+      </Principal>
+      <Dependent Role="GIOHANG">
+        <PropertyRef Name="MASANPHAMODER" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__HOADON__MAKHACHH__4AB81AF0">
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="0..1" />
+    <End Role="HOADON" Type="Self.HOADON" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="KHACHHANG">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Principal>
+      <Dependent Role="HOADON">
+        <PropertyRef Name="MAKHACHHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__KHACHHANG__EMAIL__3C69FB99">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="KHACHHANG" Type="Self.KHACHHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="EMAIL" />
+      </Principal>
+      <Dependent Role="KHACHHANG">
+        <PropertyRef Name="EMAIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__SANPHAMOD__MAMAT__47DBAE45">
+    <End Role="MATHANG" Type="Self.MATHANG" Multiplicity="0..1" />
+    <End Role="SANPHAMODER" Type="Self.SANPHAMODER" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MATHANG">
+        <PropertyRef Name="MAMATHANG" />
+      </Principal>
+      <Dependent Role="SANPHAMODER">
+        <PropertyRef Name="MAMATHANG" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHANVIEN__EMAIL__398D8EEE">
+    <End Role="TAIKHOAN" Type="Self.TAIKHOAN" Multiplicity="0..1" />
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="EMAIL" />
+      </Principal>
+      <Dependent Role="NHANVIEN">
+        <PropertyRef Name="EMAIL" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__NHAPHANG__MANV__412EB0B6">
+    <End Role="NHANVIEN" Type="Self.NHANVIEN" Multiplicity="0..1" />
+    <End Role="NHAPHANG" Type="Self.NHAPHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NHANVIEN">
+        <PropertyRef Name="MANV" />
+      </Principal>
+      <Dependent Role="NHAPHANG">
+        <PropertyRef Name="MANV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DHEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="CHITIETHOADONs" EntityType="Self.CHITIETHOADON" />
+    <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="Self.CHITIETPHIEUNHAP" />
+    <EntitySet Name="GIOHANGs" EntityType="Self.GIOHANG" />
+    <EntitySet Name="HOADONs" EntityType="Self.HOADON" />
+    <EntitySet Name="KHACHHANGs" EntityType="Self.KHACHHANG" />
+    <EntitySet Name="MATHANGs" EntityType="Self.MATHANG" />
+    <EntitySet Name="NHANVIENs" EntityType="Self.NHANVIEN" />
+    <EntitySet Name="NHAPHANGs" EntityType="Self.NHAPHANG" />
+    <EntitySet Name="SANPHAMODERs" EntityType="Self.SANPHAMODER" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="TAIKHOANs" EntityType="Self.TAIKHOAN" />
+    <AssociationSet Name="FK__CHITIETHO__MASAN__4E88ABD4" Association="Self.FK__CHITIETHO__MASAN__4E88ABD4">
+      <End Role="SANPHAMODER" EntitySet="SANPHAMODERs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETHOA__MAHD__4D94879B" Association="Self.FK__CHITIETHOA__MAHD__4D94879B">
+      <End Role="HOADON" EntitySet="HOADONs" />
+      <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETPH__MAMAT__440B1D61" Association="Self.FK__CHITIETPH__MAMAT__440B1D61">
+      <End Role="MATHANG" EntitySet="MATHANGs" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__CHITIETPH__MANHA__44FF419A" Association="Self.FK__CHITIETPH__MANHA__44FF419A">
+      <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+      <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GIOHANG__MAKHACH__52593CB8" Association="Self.FK__GIOHANG__MAKHACH__52593CB8">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="GIOHANG" EntitySet="GIOHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__GIOHANG__MASANPH__5165187F" Association="Self.FK__GIOHANG__MASANPH__5165187F">
+      <End Role="SANPHAMODER" EntitySet="SANPHAMODERs" />
+      <End Role="GIOHANG" EntitySet="GIOHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__HOADON__MAKHACHH__4AB81AF0" Association="Self.FK__HOADON__MAKHACHH__4AB81AF0">
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+      <End Role="HOADON" EntitySet="HOADONs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__KHACHHANG__EMAIL__3C69FB99" Association="Self.FK__KHACHHANG__EMAIL__3C69FB99">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__SANPHAMOD__MAMAT__47DBAE45" Association="Self.FK__SANPHAMOD__MAMAT__47DBAE45">
+      <End Role="MATHANG" EntitySet="MATHANGs" />
+      <End Role="SANPHAMODER" EntitySet="SANPHAMODERs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHANVIEN__EMAIL__398D8EEE" Association="Self.FK__NHANVIEN__EMAIL__398D8EEE">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+    </AssociationSet>
+    <AssociationSet Name="FK__NHAPHANG__MANV__412EB0B6" Association="Self.FK__NHAPHANG__MANV__412EB0B6">
+      <End Role="NHANVIEN" EntitySet="NHANVIENs" />
+      <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

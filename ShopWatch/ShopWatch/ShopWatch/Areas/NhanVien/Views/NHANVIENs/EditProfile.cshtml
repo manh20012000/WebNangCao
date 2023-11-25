@@ -1,0 +1,83 @@
+﻿@model ShopWatch.Models.NHANVIEN
+
+@{ ViewBag.Title = "EditProfile";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml"; }
+
+
+@using (Html.BeginForm("EditProfile", "NHANVIENs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+@Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h3>Edit</h3>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.MANV)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TENNV, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.TENNV, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.TENNV, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.AVATAR, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            @Html.ValidationMessageFor(model => model.AVATAR, "", new { @class = "text-danger" })
+
+            @if (!string.IsNullOrEmpty(Model.AVATAR))
+            {
+        <img src="@Url.Content(Model.AVATAR)" alt="Preview" class="previewImage" style="width: 200px; height: 200px" />
+         }
+               else
+           {
+                <img id="previewImage" src="#" alt="Preview" class="previewImage" style="width:200px;height:200px" />
+           }
+
+
+        </div>
+    </div>
+
+    <div class="form-group">
+
+        @Html.LabelFor(model => model.NGAYSINH, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.NGAYSINH, new { type = "date", @class = "form-control", @Value = Model.NGAYSINH?.ToString("yyyy-MM-dd") })
+            @Html.ValidationMessageFor(model => model.NGAYSINH, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EMAIL, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+@*<script>
+        $("#imageFile").change(function () {
+            if (this.files && this.files[0]) {var reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#previewImage").attr("src", e.target.result);
+                };
+                reader.readAsDataURL(this.files[0]);
+            }
+        });
+    </script>*@

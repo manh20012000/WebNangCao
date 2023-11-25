@@ -1,0 +1,59 @@
+﻿@model ShopWatch.Models.MATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>MATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ANHSANPHAM)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ANHSANPHAM)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYSANXUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYSANXUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TENHANGSANXUAT)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TENHANGSANXUAT)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DONGIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DONGIA)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAMATHANG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

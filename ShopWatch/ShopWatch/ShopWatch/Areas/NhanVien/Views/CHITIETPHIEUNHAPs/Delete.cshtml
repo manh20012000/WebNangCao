@@ -1,0 +1,55 @@
+﻿@model ShopWatch.Models.CHITIETPHIEUNHAP
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+
+<div>
+    <h4>CHITIETPHIEUNHAP</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.THANHTIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THANHTIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYNHAP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYNHAP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHAPHANG.MANHAPHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHAPHANG.MANHAPHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.NHANVIEN.TENNV)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NHANVIEN.TENNV)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

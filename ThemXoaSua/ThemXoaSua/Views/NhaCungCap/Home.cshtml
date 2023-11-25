@@ -1,0 +1,39 @@
+﻿@model IEnumerable<ThemXoaSua.Models.NHACUNGCAP>
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Home</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENNCC)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENNCC)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIACHI)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MANCC }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MANCC }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MANCC })
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,170 @@
+﻿@model ShopWatch.Models.CHITIETPHIEUNHAP
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<h4>CHITIETPHIEUNHAP</h4>
+<div class="row">
+    <div class="col-md-6">
+        <div class="card">
+            <div class="card-body">
+
+                <div class="form-group">
+                    <label class="font-weight-bold">MANHAPHANG:</label>
+                    <span>@ViewBag.NHAPHANG.MANHAPHANG</span>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">NGAYNHAP:</label>
+                    <span>@ViewBag.NHAPHANG.NGAYNHAP</span>
+                </div>
+                <div class="form-group">
+                    <label class="font-weight-bold">MANV:</label>
+                    <span>@ViewBag.NHAPHANG.MANV</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="create">
+    <div class="form-horizontal" id="Input" style="width:50%">
+        @using (Html.BeginForm("Create", "CHITIETPHIEUNHAPs1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+           <input type="hidden" id="MANHAPHANG" name="MANHAPHANG" value="@ViewBag.NHAPHANG.MANHAPHANG" />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.MAMATHANG, "MAMATHANG", htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
+                <div class="col-md-10">
+                    @Html.DropDownList("MAMATHANG", (SelectList)ViewBag.MAMATHANG, "--Nhập mã bạn chọn --", new { @class = "form-control", onchange = "ProductInfor(this)" })
+                    @Html.ValidationMessageFor(model => model.MAMATHANG, "", new { @class = "text-danger" })
+
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.SOLUONG, htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.SOLUONG, new { htmlAttributes = new { @class = "form-control", onchange = "calculateTotal()", min = "0" } })
+                    @Html.ValidationMessageFor(model => model.SOLUONG, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="hidden" id="GIANHAP" name="GIANHAP" value="" />
+                <div class="col-md-10">
+                    <span id="totalPrice" style=" font-weight: bold;"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="add votes" class="btn btn-default" style="width:120px;background-color:#0094ff" />
+                </div>
+            </div>
+        }
+    </div>
+        <script>
+            function calculateTotal() {
+
+                var quantity = parseInt($('#SOLUONG').val()); // Lấy số lượng từ trường SOLUONG
+                var price = parseFloat($('#GIAHANG').text()); // Lấy giá nhập từ trường GIANHAP
+                if (isNaN(price)) {
+                    alert('Vui lòng chọn mặt hàng');
+                    return;
+                }
+                console.log("giá tri là " + quantity, price);
+                var totalPrice = quantity * price; // Tính tổng giá nhập
+                $('#GIANHAP').val(totalPrice);
+                $('#totalPrice').html('Total: ' + totalPrice + "   VND"); // Hiển thị tổng giá nhập
+            }
+        </script>
+        <div id="Input" style="width:50%">
+            <div id="productInfo" style="justify-content:center;align-content:center;">
+                <h4>Thông tin sản phẩm </h4>
+                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                <script>
+                    function ProductInfor(selectObject) {
+
+                        var selectedValue = selectObject.value;
+                        if (selectedValue !== '') {
+                            $.ajax({
+                                url: '/NhanVien/CHITIETPHIEUNHAPs1/ProductDetails/' + selectedValue,
+                                type: 'POST',
+                                success: function (data) {
+
+                                    console.log("haodhsj" + typeof (data.GIAHANG))
+                                    console.log(JSON.stringify(data) + "gía trị data")
+                                    $('#productInfo').html('<h4>Thông tin sản phẩm</h4>' +
+                                        '<p>Mã mặt hàng: ' + data.MAMATHANG + '</p>' +
+                                        '<p>Tên hàng: ' + data.TENHANG + '</p>' +
+                                        '<p>Ảnh sản phẩm: <img Style="width:200px;height:200px"  src="' + data.ANHSANPHAM + '"></p>' +
+                                        '<p id="GIAHANG">' + data.GIAHANG + '  .VND</p>');
+                                },
+                                error: function (error) {
+                                    console.log(error);
+                                }
+                            });
+                        }
+                    }
+                </script>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+@* <div class="form-group">
+        @Html.LabelFor(model => model.GIANHAP, htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.GIANHAP, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.GIANHAP, "", new { @class = "text-danger" })
+        </div>
+    </div>*@ @*<div>
+        <h4>Thông tin nhập hàng </h4>
+        <script>
+            function redirectToProductDetails(selectObject) {
+                var selectedValue = selectObject.value;
+                if (selectedValue !== '') {
+                    $.ajax({
+                        url: '/NhanVien/CHITIETPHIEUNHAPs1/PromissonDetails/' + selectedValue,
+                        type: 'POST',
+                        success: function (data) {
+                            console.log(JSON.stringify(data) + "gía trị data")
+                            $('#productInfo').html(
+                                '<h4>Thông tin nhập hàng</h4>' +
+                                '<p>MANHAPHANG: ' + data.MANHAPHANG + '</p>' +
+                                '<p>THANHTIEN: ' + data.THANHTIEN + '</p>' +
+                                '<p>NGAYNHAP: ' + data.NGAYNHAP + '</p>' +
+                                '<p>MANV: ' + data.MANV + '</p>'
+                            );
+                        },
+                    });
+                }
+            }
+        </script>
+    </div>*@
+    @*<div class="form-group">
+            @Html.LabelFor(model => model.MAMATHANG, "MANHAPHANG", htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
+            <div class="col-md-10">
+                @Html.DropDownList("MAMATHANG", (SelectList)ViewBag.MAMATHANG, "-- chon san pham --", new { @class = "form -control", onchange = "ProductInfor(this)" })
+                @Html.ValidationMessageFor(model => model.MAMATHANG, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+    @*<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script>
+            function ProductInfor(selectObject) {
+                var selectedValue = selectObject.value;
+                if (selectedValue !== '') {
+                    axios.get(`/CHITIETPHIEUNHAPs1/ProductDetails/${selectedValue}`)
+                        .then(function (response) {
+                            // Hiển thị thông tin sản phẩm
+                            document.getElementById('productInfo').innerHTML = '<h4>Giá trị</h4>' + '<p>' + response.data.MAMATHANG + '</p>' + '<p>' + response.data.TENHANG + '</p>';
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+            }
+        </script>*@

@@ -1,0 +1,116 @@
+﻿@model IEnumerable<ShopWatch.Models.MATHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENHANG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ANHSANPHAM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NGAYSANXUAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TENHANGSANXUAT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DONGIA)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANG)
+            </td>
+            <td>
+                <img src="@item.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-imagelist" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NGAYSANXUAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANGSANXUAT)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DONGIA)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.MAMATHANG }) |
+                @Html.ActionLink("Details", "Details", new { id = item.MAMATHANG }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.MAMATHANG })
+            </td>
+        </tr>
+    }
+</table>*@
+<div class="card">
+    <div class="table-responsive text-nowrap">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TENHANG)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.ANHSANPHAM)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NGAYSANXUAT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.TENHANGSANXUAT)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.DONGIA)
+                    </th>
+                    <th>
+                        Tùy chọn
+                    </th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                <tr class="table-info">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENHANG)
+                    </td>
+                    <td>
+                        <img src="@item.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-imagelist" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NGAYSANXUAT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.TENHANGSANXUAT)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DONGIA)
+                    </td>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Actions
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                @Html.ActionLink("Edit", "Edit", new { id = item.MAMATHANG }, new { @class = "btn btn-primary" })
+                                @Html.ActionLink("Delete", "Delete", new { id = item.MAMATHANG }, new { @class = "btn btn-danger" })
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+    
+            </tbody>
+        </table>
+    </div>
+</div>
