@@ -21,7 +21,7 @@ namespace ShopWatch.Models
         }
     
         public int MANHAPHANG { get; set; }
-        public Nullable<double> THANHTIEN { get; set; }
+        public Nullable<decimal> THANHTIEN { get; set; }
         public Nullable<System.DateTime> NGAYNHAP { get; set; }
         public Nullable<int> MANV { get; set; }
         public Nullable<bool> TRANGTHAI { get; set; }

@@ -37,7 +37,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.TENHANGSANXUAT, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-         @*   @Html.DropDownListFor(model => model.TENHANGSANXUAT, ViewBag.WatchBrands as List<SelectListItem>, "Chọn thương hiệu", new { @class = "form-control" })*@
+            @*   @Html.DropDownListFor(model => model.TENHANGSANXUAT, ViewBag.WatchBrands as List<SelectListItem>, "Chọn thương hiệu", new { @class = "form-control" })*@
             @Html.DropDownListFor(model => model.TENHANGSANXUAT, new SelectList(
                new List<SelectListItem>
                {
@@ -63,8 +63,15 @@
     <div class="form-group">
         @Html.LabelFor(model => model.KICHTHUOC, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.KICHTHUOC, new { htmlAttributes = new { type = "number",min="0", @class = "form-control" } })
+            @Html.EditorFor(model => model.KICHTHUOC, new { htmlAttributes = new { type = "number", min = "0", @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.KICHTHUOC, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SALE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SALE, new { htmlAttributes = new { type = "number", min = "0", @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SALE, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
@@ -93,16 +100,16 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ANHSANPHAM, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-           @* @Html.EditorFor(model => model.ANHSANPHAM, new { htmlAttributes = new { type = "file", name = "imageFile", id = "imageFile", @class = "form-control" } })*@
-             <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            @* @Html.EditorFor(model => model.ANHSANPHAM, new { htmlAttributes = new { type = "file", name = "imageFile", id = "imageFile", @class = "form-control" } })*@
+            <input type="file" name="imageFile" id="imageFile" class="form-control" />
             @Html.ValidationMessageFor(model => model.ANHSANPHAM, "", new { @class = "text-danger" })
 
             <img id="previewImage" src="#" alt="Preview" class="previewImage" style="width:200px;height:200px" />
         </div>
     </div>
     <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Cập nhật mặt hàng" class="btn btn-default" />
+        <div class="col-md-offset-5 col-md-10">
+            <input type="submit" value="Create Product" class="btn btn-default" style="width: 30%; background: linear-gradient(to right, #FFA500, #FF4500)" />
         </div>
     </div>
 </div>

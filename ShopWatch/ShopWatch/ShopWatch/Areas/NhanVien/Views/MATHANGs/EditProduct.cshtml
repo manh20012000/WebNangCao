@@ -38,6 +38,13 @@
         </div>
     </div>
     <div class="form-group">
+        @Html.LabelFor(model => model.SALE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.SALE, new {  @class = "form-control"})
+            @Html.ValidationMessageFor(model => model.SALE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
         @Html.LabelFor(model => model.TENHANGSANXUAT, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @*   @Html.DropDownListFor(model => model.TENHANGSANXUAT, ViewBag.WatchBrands as List<SelectListItem>, "Chọn thương hiệu", new { @class = "form-control" })*@
@@ -64,7 +71,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.GIAHANG, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.GIAHANG, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.EditorFor(model => model.GIAHANG, new { htmlAttributes = new { @class = "form-control",Value = String.Format("{0:0}", Model.GIAHANG) } })
             @Html.ValidationMessageFor(model => model.GIAHANG, "", new { @class = "text-danger" })
         </div>
     </div>
@@ -120,13 +127,13 @@
 </div>
 
 }
-@if (TempData["SuccessMessage"] != null)
+@*@if (TempData["SuccessMessage"] != null)
 {
     <script>
         alert('@TempData["SuccessMessage"]');
     </script>
 }
-
+*@
 
 
 

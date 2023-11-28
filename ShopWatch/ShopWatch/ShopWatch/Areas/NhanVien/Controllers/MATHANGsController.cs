@@ -23,12 +23,15 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         public ActionResult Product(string searchValue, int page = 1)
         {
             int pageSize = 6;
-            if (Session["UserEmail"] != null)
-            {
+                   
                 string userEmail = Session["UserEmail"] as string;
                 NHANVIEN nhanvien = db.NHANVIENs.FirstOrDefault(nv => nv.EMAIL == userEmail);
+               if (nhanvien != null)
+                {
                 Session["MaNV"] =nhanvien.MANV;
                 Session["Avatar"] = nhanvien.AVATAR;
+                }
+              
                 var items = db.MATHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
                 if (!string.IsNullOrEmpty(searchValue))
                 {
@@ -36,13 +39,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                      SqlFunctions.StringConvert((double)x.GIAHANG).Contains(searchValue) ||
                      x.TENHANG.Contains(searchValue) ||
                      SqlFunctions.PatIndex("%" + searchValue + "%", SqlFunctions.StringConvert((double)x.GIAHANG)) > 0 ||
-                     SqlFunctions.PatIndex("%" + searchValue + "%", x.TENHANG) > 0
-                 );
+                     SqlFunctions.PatIndex("%" + searchValue + "%", x.TENHANG) > 0);
+
+              items.ToList().ToPagedList(page, pageSize);
+/*                return View(pagedData);*/
                 }
-                var pagedData = items.ToList().ToPagedList(page, pageSize);
-                return View(pagedData);
-            }
-            return RedirectToAction("LoginUser", "TAIKHOANs");
+           return View(items.ToList().ToPagedList(page, pageSize));
         }
         public ActionResult CreateMatHang()
         {

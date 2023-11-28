@@ -12,6 +12,7 @@ using ShopWatch.Models;
 
 namespace ShopWatch.Areas.NhanVien.Controllers
 {
+    [Authorize]
     public class NHAPHANGsController : Controller
     {
         private DHEntities db = new DHEntities();
@@ -73,6 +74,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             if (ModelState.IsValid)
             {
                 nhaphang.THANHTIEN = 0;
+                nhaphang.TRANGTHAI = false;
                 nhaphang.MANV = (int?)Session["MaNV"];
                 nhaphang.MANV = (int?)Session["MaNV"];
                 db.NHAPHANGs.Add(nhaphang);

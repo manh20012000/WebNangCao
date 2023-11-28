@@ -22,8 +22,10 @@ namespace ShopWatch.Models
     
         public int MAHD { get; set; }
         public Nullable<System.DateTime> NGAYMUA { get; set; }
-        public Nullable<double> TONGTIEN { get; set; }
+        public Nullable<decimal> TONGTIEN { get; set; }
         public Nullable<int> MAKHACHHANG { get; set; }
+        public string DIACHINHANHANG { get; set; }
+        public string PHUONGTHUCTHANHTOAN { get; set; }
         public Nullable<bool> TRANGTHAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

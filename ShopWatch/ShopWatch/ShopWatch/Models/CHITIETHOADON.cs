@@ -17,9 +17,8 @@ namespace ShopWatch.Models
         public Nullable<int> MAHD { get; set; }
         public Nullable<int> MAMATHANG { get; set; }
         public Nullable<int> SOLUONG { get; set; }
-        public Nullable<double> GIABAN { get; set; }
+        public Nullable<decimal> GIABAN { get; set; }
         public int MACTHD { get; set; }
-        public Nullable<bool> TRANGTHAI { get; set; }
     
         public virtual MATHANG MATHANG { get; set; }
         public virtual HOADON HOADON { get; set; }

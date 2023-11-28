@@ -14,13 +14,18 @@ namespace ShopWatch.Models
     
     public partial class GIOHANG
     {
-        public int MAGIOHANG { get; set; }
-        public Nullable<int> SOLUONGMUA { get; set; }
-        public Nullable<int> MAMATHANG { get; set; }
-        public Nullable<int> MAKHACHHANG { get; set; }
-        public Nullable<double> TONGTIEN { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public GIOHANG()
+        {
+            this.CHITIETGIOHANGs = new HashSet<CHITIETGIOHANG>();
+        }
     
+        public int MAGIOHANG { get; set; }
+        public Nullable<int> MAKHACHHANG { get; set; }
+        public Nullable<bool> TRANGTHAI { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
         public virtual KHACHHANG KHACHHANG { get; set; }
-        public virtual MATHANG MATHANG { get; set; }
     }
 }

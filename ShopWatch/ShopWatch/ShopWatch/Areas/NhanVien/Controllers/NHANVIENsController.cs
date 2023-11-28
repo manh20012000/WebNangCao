@@ -8,9 +8,10 @@ using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
 namespace ShopWatch.Areas.NhanVien.Controllers
-{
+{ [Authorize]
     public class NHANVIENsController : Controller
     {
+       
         private DHEntities db = new DHEntities();
 
         // GET: NhanVien/NHANVIENs

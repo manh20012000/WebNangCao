@@ -11,6 +11,7 @@ using ShopWatch.Models;
 
 namespace ShopWatch.Areas.NhanVien.Controllers
 {
+    [Authorize]
     public class CHITIETPHIEUNHAPs1Controller : Controller
     {
         private DHEntities db = new DHEntities();
@@ -19,19 +20,23 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         public ActionResult Index(string searchValue)
         {
             if (Session["UserEmail"] != null)
-            {       
-                var items = db.CHITIETPHIEUNHAPs.Where(m => m.TRANGTHAI != true).AsQueryable();
+            {
+                var items = db.CHITIETPHIEUNHAPs.AsQueryable(); // Ensure it's queryable
+
                 if (!string.IsNullOrEmpty(searchValue))
                 {
-                    items = items.Where(x => SqlFunctions.StringConvert((double)x.GIANHAP).Contains(searchValue) );
+                    // Use ToString() to convert GIANHAP to string for comparison
+                    items = items.Where(x => x.GIANHAP.ToString().Contains(searchValue));
                 }
+
                 var pagedData = items.ToList();
                 return View(pagedData);
             }
+
             return RedirectToAction("LoginUser", "TAIKHOANs");
-         
         }
-       public ActionResult Create(int? id)
+
+        public ActionResult Create(int? id)
         {
             db.Configuration.ProxyCreationEnabled = false;
           
@@ -46,7 +51,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         {
             if (ModelState.IsValid)
             {
-                chitietphieunhap.TRANGTHAI = true;
+               
                 db.CHITIETPHIEUNHAPs.Add(chitietphieunhap);
                 db.SaveChanges();
                 var upadateNhapHang = db.NHAPHANGs.Find(chitietphieunhap.MANHAPHANG);

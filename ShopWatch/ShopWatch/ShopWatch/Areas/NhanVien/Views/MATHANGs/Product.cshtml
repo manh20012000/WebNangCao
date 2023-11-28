@@ -7,6 +7,23 @@
     ViewBag.Title = "Product";
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
+<style>
+    .edit-button,
+    .delete-button {
+      
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+    
+        background: linear-gradient(to right, #87CEFA, #4682B4);
+        border: none;
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+</style>
 <div class="row">
     <div class="col-xs-12">
         @using (Html.BeginForm("Product", "MATHANGs", FormMethod.Post))
@@ -60,54 +77,60 @@
                             <label>BAOHANH</label>
 
                         </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            <label>SALE %</label>
+
+                        </th>
 
                     </tr>
                     @foreach (var item in Model)
                     {
-                        <tr>
-                            <td class="text-center" style=" background-color:coral; }">
-                                @Html.DisplayFor(modelItem => item.TENHANG)
-                            </td>
-                            <td class="text-center">
-                                <img src="@item.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-image" style="width:50%;height:30%;" />
-                            </td>
-                            <td class="text-center">
-                                @String.Format("{0:dd/MM/yyyy}", item.NGAYSANXUAT) 
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.TENHANGSANXUAT)
-                            </td>
-                            <td class="text-center ">
-                                @Html.DisplayFor(modelItem => item.KICHTHUOC) MM
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.LOAI)
-                            </td>
-                            <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
-                                @Html.DisplayFor(modelItem => item.GIAHANG)
-                            </td>
-                            <td class="text-center">
-                                @Html.DisplayFor(modelItem => item.BAOHANH)
-                            </td>
-                            <td class="text-center">
-                                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                                    <div class="btn-group" role="group">
-                                        <button id="btnGroupDrop1"
-                                                type="button"
-                                                class="btn btn-outline-secondary dropdown-toggle"
-                                                data-bs-toggle="dropdown"
-                                                aria-haspopup="true"
-                                                aria-expanded="false">
-                                            Tùy chọn
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                            @Html.ActionLink("EditProduct", "EditProduct", new { id = item.MAMATHANG }, new { @class = "edit-button" })
-                                            @Html.ActionLink("Delete", "Delete", new { id = item.MAMATHANG }, new { @class = "delete-button" })
-                                        </div>
-                                    </div>
+                <tr>
+                    <td class="text-center" style="font-weight:700">
+                        @Html.DisplayFor(modelItem => item.TENHANG)
+                    </td>
+                    <td class="text-center" >
+                        <img src="@item.ANHSANPHAM" alt="Hình ảnh sản phẩm" class="product-image" style="width:50%;height:50%;" />
+                    </td>
+                    <td class="text-center">
+                        @String.Format("{0:dd/MM/yyyy}", item.NGAYSANXUAT)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.TENHANGSANXUAT)
+                    </td>
+                    <td class="text-center ">
+                        @Html.DisplayFor(modelItem => item.KICHTHUOC) MM
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.LOAI)
+                    </td>
+                    <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+                        @Html.DisplayFor(modelItem => item.GIAHANG)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.BAOHANH)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SALE)
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                            <div class="btn-group" role="group">
+                                <button id="btnGroupDrop1"
+                                        type="button"
+                                        class="btn btn-outline-secondary dropdown-toggle"
+                                        data-bs-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                    Tùy chọn
+                                </button> <div class="dropdown-menu" style="width:200px" >
+                                    @Html.ActionLink("EditProduct", "EditProduct", new { id = item.MAMATHANG }, new { @class = " btn btn-primary" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.MAMATHANG }, new { @class = "btn btn-primary" })
                                 </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
                     }
                 </table>
 

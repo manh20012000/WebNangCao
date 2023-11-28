@@ -18,34 +18,39 @@ namespace ShopWatch.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public MATHANG()
         {
+            this.CHITIETGIOHANGs = new HashSet<CHITIETGIOHANG>();
             this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
             this.CHITIETPHIEUNHAPs = new HashSet<CHITIETPHIEUNHAP>();
-            this.GIOHANGs = new HashSet<GIOHANG>();
         }
+    
 
         public int MAMATHANG { get; set; }
-        [Required(ErrorMessage = "Please enter the Name")]
+        [Required(ErrorMessage = "Please Enter Name Product")]
         public string TENHANG { get; set; }
+     
         public string ANHSANPHAM { get; set; }
         [Required(ErrorMessage = "Please Enter date")]
-        public Nullable<System.DateTime> NGAYSANXUAT { get; set; }
-        [Required(ErrorMessage = "Please Enter Tenhangsx")]
-
+        public Nullable<System.DateTime> NGAYSANXUAT { get; set;}
+        [Required(ErrorMessage = "Please Enter TenHang")]
         public string TENHANGSANXUAT { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập giá trị.")]
-        public Nullable<double> GIAHANG { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập LOAI.")]
-        public string LOAI { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập BẢO HÀNH")]
+        [Required(ErrorMessage = "Please Enter GiaHang")]
+        [RegularExpression(@"^[0-9]+$", ErrorMessage = "Vui lòng chỉ nhập số.")]
+        public Nullable<decimal> GIAHANG { get; set; }
+        [Required(ErrorMessage = "Please Enter BaoHanh")]
         public string BAOHANH { get; set; }
-        [Required(ErrorMessage = "Vui lòng nhập Kích thước.")]
+        [Required(ErrorMessage = "Please Enter Loai")]
+        public string LOAI { get; set; }
+        [Required(ErrorMessage = "Please Enter KichThuoc")]
         public Nullable<int> KICHTHUOC { get; set; }
+
+        public Nullable<int> SALE { get; set; }
         public Nullable<bool> TRANGTHAI { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GIOHANG> GIOHANGs { get; set; }
     }
 }
