@@ -1,0 +1,82 @@
+﻿@model IEnumerable<ShopWatch.Models.CHITIETGIOHANG>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="shortcut icon" href="images/favicon.png">
+        <title>
+            Welcome to FlatShop
+        </title>
+        <link href="~/assets/KhachHang/css/bootstrap.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
+        <link href="~/assets/KhachHang/css/font-awesome.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="~/assets/KhachHang/css/flexslider.css" type="text/css" media="screen" />
+        <link href="~/assets/KhachHang/css/style.css" rel="stylesheet" type="text/css">
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+        </script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
+        </script>
+        <![endif]-->
+    
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.MATHANG.TENHANG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GIOHANG.MAGIOHANG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SOLUONG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DONGIA)
+            </th>
+
+
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.MATHANG.TENHANG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.GIOHANG.MAGIOHANG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SOLUONG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DONGIA)
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.MACHITIETGIOHANG }) |
+            @Html.ActionLink("Details", "Details", new { id = item.MACHITIETGIOHANG }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.MACHITIETGIOHANG })
+        </td>
+    </tr>
+    }
+    
+    </table>
+</body>
+</html>

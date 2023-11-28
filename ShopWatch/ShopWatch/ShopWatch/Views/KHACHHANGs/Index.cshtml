@@ -1,0 +1,58 @@
+﻿@model IEnumerable<ShopWatch.Models.KHACHHANG>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TENKHACHHANG)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DIACHI)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SDT)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AVATAR)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TAIKHOAN.TENDANGNHAP)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.TENKHACHHANG)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DIACHI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SDT)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.AVATAR)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TAIKHOAN.TENDANGNHAP)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MAKHACHHANG }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MAKHACHHANG }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MAKHACHHANG })
+        </td>
+    </tr>
+}
+
+</table>
