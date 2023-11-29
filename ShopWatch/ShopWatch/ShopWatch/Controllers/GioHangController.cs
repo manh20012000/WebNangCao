@@ -18,7 +18,7 @@ namespace ShopWatch.Controllers
         public ActionResult Index()
         {
             //int? id_khachhang = GetMaKH();
-            int id_khachhang = 4;
+            int id_khachhang = 1;
             if (id_khachhang != null)
             {
                 var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == id_khachhang);

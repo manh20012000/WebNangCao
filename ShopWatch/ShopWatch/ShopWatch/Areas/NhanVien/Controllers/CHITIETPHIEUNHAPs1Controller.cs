@@ -96,7 +96,41 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
         [HttpPost, ActionName("deleteReceipt")]
         [ValidateAntiForgeryToken]
-     
+
+          
+
+        public ActionResult EditDetail(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            CHITIETPHIEUNHAP cHITIETPHIEUNHAP = db.CHITIETPHIEUNHAPs.Find(id);
+            if (cHITIETPHIEUNHAP == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(cHITIETPHIEUNHAP);
+        }
+
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditDetail( CHITIETPHIEUNHAP cHITIETPHIEUNHAP)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(cHITIETPHIEUNHAP).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            ViewBag.MANHAPHANG = new SelectList(db.NHAPHANGs, "MANHAPHANG", "MANHAPHANG", cHITIETPHIEUNHAP.MANHAPHANG);
+          
+            return View(cHITIETPHIEUNHAP);
+        }
+
+
         public ActionResult DeleteConfirmed(int id)
         {
             CHITIETPHIEUNHAP phieunhap = db.CHITIETPHIEUNHAPs.Find(id);

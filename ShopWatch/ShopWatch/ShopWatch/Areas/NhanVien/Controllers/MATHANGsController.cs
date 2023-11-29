@@ -98,8 +98,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
             return View(mathang);
         }
-
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditProduct(MATHANG mathang)
@@ -109,19 +107,18 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             if (ModelState.IsValid)
             {
                 var fImage = Request.Files["imageFile"];
-                if (fImage != null && fImage.ContentLength > 0)
+                if (fImage != null && fImage.ContentLength> 0)
                 {
                     string fileName = fImage.FileName;
                     string folderName = Server.MapPath("~/assets/Upload/" + fileName);
                     fImage.SaveAs(folderName);
                     product.ANHSANPHAM = "/assets/Upload/" + fileName;
                  }
-                //db.Entry(mathang).State = EntityState.Modified;
-                // Find theo id, cập nhật từng field của obj
-                   product.GIAHANG = mathang.GIAHANG;
+               
                    product.KICHTHUOC = mathang.KICHTHUOC;
                    product.LOAI = mathang.LOAI;
                    product.NGAYSANXUAT = mathang.NGAYSANXUAT;
+                   product.GIAHANG = mathang.GIAHANG;
                    product.TENHANG = mathang.TENHANG;
                    product.TENHANGSANXUAT = mathang.TENHANGSANXUAT;
                    product.BAOHANH = mathang.BAOHANH;
@@ -132,7 +129,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             return View(product);
         }
 
-        // GET: NhanVien/MATHANGs/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
