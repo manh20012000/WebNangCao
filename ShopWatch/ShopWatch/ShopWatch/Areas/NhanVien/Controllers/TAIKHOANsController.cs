@@ -54,7 +54,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
              }
              return View();
          }*/
-        public ActionResult LoginUser(TAIKHOAN taikhoan, string ReturnUrl)
+        public ActionResult LoginUser(TAIKHOAN taikhoan)
         {
 
        
@@ -70,24 +70,20 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                         return View();
                     }
 
-                FormsAuthentication.SetAuthCookie(check.EMAIL, false);
-                if (ReturnUrl == null || ReturnUrl == "")
-                    {
+                     FormsAuthentication.SetAuthCookie(check.EMAIL, false);
+               
                         Session["UserEmail"] = check.EMAIL;
                         Session["TenHienThi"] = check.TENDANGNHAP;
                         return RedirectToAction("Product", "MATHANGs");
-                    }
-                    else
-                    {
-                        return RedirectToAction(ReturnUrl);
-                    }
+                    
+                   
 
 
                 }
                 catch
                 {
                 ModelState.AddModelError("", "Đã xảy ra lỗi khi đăng nhập");
-            }
+                 }
                 return View();
         }
          /* < authentication mode = "Forms" >

@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using PagedList;
 using ShopWatch.Models;
 
 namespace ShopWatch.Areas.NhanVien.Controllers
@@ -32,7 +33,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 var pagedData = items.ToList();
                 return View(pagedData);
             }
-
             return RedirectToAction("LoginUser", "TAIKHOANs");
         }
 
@@ -51,7 +51,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         {
             if (ModelState.IsValid)
             {
-               
                 db.CHITIETPHIEUNHAPs.Add(chitietphieunhap);
                 db.SaveChanges();
                 var upadateNhapHang = db.NHAPHANGs.Find(chitietphieunhap.MANHAPHANG);
@@ -61,6 +60,51 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
             return View(chitietphieunhap.MANHAPHANG);
         }
+        public ActionResult CreateMulti(int? id,int page = 1)
+        {
+            db.Configuration.ProxyCreationEnabled = false;
+
+            ViewBag.NHAPHANG = db.NHAPHANGs.Find(id);
+            ViewBag.MAMATHANG = new SelectList(db.MATHANGs, "MAMATHANG", "TENHANG");
+            int pageSize = 6;
+
+
+                var items = db.MATHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
+            
+           
+            db.Configuration.ProxyCreationEnabled = false;
+
+            ViewBag.NHAPHANG = db.NHAPHANGs.Find(id);
+            ViewBag.MAMATHANG = new SelectList(db.MATHANGs, "MAMATHANG", "TENHANG");
+          return View(items.ToList().ToPagedList(page, pageSize));
+       
+        }
+        [HttpPost]
+
+       
+            public ActionResult CreateMulti(List<CHITIETPHIEUNHAP> listInput)
+            { var THANHTIEN = 0;
+            int idNhapHang = 1;
+                if (listInput != null && listInput.Any())
+                {
+                    foreach (var chitietphieunhap in listInput)
+                    {
+                    THANHTIEN = (int)(double)(THANHTIEN + chitietphieunhap.GIANHAP*chitietphieunhap.SOLUONG);
+                    idNhapHang = (int)chitietphieunhap.MANHAPHANG;
+                    chitietphieunhap.GIANHAP *= chitietphieunhap.SOLUONG;
+                        Console.WriteLine(chitietphieunhap+"ch tiet pheiu nhâo ");
+                    db.CHITIETPHIEUNHAPs.Add(chitietphieunhap);
+                }
+                var nhahang = db.NHAPHANGs.Find(idNhapHang);
+                nhahang.THANHTIEN = nhahang.THANHTIEN+ THANHTIEN;
+
+                db.SaveChanges();
+            }
+
+            return RedirectToAction("Index");
+            }
+        
+
 
         public ActionResult DetailReceipt(int? id)
         {
@@ -80,6 +124,8 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             return View(ctphieunhap);
         }
         // GET: NhanVien/CHITIETPHIEUNHAPs1/Delete/5
+         
+
         public ActionResult deleteReceipt(int? id)
         {
             Console.WriteLine(id);
@@ -96,10 +142,24 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
         [HttpPost, ActionName("deleteReceipt")]
         [ValidateAntiForgeryToken]
+        public ActionResult DeleteConfirmed(int id)
+        {
+            CHITIETPHIEUNHAP phieunhap = db.CHITIETPHIEUNHAPs.Find(id);
+            
+            if (phieunhap!=null) {
+                var Receipt = db.NHAPHANGs.Find(phieunhap.MANHAPHANG);
+            Receipt.THANHTIEN = Receipt.THANHTIEN - phieunhap.GIANHAP;
+                db.CHITIETPHIEUNHAPs.Remove(phieunhap);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+       
+    
 
-          
 
-        public ActionResult EditDetail(int? id)
+    public ActionResult EditDetail(int? id)
         {
             if (id == null)
             {
@@ -131,15 +191,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
 
 
-        public ActionResult DeleteConfirmed(int id)
-        {
-            CHITIETPHIEUNHAP phieunhap = db.CHITIETPHIEUNHAPs.Find(id);
-            db.CHITIETPHIEUNHAPs.Remove(phieunhap);
-            var Receipt = db.NHAPHANGs.Find(phieunhap.MANHAPHANG);
-            Receipt.THANHTIEN = Receipt.THANHTIEN - phieunhap.GIANHAP;
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
+       
 
         public ActionResult PromissonDetails(int id)
         {

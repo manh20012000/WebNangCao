@@ -49,9 +49,7 @@
             <div class="box-body table-container">
                 <table id="example" class="table table-bordered table-striped">
                     <tr>
-                        <th class="text-center" id="hang">
-                            <label>STT</label>
-                        </th>
+                       
                         <th class="text-center" id="hang">
                             <label>THANHTIEN</label>
                         </th>
@@ -66,9 +64,7 @@
                     @foreach (var item in Model)
                     {  
                 <tr>
-                    <td class="text-center tble">
-                        @ViewBag.STT;
-                    </td>
+                   
                     <td class="text-center tble">
                         @Html.DisplayFor(modelItem => item.THANHTIEN)
                     </td>
@@ -91,10 +87,11 @@
                                     Tùy chọn
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                                    @Html.ActionLink("Create", "Create", "CHITIETPHIEUNHAPs1", new { id = item.MANHAPHANG }, "")--
+                                    @Html.ActionLink("Create", "Create", "CHITIETPHIEUNHAPs1", new { id = item.MANHAPHANG }, "")----
                                     @*    @Html.ActionLink("EditNhapHang", "EditNhapHang", new { id = item.MANHAPHANG })|*@
-                                    @Html.ActionLink("Delete", "Delete", new { id = item.MANHAPHANG })
-                                  
+                                    @*   @Html.ActionLink("Delete", "Delete", new { id = item.MANHAPHANG })*@
+                                      @Html.ActionLink("CreateMulti", "CreateMulti","CHITIETPHIEUNHAPs1", new { id = item.MANHAPHANG },"")
+
                                 </div>
                             </div>
                         </div>

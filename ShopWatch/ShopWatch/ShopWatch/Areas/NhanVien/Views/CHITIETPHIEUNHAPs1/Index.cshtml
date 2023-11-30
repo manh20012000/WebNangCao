@@ -65,6 +65,7 @@
                             <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
 
                                 @Html.ActionLink("DetailReceipt", "DetailReceipt", new { id = item.MACTPHIEUNHAP })
+                               
                                 @Html.ActionLink("Delete", "deleteReceipt", new { id = item.MACTPHIEUNHAP }, new { @class = "delete-button" })
                             </div>
                         </div>

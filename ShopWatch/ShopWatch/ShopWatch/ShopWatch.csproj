@@ -529,6 +529,7 @@
     <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\CreateMulti.cshtml" />
     <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\EditDetail.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

@@ -84,6 +84,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV", nhaphang.MANV);
             return View(nhaphang);
         }
+       
 
         // GET: NhanVien/NHAPHANGs/Edit/5
         public ActionResult EditNhapHang(int? id)
@@ -116,7 +117,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             return View(nhaphang);
         }
 
-        public ActionResult Delete(int? id)
+      /*  public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -150,7 +151,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
 
             return RedirectToAction("Index");
-        }
+        }*/
 
         protected override void Dispose(bool disposing)
         {

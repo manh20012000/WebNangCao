@@ -100,7 +100,7 @@
     <div class="form-group">
         @Html.LabelFor(model => model.ANHSANPHAM, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.ANHSANPHAM, new { htmlAttributes = new { type = "file", @class ="form-control", name = "imageFile", id ="imageFile", onchange = "previewImage(event)" } })
+            <input type="file" class="form-control" name="imageFile" id="imageFile" onchange="previewImage(event)">
             @Html.ValidationMessageFor(model => model.ANHSANPHAM, "", new { @class = "text-danger" })
             <img id="previewImage" src="@Model.ANHSANPHAM" class="previewImage" style="width: 150px; height: 150px" />
         </div>
