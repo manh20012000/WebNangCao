@@ -151,7 +151,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             Receipt.THANHTIEN = Receipt.THANHTIEN - phieunhap.GIANHAP;
                 db.CHITIETPHIEUNHAPs.Remove(phieunhap);
             db.SaveChanges();
-            return RedirectToAction("Index");
+          
             }
             return RedirectToAction("Index");
         }
@@ -161,33 +161,52 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
     public ActionResult EditDetail(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            CHITIETPHIEUNHAP cHITIETPHIEUNHAP = db.CHITIETPHIEUNHAPs.Find(id);
-            if (cHITIETPHIEUNHAP == null)
-            {
-                return HttpNotFound();
-            }
+            db.Configuration.ProxyCreationEnabled = false;
+            var CTPhieuNhap = db.CHITIETPHIEUNHAPs.Find(id);
+            ViewBag.phieunhap = CTPhieuNhap;
+            ViewBag.NHAPHANG = db.NHAPHANGs.Find(CTPhieuNhap.MANHAPHANG);
+            ViewBag.MAMATHANG = db.MATHANGs.Find(CTPhieuNhap.MAMATHANG);
 
-            return View(cHITIETPHIEUNHAP);
+            return View();
         }
 
       
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditDetail( CHITIETPHIEUNHAP cHITIETPHIEUNHAP)
+
+        public ActionResult EditDetail(CHITIETPHIEUNHAP cHITIETPHIEUNHAP)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(cHITIETPHIEUNHAP).State = EntityState.Modified;
+                var nhaphang = db.NHAPHANGs.Find(cHITIETPHIEUNHAP.MANHAPHANG);
+                var ctphieunhap = db.CHITIETPHIEUNHAPs.Find(cHITIETPHIEUNHAP.MACTPHIEUNHAP);
+               if (ModelState.IsValid)
+                 {
+                    if (nhaphang == null || ctphieunhap == null)
+                    {
+                        return View();
+                    }
+                    if (cHITIETPHIEUNHAP.SOLUONG < ctphieunhap.SOLUONG)
+                    {
+                        nhaphang.THANHTIEN = nhaphang.THANHTIEN - cHITIETPHIEUNHAP.GIANHAP;
+                    }else if(cHITIETPHIEUNHAP.SOLUONG > ctphieunhap.SOLUONG)
+                    {
+                        nhaphang.THANHTIEN = nhaphang.THANHTIEN + cHITIETPHIEUNHAP.GIANHAP;
+                    }
+                    else if(cHITIETPHIEUNHAP.SOLUONG == ctphieunhap.SOLUONG)
+                    {
+                        nhaphang.THANHTIEN = nhaphang.THANHTIEN;
+                    }
+                    ctphieunhap.SOLUONG = cHITIETPHIEUNHAP.SOLUONG;
+                    ctphieunhap.GIANHAP = cHITIETPHIEUNHAP.GIANHAP;
+               /* db.Entry(cHITIETPHIEUNHAP).State = EntityState.Modified;*/
                 db.SaveChanges();
                 return RedirectToAction("Index");
+                }
             }
-            ViewBag.MANHAPHANG = new SelectList(db.NHAPHANGs, "MANHAPHANG", "MANHAPHANG", cHITIETPHIEUNHAP.MANHAPHANG);
-          
-            return View(cHITIETPHIEUNHAP);
+            catch { }
+           
+            return View();
         }
 
 
