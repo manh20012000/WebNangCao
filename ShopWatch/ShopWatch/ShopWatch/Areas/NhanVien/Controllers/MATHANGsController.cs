@@ -42,7 +42,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                      SqlFunctions.PatIndex("%" + searchValue + "%", x.TENHANG) > 0);
 
               items.ToList().ToPagedList(page, pageSize);
-/*                return View(pagedData);*/
+
                 }
            return View(items.ToList().ToPagedList(page, pageSize));
         }

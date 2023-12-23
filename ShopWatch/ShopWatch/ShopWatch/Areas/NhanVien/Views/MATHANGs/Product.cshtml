@@ -23,6 +23,15 @@
         text-decoration: none;
         cursor: pointer;
     }
+    .bnts{
+        background-color:burlywood;
+         margin-left:20px;
+         
+    }
+    .seache{
+        display: flex;
+        padding:20px
+    }
 </style>
 <div class="row">
     <div class="col-xs-12">
@@ -30,9 +39,9 @@
         {
             @Html.AntiForgeryToken()
             <div class="input-group-container">
-                <div class="input-group mb-3">
+                <div class="seache">
                     <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá hoặc tên sp" aria-label="Search" aria-describedby="basic-addon2">
-                    <button class="btn btn-outline-secondary" type="submit">Search</button>
+                    <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
                 </div>
             </div>
         }
@@ -55,7 +64,7 @@
 
                         </th>
                         <th style=" padding: 15px; text-align: center;">
-                            <label>NGAYSANXUAT</label>
+                            <label>SANXUAT</label>
 
                         </th>
                         <th style=" padding: 15px; text-align: center;">
@@ -81,6 +90,7 @@
                             <label>SALE %</label>
 
                         </th>
+                        <th></th>
 
                     </tr>
                     @foreach (var item in Model)
@@ -105,7 +115,7 @@
                         @Html.DisplayFor(modelItem => item.LOAI)
                     </td>
                     <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
-                        @Html.DisplayFor(modelItem => item.GIAHANG)
+                        @String.Format("{0:N0}", item.GIAHANG) <!-- Sử dụng String.Format để định dạng số -->
                     </td>
                     <td class="text-center">
                         @Html.DisplayFor(modelItem => item.BAOHANH)
@@ -117,7 +127,7 @@
                         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                             <div class="btn-group" role="group">
                                 <button id="btnGroupDrop1"
-                                        type="button"
+                                        type="button" style="color:brown"
                                         class="btn btn-outline-secondary dropdown-toggle"
                                         data-bs-toggle="dropdown"
                                         aria-haspopup="true"

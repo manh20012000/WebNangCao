@@ -10,7 +10,7 @@
 @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h3>Edit</h3>
+    <center style="justify-content:center;align-content:center;align-items:center"> <h2 >EditInfor</h2></center>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     @Html.HiddenFor(model => model.MANV)
@@ -25,21 +25,21 @@
     <div class="form-group">
         @Html.LabelFor(model => model.AVATAR, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <input type="file" name="imageFile" id="imageFile" class="form-control" />
+            <input type="file" name="imageFile" id="imageFile" class="form-control" onchange="previewImage(event)">
             @Html.ValidationMessageFor(model => model.AVATAR, "", new { @class = "text-danger" })
 
+            <!-- Thẻ <img> để hiển thị hình ảnh -->
             @if (!string.IsNullOrEmpty(Model.AVATAR))
             {
-        <img src="@Url.Content(Model.AVATAR)" alt="Preview" class="previewImage" style="width: 200px; height: 200px" />
-         }
-               else
-           {
-                <img id="previewImage" src="#" alt="Preview" class="previewImage" style="width:200px;height:200px" />
-           }
-
-
+                <img id="previewImage" src="@Model.AVATAR" alt="Preview" class="previewImage" style="width: 200px; height: 200px" />
+            }
+            else
+            {
+                <img id="previewImage2" src="#" alt="Preview2" class="previewImage2" style="width:200px;height:200px" />
+            }
         </div>
     </div>
+
 
     <div class="form-group">
 
@@ -63,21 +63,32 @@
             @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
         </div>
     </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" value="Save" class="btn btn-default" />
+    <script>
+        function previewImage(event) {
+            var input = event.target;
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    var previewImage = document.getElementById('previewImage');
+                    if (previewImage) {
+                        previewImage.src = e.target.result;
+                    } else {
+                        var previewImage2 = document.getElementById('previewImage2');
+                        if (previewImage2) {
+                            previewImage2.src = e.target.result;
+                        }
+                    }
+                };
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <center>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" style="background-color:coral" />
+            </div>
         </div>
-    </div>
+    </center>
 </div>
 }
-@*<script>
-        $("#imageFile").change(function () {
-            if (this.files && this.files[0]) {var reader = new FileReader();
-                reader.onload = function (e) {
-                    $("#previewImage").attr("src", e.target.result);
-                };
-                reader.readAsDataURL(this.files[0]);
-            }
-        });
-    </script>*@

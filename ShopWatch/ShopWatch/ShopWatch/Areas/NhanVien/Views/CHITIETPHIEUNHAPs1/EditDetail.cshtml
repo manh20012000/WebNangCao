@@ -5,7 +5,16 @@
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
 
+<style>
+    span{
+        font-size:18px;
+        font-weight:700
+    }
+    fom1{
+        padding:20px
+    }
 
+</style>
 <div class="row">
     <div class="col-md-6">
         <div class="card">
@@ -31,10 +40,11 @@
     </div>
 </div>
 <div id="create">
-    <div class="form-horizontal" id="Input" style="width:50%">
+   
+    <div class="form-horizontal fom1" id="Input" style="width:50%">
         @using (Html.BeginForm("EditDetail", "CHITIETPHIEUNHAPs1", FormMethod.Post))
         {
-
+        <center>
             @Html.AntiForgeryToken()
             <input type="hidden" name="MACTPHIEUNHAP" value="@ViewBag.phieunhap.MACTPHIEUNHAP" />
             <input type="hidden" name="MANHAPHANG" value="@ViewBag.NHAPHANG.MANHAPHANG" />
@@ -42,9 +52,7 @@
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="form-group">
                 @Html.LabelFor(model => model.MAMATHANG, "MAMATHANG", htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
-
-                <span>@ViewBag.MAMATHANG.MAMATHANG</span>
-
+                <span style="margin-top:10%">@ViewBag.MAMATHANG.MAMATHANG</span>
             </div>
             <div class="form-group">
                 @Html.LabelFor(model => model.SOLUONG, htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
@@ -58,18 +66,20 @@
                 <input type="hidden" id="GIAHANG" value="@ViewBag.MAMATHANG.GIAHANG" />
                 <input type="hidden" id="GIANHAP" name="GIANHAP" value="" />
                 <div class="col-md-10">
-                    <span id="GIANHAPDisplay" name="GIANHAP" style="font-weight: bold;">Giá nhập: @ViewBag.phieunhap.GIANHAP</span>
+                    <span id="GIANHAPDisplay" name="GIANHAP" style="font-weight: bold;">Giá nhập:  @String.Format("{0:N0}", @ViewBag.phieunhap.GIANHAP)</span>
                 </div>
             </div>
-          
+
             <input type="hidden" name="MAMATHANG" value="@ViewBag.MAMATHANG.MAMATHANG" />
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="add votes" class="btn btn-default" style="width:120px;background-color:#0094ff" />
                 </div>
             </div>
+        </center>
         }
-    </div>
+        </div>
+   
     <script>
         function calculateTotal() {
             var soluong = parseInt(document.getElementById("SOLUONG").value);
@@ -77,31 +87,33 @@
 
             var total = soluong * giaHang;
 
-            document.getElementById("GIANHAPDisplay").innerText = "Giá nhập: " + total.toFixed(2);
+            document.getElementById("GIANHAPDisplay").innerText = "Giá nhập: " + total.toFixed(0);
 
             // Gán giá trị vào trường input hidden
-            document.getElementById("GIANHAP").value = total.toFixed(2);
+            document.getElementById("GIANHAP").value = total.toFixed(0);
         }
     </script>
     <div id="Input" style="width:50%">
-        <div id="productInfo" style="justify-content:center;align-content:center;">
-            <h4>Thông tin sản phẩm </h4>
-            @if (ViewBag.MAMATHANG != null)
-            {
-                <div class="form-group">
-                    <label class="font-weight-bold">MAMATHANG:</label>
-                    <span>@ViewBag.MAMATHANG.MAMATHANG</span>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bold">GIATIEN:</label>
-                    <span>@ViewBag.MAMATHANG.GIAHANG</span>
-                </div>
-                <div class="form-group">
-                    <label class="font-weight-bold">ANHSANPHAM:</label>
-                    <img Style="width:200px;height:200px" src="@ViewBag.MAMATHANG.ANHSANPHAM">
-                </div>
-            }
+        <center>
+            <div id="productInfo" style="justify-content:center;align-content:center;">
+                <h4 style="font-weight:900">THÔNG TIN SẢN PHẨM </h4>
+                @if (ViewBag.MAMATHANG != null)
+                {
+                    <div class="form-group">
+                        <label class="font-weight-bold">MAMATHANG:</label>
+                        <span>@ViewBag.MAMATHANG.MAMATHANG</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">GIATIEN:</label>
+                        <span>  @String.Format("{0:N0}", @ViewBag.MAMATHANG.GIAHANG) VND</span>
+                    </div>
+                    <div class="form-group">
+                        <label class="font-weight-bold">ANHSANPHAM:</label>
+                        <img Style="width:200px;height:200px" src="@ViewBag.MAMATHANG.ANHSANPHAM">
+                    </div>
+                }
 
-        </div>
+            </div>
+        </center>
     </div>
 </div>

@@ -133,14 +133,11 @@
                                 </span>
                             </a>
                         </div>
-
                         <div> <p> @Session["Pass"]</p></div>
                          @using (Html.BeginForm("Confirm", "TAIKHOANs", FormMethod.Post, new { @class = "my-form", role = "form" }))
                         {
                               @Html.AntiForgeryToken()
                              @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-@*                        <form id="formAuthentication" class="mb-3" action="/NhanVien/TAIKHOANs/Confirm" method="POST">
-*@
                             <div class="row flex-row">
                                 @for (int i = 0; i < 6; i++)
                                 {

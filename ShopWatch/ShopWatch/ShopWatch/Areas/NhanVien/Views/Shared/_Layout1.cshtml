@@ -29,6 +29,12 @@
                 background-color: #87CEFA; /* Màu nền khi hover */
                 transform: scale(1.05); /* Phóng to một chút */
             }
+            .menu-item a.active {
+                background-color: #CD853F; /* Màu nền khi mục được chọn */
+                color: #007bff; /* Màu chữ khi mục được chọn */
+                font-weight: bold; /* Làm đậm chữ khi mục được chọn */
+                /* Các thuộc tính CSS khác tùy thuộc vào thiết kế của bạn */
+            }
     </style>
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="~/assets/NhanVien/img/favicon/favicon.ico" />
@@ -337,6 +343,13 @@
     <script src="~/assets/NhanVien/js/nhanvien.js"></script>
 
     <script>
+        const currentUrl = window.location.href;
+        const menuLinks = document.querySelectorAll('.menu-item a');
+        menuLinks.forEach(link => {
+            if (link.href === currentUrl) {
+                link.classList.add('active'); 
+            }
+        })
         $("#imageFile").change(function () {
             if (this.files && this.files[0]) {
                 var reader = new FileReader();
@@ -346,8 +359,7 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-    </script>
-    <script>
+    
         $(document).ready(function () {
             $(".dropdown button").click(function () {
                 const dropdownMenu = $(this).next(".dropdown-menu");

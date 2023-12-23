@@ -30,30 +30,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
         }
           [HttpPost]
-        /* public ActionResult LoginUser(TAIKHOAN taikhoan)
-         {
-            *//* if (ModelState.IsValid)
-             {*//*
-                 try
-             {
-               string f_password = GetMD5(taikhoan.MATKHAU);
-
-                 TAIKHOAN check = db.TAIKHOANs.FirstOrDefault(tk => tk.EMAIL == taikhoan.EMAIL &&  tk.MATKHAU == f_password);
-                     if (check == null)
-                     {
-                         ModelState.AddModelError("", "tài khoản hoặc mật khẩu không chính xác");
-                         return View();
-                     }
-                 Session["UserEmail"] = check.EMAIL;
-                 Session["TenHienThi"] = check.TENDANGNHAP;
-                 TempData["AlertMessage"] = "đăng nhập thành công";
-                 return RedirectToAction("Product", "MATHANGs");
-                 }
-                 catch
-                 {       
-             }
-             return View();
-         }*/
+       
         public ActionResult LoginUser(TAIKHOAN taikhoan)
         {
 
@@ -75,9 +52,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                         Session["UserEmail"] = check.EMAIL;
                         Session["TenHienThi"] = check.TENDANGNHAP;
                         return RedirectToAction("Product", "MATHANGs");
-                    
-                   
-
 
                 }
                 catch
@@ -86,9 +60,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                  }
                 return View();
         }
-         /* < authentication mode = "Forms" >
-           < forms loginUrl = "/NhanVien/TAIKHOANs/LoginUser" ></ forms >
-        </ authentication >*/
+        
       
         public ActionResult Create()
         {
@@ -135,6 +107,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
         public ActionResult getMail()
         {
+           
             return View();
         }
 
@@ -142,6 +115,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult getMail(string email)
         {
+            
             int[] a = new int[6];
             TAIKHOAN taikhoan = db.TAIKHOANs.Find(email);
           
@@ -154,7 +128,11 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
         public ActionResult Confirm()
         {
-                int[] a = new int[6];
+            if (Session["Email"] == null)
+            {
+                return RedirectToAction("LoginUser", "TAIKHOANs");
+            }
+            int[] a = new int[6];
                 Random rn = new Random();
                 for (int j = 0; j < 6; j++)
                 {
@@ -173,37 +151,39 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [HttpPost, ActionName("Confirm")]
         [ValidateAntiForgeryToken]
         public ActionResult Confirm(TAIKHOAN tk, List<int> digits)
-        {
-            if (string.IsNullOrEmpty(tk.MATKHAU) || digits == null || digits.Count != 6)
-            {
-                TempData["AlertMessage"] = "Dữ liệu không hợp lệ!";
-                return View();
-            }
-            else {
-                var user = Session["Email"] as string;
-                int[] generatedDigits = Session["CheckPass"] as int[];
-
-                if (generatedDigits.SequenceEqual(digits))
-                {
-                    TAIKHOAN taikhoan = db.TAIKHOANs.Find(user);
-
-                    if (taikhoan != null)
+        { 
+           
+                   if (string.IsNullOrEmpty(tk.MATKHAU) || digits == null || digits.Count != 6)
                     {
-                        taikhoan.MATKHAU = GetMD5(tk.MATKHAU)+"";
-                        db.Configuration.ValidateOnSaveEnabled = false;
-                        db.SaveChanges();
-                        return RedirectToAction("LoginUser", "TAIKHOANs");
+                        TempData["AlertMessage"] = "Dữ liệu không hợp lệ!";
+                        return View();
                     }
-                    else
-                    {
-                        TempData["AlertMessage"] = "Không tìm thấy người dùng!";
-                    }
-                }
-                else
-                {
-                    TempData["AlertMessage"] = "Email hoặc mã xác thực không đúng!";
-                }
-            }
+                    else {
+                        var user = Session["Email"] as string;
+                        int[] generatedDigits = Session["CheckPass"] as int[];
+
+                        if (generatedDigits.SequenceEqual(digits))
+                        {
+                            TAIKHOAN taikhoan = db.TAIKHOANs.Find(user);
+
+                            if (taikhoan != null)
+                            {
+                                taikhoan.MATKHAU = GetMD5(tk.MATKHAU)+"";
+                                db.Configuration.ValidateOnSaveEnabled = false;
+                                db.SaveChanges();
+                                return RedirectToAction("LoginUser", "TAIKHOANs");
+                            }
+                            else
+                            {
+                                TempData["AlertMessage"] = "Không tìm thấy người dùng!";
+                            }
+                        }
+                        else
+                        {
+                            TempData["AlertMessage"] = "Email hoặc mã xác thực không đúng!";
+                        }
+                     }
+            
 
             return View();
         }
@@ -233,3 +213,27 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         }
     }
 }
+ /* public ActionResult LoginUser(TAIKHOAN taikhoan)
+         {
+            *//* if (ModelState.IsValid)
+             {*//*
+                 try
+             {
+               string f_password = GetMD5(taikhoan.MATKHAU);
+
+                 TAIKHOAN check = db.TAIKHOANs.FirstOrDefault(tk => tk.EMAIL == taikhoan.EMAIL &&  tk.MATKHAU == f_password);
+                     if (check == null)
+                     {
+                         ModelState.AddModelError("", "tài khoản hoặc mật khẩu không chính xác");
+                         return View();
+                     }
+                 Session["UserEmail"] = check.EMAIL;
+                 Session["TenHienThi"] = check.TENDANGNHAP;
+                 TempData["AlertMessage"] = "đăng nhập thành công";
+                 return RedirectToAction("Product", "MATHANGs");
+                 }
+                 catch
+                 {       
+             }
+             return View();
+         }*/

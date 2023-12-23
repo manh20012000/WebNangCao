@@ -20,6 +20,7 @@
         cursor: pointer;
     }
 </style>
+<h3>Nhập Nhiều Sản phẩm </h3>
 <div class="row">
     <div class="col-md-6">
 
@@ -115,7 +116,7 @@
                                 @Html.DisplayFor(modelItem => item.LOAI)
                             </td>
                             <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
-                                <label class="gia-hang-label">@Html.DisplayFor(modelItem => item.GIAHANG)</label>
+                                <label class="gia-hang-label">@*@Html.DisplayFor(modelItem => item.GIAHANG) *@ @String.Format("{0:N0}", item.GIAHANG)</label>
                             </td>
                             <td class="text-center">
                                 <div class="quantity-control" id="quantity-control" style="display:none;flex-direction:row">
@@ -182,7 +183,6 @@
                             }
                         });
                     });
-
                     var increaseButtons = document.querySelectorAll('.quantity-increase');
                     var decreaseButtons = document.querySelectorAll('.quantity-decrease');
 
@@ -243,4 +243,4 @@
     </div><!-- /.col -->
 </div><!-- /.row -->
 
-@Html.PagedListPager(Model, page => Url.Action("Product", new { page }))
+@Html.PagedListPager(Model, page => Url.Action("CreateMulti", new { page }))

@@ -5,15 +5,11 @@
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
 
-
-<h3 style="margin:2%" class="nameThem">Thêm Sản Phẩm </h3>
 @using (Html.BeginForm("CreateMatHang", "MATHANGs", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
 <div class="row g-3">
-
-    <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.TENHANG, htmlAttributes: new { @class = "control-label col-md-2" })

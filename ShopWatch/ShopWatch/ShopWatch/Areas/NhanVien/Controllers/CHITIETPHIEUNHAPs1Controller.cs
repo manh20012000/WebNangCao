@@ -68,10 +68,8 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.MAMATHANG = new SelectList(db.MATHANGs, "MAMATHANG", "TENHANG");
             int pageSize = 6;
 
-
                 var items = db.MATHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
-            
-           
+          
             db.Configuration.ProxyCreationEnabled = false;
 
             ViewBag.NHAPHANG = db.NHAPHANGs.Find(id);
@@ -101,7 +99,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Index");
+            return RedirectToAction("Index","CHITIETPHIEUNHAPs1");
             }
         
 
@@ -118,8 +116,10 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 return HttpNotFound();
             }
             var product = db.MATHANGs.Find(ctphieunhap.MAMATHANG);
-                ViewBag.product = product;
+           
+            ViewBag.product = product;
             var Receipt =db.NHAPHANGs.Find(ctphieunhap.MANHAPHANG);
+
             ViewBag.Receipt = Receipt;
             return View(ctphieunhap);
         }
@@ -166,7 +166,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             ViewBag.phieunhap = CTPhieuNhap;
             ViewBag.NHAPHANG = db.NHAPHANGs.Find(CTPhieuNhap.MANHAPHANG);
             ViewBag.MAMATHANG = db.MATHANGs.Find(CTPhieuNhap.MAMATHANG);
-
             return View();
         }
 
@@ -180,6 +179,7 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             {
                 var nhaphang = db.NHAPHANGs.Find(cHITIETPHIEUNHAP.MANHAPHANG);
                 var ctphieunhap = db.CHITIETPHIEUNHAPs.Find(cHITIETPHIEUNHAP.MACTPHIEUNHAP);
+                var mathang = db.MATHANGs.Find(cHITIETPHIEUNHAP.MAMATHANG);
                if (ModelState.IsValid)
                  {
                     if (nhaphang == null || ctphieunhap == null)
@@ -188,10 +188,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                     }
                     if (cHITIETPHIEUNHAP.SOLUONG < ctphieunhap.SOLUONG)
                     {
-                        nhaphang.THANHTIEN = nhaphang.THANHTIEN - cHITIETPHIEUNHAP.GIANHAP;
+                       
+                        nhaphang.THANHTIEN -= mathang.GIAHANG*( ctphieunhap.SOLUONG - cHITIETPHIEUNHAP.SOLUONG);
                     }else if(cHITIETPHIEUNHAP.SOLUONG > ctphieunhap.SOLUONG)
-                    {
-                        nhaphang.THANHTIEN = nhaphang.THANHTIEN + cHITIETPHIEUNHAP.GIANHAP;
+                    {   
+
+                        nhaphang.THANHTIEN += mathang.GIAHANG * (cHITIETPHIEUNHAP.SOLUONG-ctphieunhap.SOLUONG );
                     }
                     else if(cHITIETPHIEUNHAP.SOLUONG == ctphieunhap.SOLUONG)
                     {
@@ -208,10 +210,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
            
             return View();
         }
-
-
-       
-
         public ActionResult PromissonDetails(int id)
         {
             try

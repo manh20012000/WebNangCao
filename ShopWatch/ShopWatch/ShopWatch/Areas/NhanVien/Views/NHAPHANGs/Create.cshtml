@@ -4,44 +4,49 @@
     ViewBag.Title = "Create";
     Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
 }
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<center style=" background: linear-gradient(to bottom, white, purple);height:75%";>
+    <div style="width: 70%;height:80%; ">
 
-    <div class="form-horizontal">
-        <h4>NHAPHANG</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
 
-    <div class="form-group">
-        @Html.LabelFor(model => model.NGAYNHAP, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            <input type="date" id="NGAYNHAP" name="NGAYNHAP" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
-            @Html.ValidationMessageFor(model => model.NGAYNHAP, "", new { @class = "text-danger" })
-        </div>
-    </div>
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="margin-top:10% ">
+            <h4 style="font-weight:900">NHÂP HÀNG</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
         <div class="form-group">
-            <label class="control-label col-md-2">MANV</label>
+            <label class="control-label col-md-2">NGÀY NHẬP HÀNG:</label>
             <div class="col-md-10">
-                <label class="control-label col-md-2">@Session["MaNV"]</label>
+                <input type="date" id="NGAYNHAP" name="NGAYNHAP" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                @Html.ValidationMessageFor(model => model.NGAYNHAP, "", new { @class = "text-danger" })
+            </div>
+        </div>
+            <div class="form-group">
+                <label class="control-label col-md-2">MÃ NHÂN VIÊN:</label>
+                <div class="col-md-10">
+                    <label class="control-label col-md-3">@Session["MaNV"]</label>
 
-                @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                    @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2">TENNHANVIEN:</label>
-            <div class="col-md-10">
-                <label class="control-label col-md-2">@Session["TenHienThi"]</label>
-                @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <label class="control-label col-md-2">TÊN NHÂN VIÊN :</label>
+                <div class="col-md-10">
+                    <label class="control-label col-md-2" style="width:200px">@Session["TenHienThi"]</label>
+                    @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Tạo phiếu" class="btn btn-default" />
+            <div class="form-group" style="padding-top:10%">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tạo phiếu" class="btn btn-default" style="width:120px;background-color:coral" />
+                </div>
             </div>
         </div>
+        }
     </div>
-}
-
+</center>
 
