@@ -94,6 +94,8 @@ namespace ShopWatch.Controllers
                     var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
                     if (data_khachhang != null)
                     {
+                        Session["UserEmail"] = data_khachhang.EMAIL;
+                      
                         SetMaKH(data_khachhang.MAKHACHHANG);
                         return RedirectToAction("homeIndex", "Home");
                     }

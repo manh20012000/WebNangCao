@@ -35,6 +35,7 @@ namespace ShopWatch.Models
         public string TENHANGSANXUAT { get; set; }
         [Required(ErrorMessage = "Please Enter GiaHang")]
         [RegularExpression(@"^[0-9]+$", ErrorMessage = "Vui lòng chỉ nhập số.")]
+        [DataType(DataType.Currency, ErrorMessage = "Vui lòng nhập giá trị tiền tệ.")]
         public Nullable<decimal> GIAHANG { get; set; }
         [Required(ErrorMessage = "Please Enter BaoHanh")]
         public string BAOHANH { get; set; }

@@ -151,6 +151,7 @@
     <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
     <Compile Include="Controllers\AllController.cs" />
     <Compile Include="Controllers\CHITIETMATHANGController.cs" />
+    <Compile Include="Controllers\DatHangController.cs" />
     <Compile Include="Controllers\GioHangController.cs" />
     <Compile Include="Controllers\HOADONsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -549,15 +550,14 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\CHITIETMATHANG\chitiet.cshtml" />
     <Content Include="Views\CHITIETMATHANG\Index.cshtml" />
+    <Content Include="Views\DatHang\DonHang.cshtml" />
+    <Content Include="Views\GioHang\form_DatHang.cshtml" />
     <Content Include="Views\GioHang\Index.cshtml" />
-    <Content Include="Views\GioHang\Index_1.cshtml" />
-    <Content Include="Views\HOADONs\hoadonIndex.cshtml" />
     <Content Include="Views\Home\danhsach.cshtml" />
     <Content Include="Views\Home\homeIndex.cshtml" />
     <Content Include="Views\KHACHHANGs\Edit.cshtml" />
-    <Content Include="Views\KHACHHANGs\Index.cshtml" />
+    <Content Include="Views\KHACHHANGs\edit_2.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\TAIKHOANs\Dangnhap.cshtml" />
@@ -572,6 +572,7 @@
     <Folder Include="Areas\NhanVien\Views\Base\" />
     <Folder Include="assets\Upload\" />
     <Folder Include="Views\All\" />
+    <Folder Include="Views\HOADONs\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

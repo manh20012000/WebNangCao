@@ -1,0 +1,455 @@
+﻿@model ShopWatch.Models.KHACHHANG
+
+@{
+    ViewBag.Title = "Edit";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>
+        Welcome to FlatShop
+    </title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/flexslider.css" type="text/css" media="screen" />
+    <link href="css/style.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+    </script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
+    </script>
+    <![endif]-->
+    <style>
+        /* Adjust styles as needed */
+
+        /* Main container styling */
+        .col-md-9 {
+            width: 75%;
+            margin: 0 auto;
+            padding: 20px;
+            box-sizing: border-box;
+            background-color: #f5f5f5;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+         
+        }
+
+        /* Header styling */
+        h4 {
+            text-align: center;
+            color: #333;
+        }
+
+        /* Form row styling */
+        .form-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        /* Label styling */
+        .control-label {
+            font-weight: bold;
+            color: #555;
+            margin-right: 10px; /* Add margin between label and input */
+        }
+
+        /* Input field styling */
+        .input {
+            flex: 1; /* Take up remaining space */
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+
+        /* Button styling */
+        .btn-default {
+            background-color: #428bca;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left:88%;
+            width:80px;
+        }
+
+        /* Validation message styling */
+        .text-danger {
+            color: #a94442;
+        }
+    </style>
+    
+</head>
+<body>
+    <div class="wrapper">
+       
+        <div class="clearfix">
+        </div>
+        <div class="container_fullwidth">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="special-deal leftbar" style="margin-top:0;">
+                            <h4 class="title">
+                                Special
+                                <strong>
+                                    Deals
+                                </strong>
+                            </h4>
+                            <div class="special-item">
+                                <div class="product-image">
+                                    <a href="details.html">
+                                        <img src="images/products/thum/products-01.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <p>
+                                        <a href="details.html">
+                                            Licoln Corner Unit
+                                        </a>
+                                    </p>
+                                    <h5 class="price">
+                                        $300.00
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="special-item">
+                                <div class="product-image">
+                                    <a href="details.html">
+                                        <img src="images/products/thum/products-02.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <p>
+                                        <a href="details.html">
+                                            Licoln Corner Unit
+                                        </a>
+                                    </p>
+                                    <h5 class="price">
+                                        $300.00
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="special-item">
+                                <div class="product-image">
+                                    <a href="details.html">
+                                        <img src="images/products/thum/products-03.png" alt="">
+                                    </a>
+                                </div>
+                                <div class="product-info">
+                                    <p>
+                                        <a href="details.html">
+                                            Licoln Corner Unit
+                                        </a>
+                                    </p>
+                                    <h5 class="price">
+                                        $300.00
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-tag leftbar">
+                            <h3 class="title">
+                                Products
+                                <strong>
+                                    Tags
+                                </strong>
+                            </h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        Lincoln us
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        SDress for Girl
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Corner
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Window
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        PG
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Oscar
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Bath room
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        PSD
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="get-newsletter leftbar">
+                            <h3 class="title">
+                                Get
+                                <strong>
+                                    newsletter
+                                </strong>
+                            </h3>
+                            <p>
+                                Casio G Shock Digital Dial Black.
+                            </p>
+                            <form>
+                                <input class="email" type="text" name="" placeholder="Your Email...">
+                                <input class="submit" type="submit" value="Submit">
+                            </form>
+                        </div>
+                        <div class="fbl-box leftbar">
+                            <h3 class="title">
+                                Facebook
+                            </h3>
+                            <span class="likebutton">
+                                <a href="#">
+                                    <img src="images/fblike.png" alt="">
+                                </a>
+                            </span>
+                            <p>
+                                12k people like Flat Shop.
+                            </p>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                    </a>
+                                </li>
+                            </ul>
+                            <div class="fbplug">
+                                <a href="#">
+                                    <span>
+                                        <img src="images/fbicon.png" alt="">
+                                    </span>
+                                    Facebook social plugin
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="col-md-9" style="">
+                            <h4 style="margin-bottom: 30px; text-align: center; font-weight: 700; font-family: 'Times New Roman', Times, serif">Khách Hàng</h4>
+                            <hr />
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            @Html.HiddenFor(model => model.MAKHACHHANG)
+
+                            <div class="form-row" >
+                                @Html.LabelFor(model => model.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10" >
+                                    @Html.EditorFor(model => model.TENKHACHHANG, new { htmlAttributes = new { @class = "input namefild" } })
+                                    @Html.ValidationMessageFor(model => model.TENKHACHHANG, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "input namefild" } })
+                                    @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "input namefild" } })
+                                    @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                @Html.LabelFor(model => model.EMAIL, "EMAIL", htmlAttributes: new { @class = "control-label col-md-2" })
+                                <div class="col-md-10">
+                                    @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { @class = "input namefild" } })
+                                    @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="clearfix">
+                </div>
+                <div class="our-brand">
+                    <h3 class="title">
+                        <strong>
+                            Our
+                        </strong>
+                        Brands
+                    </h3>
+                    <div class="control">
+                        <a id="prev_brand" class="prev" href="#">
+                            &lt;
+                        </a>
+                        <a id="next_brand" class="next" href="#">
+                            &gt;
+                        </a>
+                    </div>
+                    <ul id="braldLogo">
+                        <li>
+                            <ul class="brand_item">
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/themeforest.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/photodune.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/activeden.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="brand_item">
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/themeforest.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/photodune.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/activeden.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+      
+    </div>
+    <!-- Bootstrap core JavaScript==================================================-->
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js">
+    </script>
+    <script type="text/javascript" src="js/bootstrap.min.js">
+    </script>
+    <script defer src="js/jquery.flexslider.js">
+    </script>
+    <script type="text/javascript" src="js/jquery.carouFredSel-6.2.1-packed.js">
+    </script>
+    <script type="text/javascript" src="js/script.min.js">
+    </script>
+</body>
+</html>
+
+
+
+
+

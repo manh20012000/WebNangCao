@@ -15,7 +15,7 @@ namespace ShopWatch.Controllers
         private DHEntities db = new DHEntities();
         public ActionResult hoadonIndex()
         {
-            return View();
+            return View(db.HOADONs.ToList());
         }
         // GET: HOADONs
         public ActionResult Index()

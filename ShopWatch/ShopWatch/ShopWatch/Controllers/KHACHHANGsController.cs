@@ -10,7 +10,7 @@ using ShopWatch.Models;
 
 namespace ShopWatch.Controllers
 {
-    public class KHACHHANGsController : Controller
+    public class KHACHHANGsController : AllController
     {
         private DHEntities db = new DHEntities();
 
@@ -39,7 +39,7 @@ namespace ShopWatch.Controllers
         // GET: KHACHHANGs/Create
         public ActionResult Create()
         {
-            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "TENDANGNHAP");
+            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU");
             return View();
         }
 
@@ -57,41 +57,46 @@ namespace ShopWatch.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "TENDANGNHAP", kHACHHANG.EMAIL);
+            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", kHACHHANG.EMAIL);
             return View(kHACHHANG);
         }
 
         // GET: KHACHHANGs/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit()
         {
-            if (id == null)
+            try
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                int? makhachhang = GetMaKH();
+                if (makhachhang == null)
+                {
+                    return RedirectToAction("Dangnhap", "TAIKHOANs");
+                }
+                var kHACHHANG = db.KHACHHANGs.Find(makhachhang);
+                return View(kHACHHANG);
             }
-            KHACHHANG kHACHHANG = db.KHACHHANGs.Find(id);
-            if (kHACHHANG == null)
+            catch(Exception ex)
             {
-                return HttpNotFound();
+                Console.WriteLine("loi" + ex.Message);
             }
-            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "TENDANGNHAP", kHACHHANG.EMAIL);
-            return View(kHACHHANG);
+            return RedirectToAction("homeIndex","Home");
+   
         }
 
-        // POST: KHACHHANGs/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MAKHACHHANG,TENKHACHHANG,DIACHI,SDT,EMAIL,AVATAR")] KHACHHANG kHACHHANG)
+        public ActionResult Edit(KHACHHANG model)
         {
-            if (ModelState.IsValid)
+            var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
+            update.TENKHACHHANG = model.TENKHACHHANG;
+            update.SDT = model.SDT;
+            update.DIACHI = model.DIACHI;
+            var kt = db.SaveChanges();
+            if(kt > 0)
             {
-                db.Entry(kHACHHANG).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View(model);
             }
-            ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "TENDANGNHAP", kHACHHANG.EMAIL);
-            return View(kHACHHANG);
+            return View(model);
         }
 
         // GET: KHACHHANGs/Delete/5

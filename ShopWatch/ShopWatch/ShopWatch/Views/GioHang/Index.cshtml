@@ -41,403 +41,140 @@
     }
 </style>
 <body>
+
     <div class="wrapper">
         <div class="header">
             <div class="container">
-                <div class="row">
+                <div class="row" style="display:flex; justify-content:space-between">
                     <div class="col-md-2 col-sm-2">
-                        <div class="logo">
-                            <a href="index.html">
-                                <img src="images/logo.png" alt="FlatShop">
-                            </a>
-                        </div>
+                        <div class="logo"><a href="index.html"><img src="~/assets/KhachHang/images/products/removebg-preview.png" style="width:80px;height:80px" alt="FlatShop"></a></div>
                     </div>
                     <div class="col-md-10 col-sm-10">
+                        ">
                         <div class="header_top">
                             <div class="row">
                                 <div class="col-md-3">
                                     <ul class="option_nav">
                                         <li class="dorpdown">
-                                            <a href="#">
-                                                Eng
-                                            </a>
+                                            <a href="#">Eng</a>
                                             <ul class="subnav">
-                                                <li>
-                                                    <a href="#">
-                                                        Eng
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Vns
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Fer
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        Gem
-                                                    </a>
-                                                </li>
+                                                <li><a href="#">Eng</a></li>
+                                                <li><a href="#">Vns</a></li>
+                                                <li><a href="#">Fer</a></li>
+                                                <li><a href="#">Gem</a></li>
                                             </ul>
                                         </li>
                                         <li class="dorpdown">
-                                            <a href="#">
-                                                USD
-                                            </a>
+                                            <a href="#">USD</a>
                                             <ul class="subnav">
-                                                <li>
-                                                    <a href="#">
-                                                        USD
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        UKD
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="#">
-                                                        FER
-                                                    </a>
-                                                </li>
+                                                <li><a href="#">USD</a></li>
+                                                <li><a href="#">UKD</a></li>
+                                                <li><a href="#">FER</a></li>
                                             </ul>
                                         </li>
                                     </ul>
                                 </div>
                                 <div class="col-md-6">
                                     <ul class="topmenu">
-                                        <li>
-                                            <a href="#">
-                                                About Us
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                News
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Service
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Recruiment
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Media
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#">
-                                                Support
-                                            </a>
-                                        </li>
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">Service</a></li>
+                                        <li><a href="#">Recruiment</a></li>
+                                        <li><a href="#">Media</a></li>
+                                        <li><a href="#">Support</a></li>
                                     </ul>
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="usermenu">
-                                        <li>
-                                            <a href="checkout.html" class="log">
-                                                Login
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="checkout2.html" class="reg">
-                                                Register
-                                            </a>
-                                        </li>
+                                        <li><a href="/TAIKHOANs/Dangnhap" class="log">Login</a></li>
+                                        <li><a href="/KHACHHANGs/Edit" class="reg">profile</a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
-                        <div class="clearfix">
-                        </div>
+                        <div class="clearfix"></div>
                         <div class="header_bottom">
                             <ul class="option">
                                 <li id="search" class="search">
-                                    <form>
+                                    <form action="/Home/homeIndex" method="post">
                                         <input class="search-submit" type="submit" value="">
-                                        <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="search">
+                                        <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="searchValue" id="searchValue">
                                     </form>
                                 </li>
                                 <li class="option-cart">
-                                    <a href="#" class="cart-icon">
-                                        cart
-                                        <span class="cart_no">
-                                            02
-                                        </span>
-                                    </a>
+                                    <a href="#" class="cart-icon">cart <span class="cart_no">02</span></a>
                                     <ul class="option-cart-item">
                                         <li>
                                             <div class="cart-item">
-                                                <div class="image">
-                                                    <img src="images/products/thum/products-01.png" alt="">
-                                                </div>
+                                                <div class="image"><img src="images/products/thum/products-01.png" alt=""></div>
                                                 <div class="item-description">
-                                                    <p class="name">
-                                                        Lincoln chair
-                                                    </p>
-                                                    <p>
-                                                        Size:
-                                                        <span class="light-red">
-                                                            One size
-                                                        </span>
-                                                        <br>
-                                                        Quantity:
-                                                        <span class="light-red">
-                                                            01
-                                                        </span>
-                                                    </p>
+                                                    <p class="name">Lincoln chair</p>
+                                                    <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
                                                 </div>
                                                 <div class="right">
-                                                    <p class="price">
-                                                        $30.00
-                                                    </p>
-                                                    <a href="#" class="remove">
-                                                        <img src="images/remove.png" alt="remove">
-                                                    </a>
+                                                    <p class="price">$30.00</p>
+                                                    <a href="#" class="remove"><img src="images/remove.png" alt="remove"></a>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="cart-item">
-                                                <div class="image">
-                                                    <img src="images/products/thum/products-02.png" alt="">
-                                                </div>
+                                                <div class="image"><img src="images/products/thum/products-02.png" alt=""></div>
                                                 <div class="item-description">
-                                                    <p class="name">
-                                                        Lincoln chair
-                                                    </p>
-                                                    <p>
-                                                        Size:
-                                                        <span class="light-red">
-                                                            One size
-                                                        </span>
-                                                        <br>
-                                                        Quantity:
-                                                        <span class="light-red">
-                                                            01
-                                                        </span>
-                                                    </p>
+                                                    <p class="name">Lincoln chair</p>
+                                                    <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
                                                 </div>
                                                 <div class="right">
-                                                    <p class="price">
-                                                        $30.00
-                                                    </p>
-                                                    <a href="#" class="remove">
-                                                        <img src="images/remove.png" alt="remove">
-                                                    </a>
+                                                    <p class="price">$30.00</p>
+                                                    <a href="#" class="remove"><img src="images/remove.png" alt="remove"></a>
                                                 </div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <span class="total">
-                                                Total
-                                                <strong>
-                                                    $60.00
-                                                </strong>
-                                            </span>
-                                            <button class="checkout" onClick="location.href='checkout.html'">
-                                                CheckOut
-                                            </button>
-                                        </li>
+                                        <li><span class="total">Total <strong>$60.00</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
                                     </ul>
                                 </li>
                             </ul>
-                            <div class="navbar-header">
-                                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                                    <span class="sr-only">
-                                        Toggle navigation
-                                    </span>
-                                    <span class="icon-bar">
-                                    </span>
-                                    <span class="icon-bar">
-                                    </span>
-                                    <span class="icon-bar">
-                                    </span>
-                                </button>
-                            </div>
+                            <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            Home
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <ul class="mega-menu-links">
-                                                <li>
-                                                    <a href="index.html">
-                                                        home
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="home2.html">
-                                                        home2
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="home3.html">
-                                                        home3
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="productlitst.html">
-                                                        Productlitst
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="productgird.html">
-                                                        Productgird
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="details.html">
-                                                        Details
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="cart.html">
-                                                        Cart
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkout.html">
-                                                        CheckOut
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="checkout2.html">
-                                                        CheckOut2
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="contact.html">
-                                                        contact
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
+                                        <a href="/Home/homeIndex" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+
                                     </li>
-                                    <li>
-                                        <a href="productgird.html">
-                                            men
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="productlitst.html">
-                                            women
-                                        </a>
-                                    </li>
+                                    <li><a href="/CHITIETMATHANG/Index">men</a></li>
+                                    <li><a href="productlitst.html">women</a></li>
                                     <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                            Fashion
-                                        </a>
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
                                         <div class="dropdown-menu mega-menu">
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6">
                                                     <ul class="mega-menu-links">
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                New Collection
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Shirts & tops
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Laptop & Brie
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Dresses
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Blazers & Jackets
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Shoulder Bags
-                                                            </a>
-                                                        </li>
+                                                        <li><a href="productgird.html">New Collection</a></li>
+                                                        <li><a href="productgird.html">Shirts & tops</a></li>
+                                                        <li><a href="productgird.html">Laptop & Brie</a></li>
+                                                        <li><a href="productgird.html">Dresses</a></li>
+                                                        <li><a href="productgird.html">Blazers & Jackets</a></li>
+                                                        <li><a href="productgird.html">Shoulder Bags</a></li>
                                                     </ul>
                                                 </div>
                                                 <div class="col-md-6 col-sm-6">
                                                     <ul class="mega-menu-links">
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                New Collection
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Shirts & tops
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Laptop & Brie
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Dresses
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Blazers & Jackets
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a href="productgird.html">
-                                                                Shoulder Bags
-                                                            </a>
-                                                        </li>
+                                                        <li><a href="productgird.html">New Collection</a></li>
+                                                        <li><a href="productgird.html">Shirts & tops</a></li>
+                                                        <li><a href="productgird.html">Laptop & Brie</a></li>
+                                                        <li><a href="productgird.html">Dresses</a></li>
+                                                        <li><a href="productgird.html">Blazers & Jackets</a></li>
+                                                        <li><a href="productgird.html">Shoulder Bags</a></li>
                                                     </ul>
                                                 </div>
                                             </div>
                                         </div>
                                     </li>
-                                    <li>
-                                        <a href="productgird.html">
-                                            gift
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="productgird.html">
-                                            kids
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="productgird.html">
-                                            blog
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="productgird.html">
-                                            jewelry
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="contact.html">
-                                            contact us
-                                        </a>
-                                    </li>
+                                    <li><a href="productgird.html">gift</a></li>
+                                    <li><a href="productgird.html">kids</a></li>
+                                    <li><a href="productgird.html">blog</a></li>
+                                    <li><a href="productgird.html">jewelry</a></li>
+                                    <li><a href="contact.html">contact us</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -449,42 +186,45 @@
             <div class="page-index">
                 <div class="container">
                     <p>
-                        Home - Shopping Cart
+                      
                     </p>
                 </div>
             </div>
         </div>
         <div class="clearfix">
         </div>
-        <div class="container_fullwidth">
+        <div class="container_fullwidth" style=" font-weight: 400; font-family: 'Times New Roman', Times, serif">
             <div class="container shopping-cart">
                 <div class="row">
                     <div class="col-md-12">
-                        <h3 class="title">
-                            Shopping Cart
-                        </h3>
+                        <div>
+                            <h3 class="title">
+                                GIỎ HÀNG 
+                            </h3>
+                         
+                        </div>
                         <div class="clearfix">
                         </div>
                         <table class="shop-table">
                             <thead>
                                 <tr>
                                     <th>
-                                        Image
+                                        ẢNH
                                     </th>
                                     <th>
-                                        Dtails
+                                       CHI TIẾT
                                     </th>
                                     <th>
-                                        Price
+                                       GIÁ
                                     </th>
                                     <th>
-                                        Quantity
+                                       SỐ LƯỢNG 
                                     </th>
                                     <th>
-                                        Price
+                                       TỔNG
                                     </th>
                                     <th>
-                                        Delete
+                                       XÓA
                                     </th>
                                 </tr>
                             </thead>
@@ -493,7 +233,7 @@
                                    decimal tongtien = 0;
 
                                    foreach (var item in Model)
-                                    {
+                                   {
                                     <tr>
                                         <td>
                                             <img src="@item.MATHANG.ANHSANPHAM" alt="">
@@ -503,34 +243,23 @@
                                                 <div class="productname">
                                                     @item.MATHANG.TENHANG
                                                 </div>
-                                                <p>
-                                                    <img alt="" src="images/star.png">
-                                                    <a class="review_num" href="#">
-                                                        02 Review(s)
-                                                    </a>
-                                                </p>
-                                                <div class="color-choser">
-                                                    <span class="text">
-                                                        Product Color :
+                                                <p style="font-size:14px">
+                                                    Guarantee:
+                                                    <span class="light-red" style="font-size:18px">
+                                                        @item.MATHANG.BAOHANH
                                                     </span>
-                                                    <ul>
-                                                        <li>
-                                                            <a class="gray-bg" href="#">
-                                                                pink
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a class="black-bg " href="#">
-                                                                black
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                                <p>
-                                                    Product Code :
-                                                    <strong class="pcode">
-                                                        Dress 132
-                                                    </strong>
+                                                </p>
+                                                <p style="font-size:14px">
+                                                    Type:
+                                                    <span class="light-red" style="font-size:18px">
+                                                        @item.MATHANG.LOAI
+                                                    </span>
+                                                </p>
+                                                <p style="font-size:14px">
+                                                    Size:
+                                                    <span class="light-red" style="font-size:18px">
+                                                        @item.MATHANG.KICHTHUOC
+                                                    </span>
                                                 </p>
                                             </div>
                                         </td>
@@ -573,12 +302,14 @@
                             <tfoot>
                                 <tr>
                                     <td colspan="6">
-                                        <button class="pull-left">
-                                            Continue Shopping
+                                        <button class="pull-left" >
+                                           Tiếp tục mua hàng
                                         </button>
-                                        <button class=" pull-right">
-                                          
-                                        </button>
+                                  
+                                            <button class="pull-right" style="margin-left:20px;">
+                                                @Html.ActionLink("Đơn hàng", "DonHang", "DatHang")
+                                            </button>
+                                    
                                     </td>
                                 </tr>
                             </tfoot>
@@ -589,487 +320,25 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="shippingbox">
                                     <h5>
-                                        Estimate Shipping And Tax
+                                       ƯỚC TÍNH VẬN CHUYỂN VÀ THUẾ
                                     </h5>
                                     <form>
                                         <label>
-                                            Select Country *
+                                           Quốc gia *
                                         </label>
-                                        <select class="">
-                                            <option value="AL">
-                                                Alabama
-                                            </option>
-                                            <option value="AK">
-                                                Alaska
-                                            </option>
-                                            <option value="AZ">
-                                                Arizona
-                                            </option>
-                                            <option value="AR">
-                                                Arkansas
-                                            </option>
-                                            <option value="CA">
-                                                California
-                                            </option>
-                                            <option value="CO">
-                                                Colorado
-                                            </option>
-                                            <option value="CT">
-                                                Connecticut
-                                            </option>
-                                            <option value="DE">
-                                                Delaware
-                                            </option>
-                                            <option value="DC">
-                                                District Of Columbia
-                                            </option>
-                                            <option value="FL">
-                                                Florida
-                                            </option>
-                                            <option value="GA">
-                                                Georgia
-                                            </option>
-                                            <option value="HI">
-                                                Hawaii
-                                            </option>
-                                            <option value="ID">
-                                                Idaho
-                                            </option>
-                                            <option selected="" value="IL">
-                                                Illinois
-                                            </option>
-                                            <option value="IN">
-                                                Indiana
-                                            </option>
-                                            <option value="IA">
-                                                Iowa
-                                            </option>
-                                            <option value="KS">
-                                                Kansas
-                                            </option>
-                                            <option value="KY">
-                                                Kentucky
-                                            </option>
-                                            <option value="LA">
-                                                Louisiana
-                                            </option>
-                                            <option value="ME">
-                                                Maine
-                                            </option>
-                                            <option value="MD">
-                                                Maryland
-                                            </option>
-                                            <option value="MA">
-                                                Massachusetts
-                                            </option>
-                                            <option value="MI">
-                                                Michigan
-                                            </option>
-                                            <option value="MN">
-                                                Minnesota
-                                            </option>
-                                            <option value="MS">
-                                                Mississippi
-                                            </option>
-                                            <option value="MO">
-                                                Missouri
-                                            </option>
-                                            <option value="MT">
-                                                Montana
-                                            </option>
-                                            <option value="NE">
-                                                Nebraska
-                                            </option>
-                                            <option value="NV">
-                                                Nevada
-                                            </option>
-                                            <option value="NH">
-                                                New Hampshire
-                                            </option>
-                                            <option value="NJ">
-                                                New Jersey
-                                            </option>
-                                            <option value="NM">
-                                                New Mexico
-                                            </option>
-                                            <option value="NY">
-                                                New York
-                                            </option>
-                                            <option value="NC">
-                                                North Carolina
-                                            </option>
-                                            <option value="ND">
-                                                North Dakota
-                                            </option>
-                                            <option value="OH">
-                                                Ohio
-                                            </option>
-                                            <option value="OK">
-                                                Oklahoma
-                                            </option>
-                                            <option value="OR">
-                                                Oregon
-                                            </option>
-                                            <option value="PA">
-                                                Pennsylvania
-                                            </option>
-                                            <option value="RI">
-                                                Rhode Island
-                                            </option>
-                                            <option value="SC">
-                                                South Carolina
-                                            </option>
-                                            <option value="SD">
-                                                South Dakota
-                                            </option>
-                                            <option value="TN">
-                                                Tennessee
-                                            </option>
-                                            <option value="TX">
-                                                Texas
-                                            </option>
-                                            <option value="UT">
-                                                Utah
-                                            </option>
-                                            <option value="VT">
-                                                Vermont
-                                            </option>
-                                            <option value="VA">
-                                                Virginia
-                                            </option>
-                                            <option value="WA">
-                                                Washington
-                                            </option>
-                                            <option value="WV">
-                                                West Virginia
-                                            </option>
-                                            <option value="WI">
-                                                Wisconsin
-                                            </option>
-                                            <option value="WY">
-                                                Wyoming
-                                            </option>
-                                        </select>
+                                        
                                         <label>
-                                            State / Province *
+                                            Tỉnh
                                         </label>
-                                        <select class="">
-                                            <option value="AL">
-                                                Alabama
-                                            </option>
-                                            <option value="AK">
-                                                Alaska
-                                            </option>
-                                            <option value="AZ">
-                                                Arizona
-                                            </option>
-                                            <option value="AR">
-                                                Arkansas
-                                            </option>
-                                            <option value="CA">
-                                                California
-                                            </option>
-                                            <option value="CO">
-                                                Colorado
-                                            </option>
-                                            <option value="CT">
-                                                Connecticut
-                                            </option>
-                                            <option value="DE">
-                                                Delaware
-                                            </option>
-                                            <option value="DC">
-                                                District Of Columbia
-                                            </option>
-                                            <option value="FL">
-                                                Florida
-                                            </option>
-                                            <option value="GA">
-                                                Georgia
-                                            </option>
-                                            <option value="HI">
-                                                Hawaii
-                                            </option>
-                                            <option value="ID">
-                                                Idaho
-                                            </option>
-                                            <option selected="" value="IL">
-                                                Illinois
-                                            </option>
-                                            <option value="IN">
-                                                Indiana
-                                            </option>
-                                            <option value="IA">
-                                                Iowa
-                                            </option>
-                                            <option value="KS">
-                                                Kansas
-                                            </option>
-                                            <option value="KY">
-                                                Kentucky
-                                            </option>
-                                            <option value="LA">
-                                                Louisiana
-                                            </option>
-                                            <option value="ME">
-                                                Maine
-                                            </option>
-                                            <option value="MD">
-                                                Maryland
-                                            </option>
-                                            <option value="MA">
-                                                Massachusetts
-                                            </option>
-                                            <option value="MI">
-                                                Michigan
-                                            </option>
-                                            <option value="MN">
-                                                Minnesota
-                                            </option>
-                                            <option value="MS">
-                                                Mississippi
-                                            </option>
-                                            <option value="MO">
-                                                Missouri
-                                            </option>
-                                            <option value="MT">
-                                                Montana
-                                            </option>
-                                            <option value="NE">
-                                                Nebraska
-                                            </option>
-                                            <option value="NV">
-                                                Nevada
-                                            </option>
-                                            <option value="NH">
-                                                New Hampshire
-                                            </option>
-                                            <option value="NJ">
-                                                New Jersey
-                                            </option>
-                                            <option value="NM">
-                                                New Mexico
-                                            </option>
-                                            <option value="NY">
-                                                New York
-                                            </option>
-                                            <option value="NC">
-                                                North Carolina
-                                            </option>
-                                            <option value="ND">
-                                                North Dakota
-                                            </option>
-                                            <option value="OH">
-                                                Ohio
-                                            </option>
-                                            <option value="OK">
-                                                Oklahoma
-                                            </option>
-                                            <option value="OR">
-                                                Oregon
-                                            </option>
-                                            <option value="PA">
-                                                Pennsylvania
-                                            </option>
-                                            <option value="RI">
-                                                Rhode Island
-                                            </option>
-                                            <option value="SC">
-                                                South Carolina
-                                            </option>
-                                            <option value="SD">
-                                                South Dakota
-                                            </option>
-                                            <option value="TN">
-                                                Tennessee
-                                            </option>
-                                            <option value="TX">
-                                                Texas
-                                            </option>
-                                            <option value="UT">
-                                                Utah
-                                            </option>
-                                            <option value="VT">
-                                                Vermont
-                                            </option>
-                                            <option value="VA">
-                                                Virginia
-                                            </option>
-                                            <option value="WA">
-                                                Washington
-                                            </option>
-                                            <option value="WV">
-                                                West Virginia
-                                            </option>
-                                            <option value="WI">
-                                                Wisconsin
-                                            </option>
-                                            <option value="WY">
-                                                Wyoming
-                                            </option>
-                                        </select>
+                                     
                                         <label>
-                                            Zip / Post Code *
+                                           Mã Zip
                                         </label>
-                                        <select class="">
-                                            <option value="AL">
-                                                Alabama
-                                            </option>
-                                            <option value="AK">
-                                                Alaska
-                                            </option>
-                                            <option value="AZ">
-                                                Arizona
-                                            </option>
-                                            <option value="AR">
-                                                Arkansas
-                                            </option>
-                                            <option value="CA">
-                                                California
-                                            </option>
-                                            <option value="CO">
-                                                Colorado
-                                            </option>
-                                            <option value="CT">
-                                                Connecticut
-                                            </option>
-                                            <option value="DE">
-                                                Delaware
-                                            </option>
-                                            <option value="DC">
-                                                District Of Columbia
-                                            </option>
-                                            <option value="FL">
-                                                Florida
-                                            </option>
-                                            <option value="GA">
-                                                Georgia
-                                            </option>
-                                            <option value="HI">
-                                                Hawaii
-                                            </option>
-                                            <option value="ID">
-                                                Idaho
-                                            </option>
-                                            <option selected="" value="IL">
-                                                Illinois
-                                            </option>
-                                            <option value="IN">
-                                                Indiana
-                                            </option>
-                                            <option value="IA">
-                                                Iowa
-                                            </option>
-                                            <option value="KS">
-                                                Kansas
-                                            </option>
-                                            <option value="KY">
-                                                Kentucky
-                                            </option>
-                                            <option value="LA">
-                                                Louisiana
-                                            </option>
-                                            <option value="ME">
-                                                Maine
-                                            </option>
-                                            <option value="MD">
-                                                Maryland
-                                            </option>
-                                            <option value="MA">
-                                                Massachusetts
-                                            </option>
-                                            <option value="MI">
-                                                Michigan
-                                            </option>
-                                            <option value="MN">
-                                                Minnesota
-                                            </option>
-                                            <option value="MS">
-                                                Mississippi
-                                            </option>
-                                            <option value="MO">
-                                                Missouri
-                                            </option>
-                                            <option value="MT">
-                                                Montana
-                                            </option>
-                                            <option value="NE">
-                                                Nebraska
-                                            </option>
-                                            <option value="NV">
-                                                Nevada
-                                            </option>
-                                            <option value="NH">
-                                                New Hampshire
-                                            </option>
-                                            <option value="NJ">
-                                                New Jersey
-                                            </option>
-                                            <option value="NM">
-                                                New Mexico
-                                            </option>
-                                            <option value="NY">
-                                                New York
-                                            </option>
-                                            <option value="NC">
-                                                North Carolina
-                                            </option>
-                                            <option value="ND">
-                                                North Dakota
-                                            </option>
-                                            <option value="OH">
-                                                Ohio
-                                            </option>
-                                            <option value="OK">
-                                                Oklahoma
-                                            </option>
-                                            <option value="OR">
-                                                Oregon
-                                            </option>
-                                            <option value="PA">
-                                                Pennsylvania
-                                            </option>
-                                            <option value="RI">
-                                                Rhode Island
-                                            </option>
-                                            <option value="SC">
-                                                South Carolina
-                                            </option>
-                                            <option value="SD">
-                                                South Dakota
-                                            </option>
-                                            <option value="TN">
-                                                Tennessee
-                                            </option>
-                                            <option value="TX">
-                                                Texas
-                                            </option>
-                                            <option value="UT">
-                                                Utah
-                                            </option>
-                                            <option value="VT">
-                                                Vermont
-                                            </option>
-                                            <option value="VA">
-                                                Virginia
-                                            </option>
-                                            <option value="WA">
-                                                Washington
-                                            </option>
-                                            <option value="WV">
-                                                West Virginia
-                                            </option>
-                                            <option value="WI">
-                                                Wisconsin
-                                            </option>
-                                            <option value="WY">
-                                                Wyoming
-                                            </option>
-                                        </select>
+                                     
                                         <div class="clearfix">
                                         </div>
                                         <button>
-                                            Get A Qoute
+                                            Nhận Báo Giá
                                         </button>
                                     </form>
                                 </div>
@@ -1077,7 +346,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="shippingbox">
                                     <h5>
-                                        Discount Codes
+                                       MÃ GIẢM GIÁ
                                     </h5>
                                     <form>
                                         <label>
@@ -1087,7 +356,7 @@
                                         <div class="clearfix">
                                         </div>
                                         <button>
-                                            Get A Qoute
+                                           Nhận Báo Giá
                                         </button>
                                     </form>
                                 </div>
@@ -1096,15 +365,15 @@
                                 <div class="shippingbox">
                                     <div class="grandtotal">
                                         <h5>
-                                            GRAND TOTAL
+                                            TỔNG CỘNG 
                                         </h5>
                                         <span>
                                             $@tongtien
                                         </span>
                                     </div>
-                                    <button>
-                                        Process To Checkout
-                                    </button>
+                                    <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;">
+                                        QUY TRÌNH ĐẶT HÀNG 
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -1133,35 +402,35 @@
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/themeforest.png" alt="">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/photodune.png" alt="">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/activeden.png" alt="">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
@@ -1172,35 +441,35 @@
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/themeforest.png" alt="">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/photodune.png" alt="">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/activeden.png" alt="">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>

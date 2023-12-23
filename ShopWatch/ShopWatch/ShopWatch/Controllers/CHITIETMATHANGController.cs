@@ -22,7 +22,7 @@ namespace ShopWatch.Controllers
             }
             else
             {
-                return RedirectToAction("homeIndex", "Home");
+                return RedirectToAction("Index", "CHITIETMATHANG");
             }
             
         }

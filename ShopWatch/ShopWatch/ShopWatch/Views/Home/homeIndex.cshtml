@@ -64,8 +64,8 @@
                                 </div>
                                 <div class="col-md-3">
                                     <ul class="usermenu">
-                                        <li><a href="checkout.html" class="log">Login</a></li>
-                                        <li><a href="checkout2.html" class="reg">Register</a></li>
+                                        <li><a href="/TAIKHOANs/Dangnhap" class="log">Login</a></li>
+                                        <li><a href="/KHACHHANGs/Edit" class="reg">profile</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -79,7 +79,7 @@
                                     <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="searchValue" id="searchValue"></form>
                                 </li>
                                 <li class="option-cart">
-                                    <a href="#" class="cart-icon">cart <span class="cart_no">02</span></a>
+                                    <a href="/GioHang/Index" class="cart-icon">cart <span class="cart_no">02</span></a>
                                     <ul class="option-cart-item">
                                         <li>
                                             <div class="cart-item">
@@ -115,10 +115,23 @@
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active dropdown">
-                                        <a href="Home/homeIndex" class="dropdown-toggle" data-toggle="dropdown">Home</a>
-                                     
+                                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                        <div class="dropdown-menu">
+                                            <ul class="mega-menu-links">
+                                                <li><a href="">home</a></li>
+                                                <li><a href="home2.html">home2</a></li>
+                                                <li><a href="home3.html">home3</a></li>
+                                                <li><a href="productlitst.html">Productlitst</a></li>
+                                                <li><a href="productgird.html">Productgird</a></li>
+                                                <li><a href="details.html">Details</a></li>
+                                                <li><a href="cart.html">Cart</a></li>
+                                                <li><a href="checkout.html">CheckOut</a></li>
+                                                <li><a href="checkout2.html">CheckOut2</a></li>
+                                                <li><a href="contact.html">contact</a></li>
+                                            </ul>
+                                        </div>
                                     </li>
-                                    <li><a href="productgird.html">men</a></li>
+                                    <li><a href="/CHITIETMATHANG/Index">men</a></li>
                                     <li><a href="productlitst.html">women</a></li>
                                     <li class="dropdown">
                                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
@@ -126,7 +139,7 @@
                                             <div class="row">
                                                 <div class="col-md-6 col-sm-6">
                                                     <ul class="mega-menu-links">
-                                                        <li><a href="productgird.html">New Collection</a></li>
+                                                        <li><a href="/CHITIETMATHANG/Index">New Collection</a></li>
                                                         <li><a href="productgird.html">Shirts & tops</a></li>
                                                         <li><a href="productgird.html">Laptop & Brie</a></li>
                                                         <li><a href="productgird.html">Dresses</a></li>
@@ -180,48 +193,49 @@
                         <li>
                             <div class="row">
                                 @foreach (var item in Model)
-                                { 
-                                
-                                <div class="col-md-3 col-sm-6">
-                               
-                                    <div class="Products update">
+                                {
 
-                                        @if (item.SALE != null)
-                                        {<a href="/CHITIETMATHANG/Index?id_sanpham=@item.MAMATHANG">
-                                                <div class="offer">Sale @item.SALE %</div>
-                                                <img src="@item.ANHSANPHAM" style="width:250px;height:250px" alt="">
-                                                <div class="productname">
+                                    <div class="col-md-3 col-sm-6">
 
-                                                    <h4 class="price" style="color: #DBAF56; margin-bottom: 30px; text-align: center; font-weight: 400; font-family: 'Times New Roman', Times, serif">$@item.GIAHANG</h4>
-                                                    <p style="color: white; margin-bottom: 30px; text-align: center;font-size:15px; font-weight: 400; font-family: 'Times New Roman', Times, serif; line-height:1.5;">@item.TENHANG</p>
-                                                </div>
-                                            </a>
-                                        }
-                                        else
-                                        {
-                                    <a href="/CHITIETMATHANG/Index?id_sanpham=@item.MAMATHANG">
-                                        <img src="@item.ANHSANPHAM" style="width:250px;height:250px" alt="">
-                                        <div class="productname">
+                                        <div class="Products update">
 
-                                            <h4 class="price" style="color: #DBAF56; margin-bottom: 30px; text-align: center; font-weight: 400; font-family: 'Times New Roman', Times, serif">
-                                                @String.Format("{0:#,##0.##}", item.GIAHANG)
-                                            </h4>
-                                            <p style="color: white; margin-bottom: 30px; text-align: center;font-size:15px; font-weight: 400; font-family: 'Times New Roman', Times, serif; line-height:1.5;">@item.TENHANG</p>
+                                            @if (item.SALE != null)
+                                            {<a href="/CHITIETMATHANG/Index?id_sanpham=@item.MAMATHANG">
+                                                    <div class="offer" style="font-size:12px;">Sale @item.SALE %</div>
+                                                    <img src="@item.ANHSANPHAM" style="width:250px;height:250px" alt="">
+                                                    <div class="productname">
+
+                                                        <h4 class="price" style="color: #DBAF56; margin-bottom: 30px; text-align: center; font-weight: 400; font-family: 'Times New Roman', Times, serif">$@String.Format("{0:N0}", item.GIAHANG)</h4>
+                                                        <p style="color: white; margin-bottom: 30px; text-align: center;font-size:15px; font-weight: 400; font-family: 'Times New Roman', Times, serif; line-height:1.5;">@item.TENHANG</p>
+                                                    </div>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a href="/CHITIETMATHANG/Index?id_sanpham=@item.MAMATHANG">
+                                                    <img src="@item.ANHSANPHAM" style="width:250px;height:250px" alt="">
+                                                    <div class="productname">
+
+                                                        <h4 class="price" style="color: #DBAF56; margin-bottom: 30px; text-align: center; font-weight: 400; font-family: 'Times New Roman', Times, serif">
+                                                            @String.Format("{0:N0}", item.GIAHANG)
+                                                        </h4>
+                                                        <p style="color: white; margin-bottom: 30px; text-align: center;font-size:15px; font-weight: 400; font-family: 'Times New Roman', Times, serif; line-height:1.5;">@item.TENHANG</p>
+                                                    </div>
+                                                </a>
+                                            }
+                                            <div class="button_group" style=" text-align:center">
+                                                <button class="button add-cart" type="button" style="background-color: #E0EEEE; ">
+                                                    @Html.ActionLink("Add To Cart", "AddToCart", "GioHang", new { sanpham = item.MAMATHANG }, "")
+                                                </button>
+                                                <button class="button wishlist" type="button" style="background-color: #E0EEEE "><i class="fa fa-heart-o"></i></button>
+                                            </div>
                                         </div>
-                                    </a>
-                                                }
-                                                <div class="button_group" style=" text-align:center">
-                                                    <button class="button add-cart" type="button" style="background-color: #E0EEEE; ">
-                                                        @Html.ActionLink("Add To Cart", "AddToCart", "GioHang", new { sanpham = item.MAMATHANG }, "")
-                                                    </button>
-                                                    <button class="button wishlist" type="button" style="background-color: #E0EEEE "><i class="fa fa-heart-o"></i></button>
-                                                </div>
-                                        </div>
-                                </div>
-                               
+                                    </div>
+
                                 }
-                                    
-                                    
+
+
+
                             </div>
                         </li>
                         <li>
@@ -229,6 +243,7 @@
                         </li>
                     </ul>
                 </div>
+         
                 <div class="clearfix"></div>
                 <div class="featured-products">
 

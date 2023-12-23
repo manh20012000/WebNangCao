@@ -31,73 +31,37 @@
 
         <div class="clearfix">
         </div>
-        <div class="container_fullwidth">
+        <div class="container_fullwidth" >
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-9" style="font-weight: 400; font-family: 'Times New Roman', Times, serif">
                         <div class="products-details">
                             <div class="preview_image">
                                 <div class="preview-small">
                                     <img id="zoom_03" src="@Model.ANHSANPHAM" data-zoom-image="images/products/Large/products-01.jpg" alt="">
                                 </div>
-                                <div class="thum-image">
-                                    <ul id="gallery_01" class="prev-thum">
-                                        <li>
-                                            <a href="#" data-image="images/products/medium/products-01.jpg" data-zoom-image="images/products/Large/products-01.jpg">
-                                                <img src="~/assets/KhachHang/images/products/thum/products-01.png" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-image="images/products/medium/products-02.jpg" data-zoom-image="images/products/Large/products-02.jpg">
-                                                <img src="~/assets/KhachHang/images/products/thum/products-02.png" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-image="images/products/medium/products-03.jpg" data-zoom-image="images/products/Large/products-03.jpg">
-                                                <img src="~/assets/KhachHang/images/products/thum/products-03.png" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-image="images/products/medium/products-04.jpg" data-zoom-image="images/products/Large/products-04.jpg">
-                                                <img src="~/assets/KhachHang/images/products/thum/products-04.png" alt="">
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="#" data-image="images/products/medium/products-05.jpg" data-zoom-image="images/products/Large/products-05.jpg">
-                                                <img src="~/assets/KhachHang/images/products/thum/products-05.png" alt="">
-                                            </a>
-                                        </li>
-                                    </ul>
-                                    <a class="control-left" id="thum-prev" href="javascript:void(0);">
-                                        <i class="fa fa-chevron-left">
-                                        </i>
-                                    </a>
-                                    <a class="control-right" id="thum-next" href="javascript:void(0);">
-                                        <i class="fa fa-chevron-right">
-                                        </i>
-                                    </a>
-                                </div>
+                              
                             </div>
                             <div class="products-description">
-                                <h5 class="name">
+                                <h5 class="name"  style="font-size:20px">
                                     @Model.TENHANG
                                 </h5>
                                
-                                <p>
+                                <p  style="font-size:16px">
                                     Guarantee:
-                                    <span class="light-red">
+                                    <span class="light-red" style="font-size:18px">
                                         @Model.BAOHANH
                                     </span>
                                 </p>
-                                <p>
+                                <p style="font-size:16px">
                                     Type:
-                                    <span class="light-red">
+                                    <span class="light-red"  style="font-size:18px">
                                         @Model.LOAI
                                     </span>
                                 </p>
-                                <p>
+                                <p  style="font-size:16px">
                                     Size:
-                                    <span class="light-red">
+                                    <span class="light-red"  style="font-size:18px">
                                         @Model.KICHTHUOC
                                     </span>
                                 </p>
@@ -105,7 +69,7 @@
                                 <div class="price">
                                     Price :
                                     <span class="new_price">
-                                        @Model.GIAHANG
+                                        @String.Format("{0:N0}", Model.GIAHANG)
                                         <sup>
                                             $
                                         </sup>
@@ -152,17 +116,17 @@
                                 <ul>
                                     <li>
                                         <a href="#Descraption">
-                                            DESCRIPTION
+                                            MÔ TẢ 
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#Reviews">
-                                            REVIEW
+                                            QUẢNG CÁO
                                         </a>
                                     </li>
                                     <li>
                                         <a href="#tags">
-                                            PRODUCT TAGS
+                                            THẺ SẢN PHẨM
                                         </a>
                                     </li>
                                 </ul>
@@ -372,11 +336,9 @@
                         <div class="clearfix">
                         </div>
                         <div id="productsDetails" class="hot-products">
-                            <h3 class="title">
-                                <strong>
-                                    Hot
-                                </strong>
-                                Products
+                            <h3 class="title" style="font-weight:400;font-family:'Times New Roman', Times, serif">
+                                
+                                ĐỒNG HỒ CÓ SẴN
                             </h3>
                             <div class="control">
                                 <a id="prev_hot" class="prev" href="#">
@@ -394,11 +356,11 @@
                                                 <div class="offer">
                                                     - %20
                                                 </div>
-                                                <div class="thumbnail">
-                                                    <img src="images/products/small/products-01.png" alt="Product Name">
+                                                <div class="thumbnail" >
+                                                    <img src="~/assets/KhachHang/images/audemars-piguet-royal-oak-selfwinding-chronograph-50th-anniversary-41mm-26240or-oo-d315cr-01.png" alt="Product Name" style="width: 190px; height: 230px">
                                                 </div>
-                                                <div class="productname">
-                                                    Iphone 5s Gold 32 Gb 2013
+                                                <div class="productname" style="font-weight: 400; font-family: 'Times New Roman', Times, serif">
+                                                    AUDEMARS PIGUET
                                                 </div>
                                                 <h4 class="price">
                                                     $451.00
@@ -421,10 +383,10 @@
                                         <div class="col-md-4 col-sm-4">
                                             <div class="products">
                                                 <div class="thumbnail">
-                                                    <img src="images/products/small/products-02.png" alt="Product Name">
+                                                    <img src="~/assets/KhachHang/images/dong-ho-audemars-piguet-royal-oak-26331st-oo-1220st-02.jpg" alt="Product Name" style="width: 190px; height: 230px">
                                                 </div>
-                                                <div class="productname">
-                                                    Iphone 5s Gold 32 Gb 2013
+                                                <div class="productname" style="font-weight: 400; font-family: 'Times New Roman', Times, serif">
+                                                    AUDEMARS PIGUET
                                                 </div>
                                                 <h4 class="price">
                                                     $451.00
@@ -450,10 +412,10 @@
                                                     New
                                                 </div>
                                                 <div class="thumbnail">
-                                                    <img src="images/products/small/products-03.png" alt="Product Name">
+                                                    <img src="~/assets/KhachHang/images/images.jpg" alt="Product Name" style="width: 190px; height: 230px">
                                                 </div>
-                                                <div class="productname">
-                                                    Iphone 5s Gold 32 Gb 2013
+                                                <div class="productname" style="font-weight: 400; font-family: 'Times New Roman', Times, serif">
+                                                    AUDEMARS PIGUET
                                                 </div>
                                                 <h4 class="price">
                                                     $451.00
@@ -656,23 +618,43 @@
                         <div class="clearfix">
                         </div>
                     </div>
-                    <div class="col-md-3">
-                        <div class="special-deal leftbar">
+                    <div class="col-md-3" style="font-weight:400;font-family:'Times New Roman', Times, serif">
+                        <div class="special-deal leftbar" style="margin-top:0;">
                             <h4 class="title">
-                                Special
-                                <strong>
-                                    Deals
-                                </strong>
+                                ƯU ĐÃI ĐẶC BIỆT
+                                   
                             </h4>
                             <div class="special-item">
                                 <div class="product-image">
-                                    <a href="#">
-                                        <img src="images/products/thum/products-01.png" alt="">
+                                    <a href="details.html">
+                                        <img src="~/assets/KhachHang/images/products/dong-ho-rolex-day-date-m128348rbr-0008-vang-va-kim-cuong-mat-so-champagne-kim-cuong.jpg" alt="">
+                                    </a>
+                                </div>
+                                <div class="" >
+                                    <p >
+                                        <a href=""style="margin-left:20px;">
+                                            Đồng hồ Rolex
+                                        </a>
+                                    </p>
+                                    <h5 class="price">
+                                        <a href="" style="margin-left:20px;color:red">
+                                             $300.00
+                                        </a>
+                                       
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="special-item">
+                                <div class="product-image">
+                                    <a href="details.html">
+                                        <img src="~/assets/KhachHang/images/products/dong-ho-rolex-day-date-m128348rbr-0008-vang-va-kim-cuong-mat-so-champagne-kim-cuong.jpg" alt="">
                                     </a>
                                 </div>
                                 <div class="product-info">
                                     <p>
-                                        Licoln Corner Unit
+                                        <a href="">
+                                            Hublot
+                                        </a>
                                     </p>
                                     <h5 class="price">
                                         $300.00
@@ -681,28 +663,15 @@
                             </div>
                             <div class="special-item">
                                 <div class="product-image">
-                                    <a href="#">
-                                        <img src="images/products/thum/products-02.png" alt="">
+                                    <a href="details.html">
+                                        <img src="~/assets/KhachHang/images/products/patek-philippe-complications-5205r-010-removebg-preview.png" alt="">
                                     </a>
                                 </div>
                                 <div class="product-info">
                                     <p>
-                                        Licoln Corner Unit
-                                    </p>
-                                    <h5 class="price">
-                                        $300.00
-                                    </h5>
-                                </div>
-                            </div>
-                            <div class="special-item">
-                                <div class="product-image">
-                                    <a href="#">
-                                        <img src="images/products/thum/products-03.png" alt="">
-                                    </a>
-                                </div>
-                                <div class="product-info">
-                                    <p>
-                                        Licoln Corner Unit
+                                        <a href="details.html">
+                                            Licoln Corner Unit
+                                        </a>
                                     </p>
                                     <h5 class="price">
                                         $300.00
@@ -714,10 +683,7 @@
                         </div>
                         <div class="product-tag leftbar">
                             <h3 class="title">
-                                Products
-                                <strong>
-                                    Tags
-                                </strong>
+                              THẺ SẢN PHẨM
                             </h3>
                             <ul>
                                 <li>
@@ -766,10 +732,7 @@
                         </div>
                         <div class="get-newsletter leftbar">
                             <h3 class="title">
-                                Get
-                                <strong>
-                                    newsletter
-                                </strong>
+                              NHẬN BẢN TIN
                             </h3>
                             <p>
                                 Casio G Shock Digital Dial Black.
@@ -787,50 +750,21 @@
                             </h3>
                             <span class="likebutton">
                                 <a href="#">
-                                    <img src="images/fblike.png" alt="">
+                                    <img src="~/assets/KhachHang/images/fblike.png" alt="">
                                 </a>
                             </span>
                             <p>
                                 12k people like Flat Shop.
                             </p>
-                            <ul>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                    </a>
-                                </li>
-                            </ul>
+                            <img src="~/assets/KhachHang/images/facebook-1_1200x600-800-resize.jpg" style="border:2px;"/>
+                             
+                                    
+                                
+                         
                             <div class="fbplug">
                                 <a href="#">
                                     <span>
-                                        <img src="images/fbicon.png" alt="">
+                                        <img src="~/assets/KhachHang/images/fbicon.png" alt="">
                                     </span>
                                     Facebook social plugin
                                 </a>
@@ -843,11 +777,9 @@
                 <div class="clearfix">
                 </div>
                 <div class="our-brand">
-                    <h3 class="title">
-                        <strong>
-                            Our
-                        </strong>
-                        Brands
+                    <h3 class="title" style="font-weight:400;font-family:'Times New Roman', Times, serif">
+                      
+                       THƯƠNG HIỆU 
                     </h3>
                     <div class="control">
                         <a id="prev_brand" class="prev" href="#">
@@ -863,35 +795,35 @@
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/themeforest.png" alt="">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/photodune.png" alt="">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/activeden.png" alt="">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
@@ -902,35 +834,35 @@
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/themeforest.png" alt="">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/photodune.png" alt="">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/activeden.png" alt="">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
                                         </div>
                                     </a>
                                 </li>
                                 <li>
                                     <a href="#">
                                         <div class="brand-logo">
-                                            <img src="images/envato.png" alt="">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
                                         </div>
                                     </a>
                                 </li>

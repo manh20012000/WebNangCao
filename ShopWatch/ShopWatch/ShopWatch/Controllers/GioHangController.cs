@@ -15,30 +15,47 @@ namespace ShopWatch.Controllers
         }
         // GET: GioHang
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index()// cái này có tác dụng để xem ( tức ng dùng ko ấn vào add to cart mà ấn vào giỏ hnagf ngay 
         {
-            //int? id_khachhang = GetMaKH();
-            int id_khachhang = 1;
-            if (id_khachhang != null)
+
+            var user = Session["UserEmail"] as string;
+            if (user != null)
             {
-                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == id_khachhang);
+                   var khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
+            // int? id_khachhang = GetMaKH();
+          
+            if (khachhang != null)
+            {
+                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang.MAKHACHHANG);
+
                 if (giohang != null)
                 {
                     return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList());
                 }
             }
             return View();
+            }
+            else
+            {
+                return RedirectToAction("Dangnhap", "TAIKHOANs");
+            }
+         
         }
         [HttpPost]
-        public ActionResult Index(int giohang)
+        public ActionResult Index(int giohang)//lấy id giỏ hàng truy vấn nhanh hơn 
         {
-            return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang).ToList());
+            ViewBag.id_khachhang = GetMaKH();
+            if ( ViewBag.id_khachhang != null)
+            {
+                return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang).ToList());
+            }
+            return View();
         }
 
         public ActionResult AddToCart(int? sanpham)
         {
-            //int? khachhang = GetMaKH();
-            int khachhang = 4;
+            int? khachhang = GetMaKH();
+            
             int id_giohang = check_giohang(khachhang);
             var find_sp = db.MATHANGs.Find(sanpham);
             var check_sp = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == id_giohang && ctgh.MAMATHANG == sanpham).FirstOrDefault();
@@ -99,6 +116,38 @@ namespace ShopWatch.Controllers
             return RedirectToAction("Index");
         }
       
+        // đăt hàng
+        public ActionResult form_DatHang()
+        {
+            int? khachhang = GetMaKH();
+            if (khachhang != null)
+            {
+                var thongtinkh = db.KHACHHANGs.Find(khachhang);
+                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang);
+                if (giohang != null)
+                {
+                    ViewBag.danhsachGH = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList();
+                }
+                return View(thongtinkh);
+            }
+            return View();
+        }
+        [HttpPost]
+        public ActionResult form_DatHang(KHACHHANG model)
+        {
+            var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
+            update.TENKHACHHANG = model.TENKHACHHANG;
+            update.SDT = model.SDT;
+            update.DIACHI = model.DIACHI;
+            db.SaveChanges();
+
+            var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == model.MAKHACHHANG);
+            if (giohang != null)
+            {
+                ViewBag.danhsachGH = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList();
+            }
+            return View(model);
+        }
 
     }
 }
