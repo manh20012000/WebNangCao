@@ -48,7 +48,6 @@
     <Property Name="MAKHACHHANG" Type="int" />
     <Property Name="DIACHINHANHANG" Type="nvarchar" MaxLength="250" />
     <Property Name="PHUONGTHUCTHANHTOAN" Type="nvarchar" MaxLength="250" />
-    <Property Name="TRANGTHAI" Type="bit" />
   </EntityType>
   <EntityType Name="KHACHHANG">
     <Key>

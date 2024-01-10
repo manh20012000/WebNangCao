@@ -102,78 +102,23 @@
                                     </form>
                                 </li>
                                 <li class="option-cart">
-                                    <a href="#" class="cart-icon">cart <span class="cart_no">02</span></a>
-                                    <ul class="option-cart-item">
-                                        <li>
-                                            <div class="cart-item">
-                                                <div class="image"><img src="images/products/thum/products-01.png" alt=""></div>
-                                                <div class="item-description">
-                                                    <p class="name">Lincoln chair</p>
-                                                    <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
-                                                </div>
-                                                <div class="right">
-                                                    <p class="price">$30.00</p>
-                                                    <a href="#" class="remove"><img src="images/remove.png" alt="remove"></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="cart-item">
-                                                <div class="image"><img src="images/products/thum/products-02.png" alt=""></div>
-                                                <div class="item-description">
-                                                    <p class="name">Lincoln chair</p>
-                                                    <p>Size: <span class="light-red">One size</span><br>Quantity: <span class="light-red">01</span></p>
-                                                </div>
-                                                <div class="right">
-                                                    <p class="price">$30.00</p>
-                                                    <a href="#" class="remove"><img src="images/remove.png" alt="remove"></a>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li><span class="total">Total <strong>$60.00</strong></span><button class="checkout" onClick="location.href='checkout.html'">CheckOut</button></li>
-                                    </ul>
+                                    <a href="/GioHang/Index" class="cart-icon">cart</a>
+
                                 </li>
                             </ul>
                             <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
                             <div class="navbar-collapse collapse">
                                 <ul class="nav navbar-nav">
                                     <li class="active dropdown">
-                                        <a href="/Home/homeIndex" class="dropdown-toggle" data-toggle="dropdown">Home</a>
+                                        <a href="/Home/homeIndex">Home</a>
 
                                     </li>
-                                    <li><a href="/CHITIETMATHANG/Index">men</a></li>
-                                    <li><a href="productlitst.html">women</a></li>
-                                    <li class="dropdown">
-                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Fashion</a>
-                                        <div class="dropdown-menu mega-menu">
-                                            <div class="row">
-                                                <div class="col-md-6 col-sm-6">
-                                                    <ul class="mega-menu-links">
-                                                        <li><a href="productgird.html">New Collection</a></li>
-                                                        <li><a href="productgird.html">Shirts & tops</a></li>
-                                                        <li><a href="productgird.html">Laptop & Brie</a></li>
-                                                        <li><a href="productgird.html">Dresses</a></li>
-                                                        <li><a href="productgird.html">Blazers & Jackets</a></li>
-                                                        <li><a href="productgird.html">Shoulder Bags</a></li>
-                                                    </ul>
-                                                </div>
-                                                <div class="col-md-6 col-sm-6">
-                                                    <ul class="mega-menu-links">
-                                                        <li><a href="productgird.html">New Collection</a></li>
-                                                        <li><a href="productgird.html">Shirts & tops</a></li>
-                                                        <li><a href="productgird.html">Laptop & Brie</a></li>
-                                                        <li><a href="productgird.html">Dresses</a></li>
-                                                        <li><a href="productgird.html">Blazers & Jackets</a></li>
-                                                        <li><a href="productgird.html">Shoulder Bags</a></li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li><a href="productgird.html">gift</a></li>
-                                    <li><a href="productgird.html">kids</a></li>
+                                    <li><a href="/DatHang/DonHang">Order Information placed</a></li>
+
+
+                                    <li><a href="/KHACHHANGs/Edit">Profile</a></li>
                                     <li><a href="productgird.html">blog</a></li>
-                                    <li><a href="productgird.html">jewelry</a></li>
+                                    <li><a href="/GioHang/Index">Cart</a></li>
                                     <li><a href="contact.html">contact us</a></li>
                                 </ul>
                             </div>
@@ -229,75 +174,80 @@
                                 </tr>
                             </thead>
                             <tbody>
-                               @{ 
-                                   decimal tongtien = 0;
+                                @{
+                                    decimal tongtien = 0;
+                                   
+                                    if (Model != null)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <img src="@item.MATHANG.ANHSANPHAM" alt="">
+                                                </td>
+                                                <td>
+                                                    <div class="shop-details">
+                                                        <div class="productname">
+                                                            @item.MATHANG.TENHANG
+                                                        </div>
+                                                        <p style="font-size:14px">
+                                                            Guarantee:
+                                                            <span class="light-red" style="font-size:18px">
+                                                                @item.MATHANG.BAOHANH
+                                                            </span>
+                                                        </p>
+                                                        <p style="font-size:14px">
+                                                            Type:
+                                                            <span class="light-red" style="font-size:18px">
+                                                                @item.MATHANG.LOAI
+                                                            </span>
+                                                        </p>
+                                                        <p style="font-size:14px">
+                                                            Size:
+                                                            <span class="light-red" style="font-size:18px">
+                                                                @item.MATHANG.KICHTHUOC
+                                                            </span>
+                                                        </p>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h5>
+                                                        <strong class="black">
+                                                            @String.Format("{0:N0}", item.DONGIA)
+                                                         
+                                                        </strong>
+                                                    </h5>
+                                                </td>
+                                                <td>
+                                                    <div>
+                                                        @if (item.SOLUONGMUA > 1)
+                                                        {
+                                                            @Html.ActionLink("-", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = -1 }, new { @class = "quantity-link" })
+                                                        }
+                                                        @Html.DisplayFor(modelItem => item.SOLUONGMUA)
+                                                        @Html.ActionLink("+", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = +1 }, new { @class = "quantity-link" })
 
-                                   foreach (var item in Model)
-                                   {
-                                    <tr>
-                                        <td>
-                                            <img src="@item.MATHANG.ANHSANPHAM" alt="">
-                                        </td>
-                                        <td>
-                                            <div class="shop-details">
-                                                <div class="productname">
-                                                    @item.MATHANG.TENHANG
-                                                </div>
-                                                <p style="font-size:14px">
-                                                    Guarantee:
-                                                    <span class="light-red" style="font-size:18px">
-                                                        @item.MATHANG.BAOHANH
-                                                    </span>
-                                                </p>
-                                                <p style="font-size:14px">
-                                                    Type:
-                                                    <span class="light-red" style="font-size:18px">
-                                                        @item.MATHANG.LOAI
-                                                    </span>
-                                                </p>
-                                                <p style="font-size:14px">
-                                                    Size:
-                                                    <span class="light-red" style="font-size:18px">
-                                                        @item.MATHANG.KICHTHUOC
-                                                    </span>
-                                                </p>
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>
-                                                <strong class="black">
-                                                    @item.DONGIA
-                                                </strong>
-                                            </h5>
-                                        </td>
-                                        <td>
-                                            <div>
-                                                @if (item.SOLUONGMUA > 1)
-                                                {
-                                                    @Html.ActionLink("-", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = -1 }, new { @class = "quantity-link" })
-                                                }
-                                                @Html.DisplayFor(modelItem => item.SOLUONGMUA)
-                                                @Html.ActionLink("+", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = +1 }, new { @class = "quantity-link" })
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <h5>
+                                                        <strong class="red">
+                                                            @{
+                                                                decimal tonggia = (decimal)(item.SOLUONGMUA * item.DONGIA);
+                                                                tongtien += tonggia;
+                                                            }
+                                                            @String.Format("{0:N0}", tongtien)
+                                                        </strong>
+                                                    </h5>
+                                                </td>
+                                                <td>
+                                                    @Html.ActionLink("Xoa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
 
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <h5>
-                                                <strong class="red">
-                                                    @{ 
-                                                        decimal tonggia = (decimal)(item.SOLUONGMUA * item.DONGIA);
-                                                        tongtien += tonggia;
-                                                    }
-                                                    @tonggia
-                                                </strong>
-                                            </h5>
-                                        </td>
-                                        <td>
-                                            @Html.ActionLink("Xoa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
-                                        </td>
-                                    </tr>
-                            }
-                            }
+                                }
                             </tbody>
                             <tfoot>
                                 <tr>
@@ -368,7 +318,7 @@
                                             TỔNG CỘNG 
                                         </h5>
                                         <span>
-                                            $@tongtien
+                                            @String.Format("{0:N0}", tongtien) 
                                         </span>
                                     </div>
                                     <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;">

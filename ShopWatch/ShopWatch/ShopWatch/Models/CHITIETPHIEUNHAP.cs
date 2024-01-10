@@ -13,9 +13,9 @@ namespace ShopWatch.Models
     using System.Collections.Generic;
     
     public partial class CHITIETPHIEUNHAP
-    {    
-        public int MACTPHIEUNHAP { get; set; }
+    {
         public Nullable<int> MAMATHANG { get; set; }
+        public int MACTPHIEUNHAP { get; set; }
         public Nullable<int> SOLUONG { get; set; }
         public Nullable<int> MANHAPHANG { get; set; }
         public Nullable<decimal> GIANHAP { get; set; }

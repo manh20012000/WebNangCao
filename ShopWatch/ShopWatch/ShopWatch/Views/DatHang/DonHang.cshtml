@@ -59,7 +59,8 @@
                         @Html.DisplayFor(modelItem => item.NGAYMUA)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TONGTIEN)
+                        @String.Format("{0:N0}", item.TONGTIEN)
+                       
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.DIACHINHANHANG)
@@ -73,9 +74,9 @@
 
                 </tr>
             }
-
         </table>
     </table>
+   
 
 
 

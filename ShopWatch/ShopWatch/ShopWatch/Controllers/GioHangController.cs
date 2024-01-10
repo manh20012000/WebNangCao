@@ -17,22 +17,21 @@ namespace ShopWatch.Controllers
         [HttpGet]
         public ActionResult Index()// cái này có tác dụng để xem ( tức ng dùng ko ấn vào add to cart mà ấn vào giỏ hnagf ngay 
         {
-
             var user = Session["UserEmail"] as string;
             if (user != null)
             {
                    var khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
             // int? id_khachhang = GetMaKH();
           
-            if (khachhang != null)
-            {
-                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang.MAKHACHHANG);
-
-                if (giohang != null)
+                if (khachhang != null)
                 {
-                    return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList());
+                    var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang.MAKHACHHANG);
+
+                    if (giohang != null)
+                    {
+                        return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList());
+                    }
                 }
-            }
             return View();
             }
             else

@@ -10,7 +10,6 @@
         <EntityTypeShape EntityType="DHModel.CHITIETHOADON" Width="1.5" PointX="3" PointY="8.5" />
         <EntityTypeShape EntityType="DHModel.CHITIETPHIEUNHAP" Width="1.5" PointX="3" PointY="12.5" />
         <EntityTypeShape EntityType="DHModel.GIOHANG" Width="1.5" PointX="3.75" PointY="15.75" />
-        <EntityTypeShape EntityType="DHModel.HOADON" Width="1.5" PointX="0.75" PointY="8.375" />
         <EntityTypeShape EntityType="DHModel.KHACHHANG" Width="1.5" PointX="1.5" PointY="4.375" />
         <EntityTypeShape EntityType="DHModel.MATHANG" Width="1.5" PointX="0.75" PointY="11.875" />
         <EntityTypeShape EntityType="DHModel.NHANVIEN" Width="1.5" PointX="1.5" PointY="20.5" />
@@ -19,14 +18,15 @@
         <AssociationConnector Association="DHModel.FK__CHITIETGI__MAGIO__5CD6CB2B" />
         <AssociationConnector Association="DHModel.FK__CHITIETGI__MAMAT__5BE2A6F2" />
         <AssociationConnector Association="DHModel.FK__CHITIETHO__MAMAT__5629CD9C" />
-        <AssociationConnector Association="DHModel.FK__CHITIETHOA__MAHD__5535A963" />
         <AssociationConnector Association="DHModel.FK__CHITIETPH__MAMAT__4E88ABD4" />
         <AssociationConnector Association="DHModel.FK__CHITIETPH__MANHA__4F7CD00D" />
         <AssociationConnector Association="DHModel.FK__GIOHANG__MAKHACH__59063A47" />
-        <AssociationConnector Association="DHModel.FK__HOADON__MAKHACHH__52593CB8" />
         <AssociationConnector Association="DHModel.FK__KHACHHANG__EMAIL__46E78A0C" />
         <AssociationConnector Association="DHModel.FK__NHANVIEN__EMAIL__398D8EEE" />
         <AssociationConnector Association="DHModel.FK__NHAPHANG__MANV__4BAC3F29" />
+        <EntityTypeShape EntityType="DHModel.HOADON" Width="1.5" PointX="3.75" PointY="0.75" />
+        <AssociationConnector Association="DHModel.FK__CHITIETHOA__MAHD__5535A963" />
+        <AssociationConnector Association="DHModel.FK__HOADON__MAKHACHH__52593CB8" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

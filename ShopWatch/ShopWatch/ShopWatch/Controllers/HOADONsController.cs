@@ -51,7 +51,7 @@ namespace ShopWatch.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "MAHD,NGAYMUA,TONGTIEN,MAKHACHHANG,TRANGTHAI")] HOADON hOADON)
+        public ActionResult Create( HOADON hOADON)
         {
             if (ModelState.IsValid)
             {
@@ -85,7 +85,7 @@ namespace ShopWatch.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "MAHD,NGAYMUA,TONGTIEN,MAKHACHHANG,TRANGTHAI")] HOADON hOADON)
+        public ActionResult Edit(HOADON hOADON)
         {
             if (ModelState.IsValid)
             {

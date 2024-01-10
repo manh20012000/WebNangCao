@@ -22,15 +22,15 @@ namespace ShopWatch.Models
             this.CHITIETHOADONs = new HashSet<CHITIETHOADON>();
             this.CHITIETPHIEUNHAPs = new HashSet<CHITIETPHIEUNHAP>();
         }
-    
+
 
         public int MAMATHANG { get; set; }
         [Required(ErrorMessage = "Please Enter Name Product")]
         public string TENHANG { get; set; }
-     
+
         public string ANHSANPHAM { get; set; }
         [Required(ErrorMessage = "Please Enter date")]
-        public Nullable<System.DateTime> NGAYSANXUAT { get; set;}
+        public Nullable<System.DateTime> NGAYSANXUAT { get; set; }
         [Required(ErrorMessage = "Please Enter TenHang")]
         public string TENHANGSANXUAT { get; set; }
         [Required(ErrorMessage = "Please Enter GiaHang")]
@@ -46,7 +46,7 @@ namespace ShopWatch.Models
 
         public Nullable<int> SALE { get; set; }
         public Nullable<bool> TRANGTHAI { get; set; }
-    
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

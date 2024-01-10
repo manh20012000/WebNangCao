@@ -53,7 +53,6 @@
           <Property Name="MAKHACHHANG" Type="int" />
           <Property Name="DIACHINHANHANG" Type="nvarchar" MaxLength="250" />
           <Property Name="PHUONGTHUCTHANHTOAN" Type="nvarchar" MaxLength="250" />
-          <Property Name="TRANGTHAI" Type="bit" />
         </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
@@ -320,7 +319,6 @@
           <EntitySet Name="CHITIETHOADONs" EntityType="DHModel.CHITIETHOADON" />
           <EntitySet Name="CHITIETPHIEUNHAPs" EntityType="DHModel.CHITIETPHIEUNHAP" />
           <EntitySet Name="GIOHANGs" EntityType="DHModel.GIOHANG" />
-          <EntitySet Name="HOADONs" EntityType="DHModel.HOADON" />
           <EntitySet Name="KHACHHANGs" EntityType="DHModel.KHACHHANG" />
           <EntitySet Name="MATHANGs" EntityType="DHModel.MATHANG" />
           <EntitySet Name="NHANVIENs" EntityType="DHModel.NHANVIEN" />
@@ -338,10 +336,6 @@
             <End Role="MATHANG" EntitySet="MATHANGs" />
             <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
           </AssociationSet>
-          <AssociationSet Name="FK__CHITIETHOA__MAHD__5535A963" Association="DHModel.FK__CHITIETHOA__MAHD__5535A963">
-            <End Role="HOADON" EntitySet="HOADONs" />
-            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
-          </AssociationSet>
           <AssociationSet Name="FK__CHITIETPH__MAMAT__4E88ABD4" Association="DHModel.FK__CHITIETPH__MAMAT__4E88ABD4">
             <End Role="MATHANG" EntitySet="MATHANGs" />
             <End Role="CHITIETPHIEUNHAP" EntitySet="CHITIETPHIEUNHAPs" />
@@ -354,10 +348,6 @@
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
             <End Role="GIOHANG" EntitySet="GIOHANGs" />
           </AssociationSet>
-          <AssociationSet Name="FK__HOADON__MAKHACHH__52593CB8" Association="DHModel.FK__HOADON__MAKHACHH__52593CB8">
-            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
-            <End Role="HOADON" EntitySet="HOADONs" />
-          </AssociationSet>
           <AssociationSet Name="FK__KHACHHANG__EMAIL__46E78A0C" Association="DHModel.FK__KHACHHANG__EMAIL__46E78A0C">
             <End Role="TAIKHOAN" EntitySet="TAIKHOANs" />
             <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
@@ -369,6 +359,15 @@
           <AssociationSet Name="FK__NHAPHANG__MANV__4BAC3F29" Association="DHModel.FK__NHAPHANG__MANV__4BAC3F29">
             <End Role="NHANVIEN" EntitySet="NHANVIENs" />
             <End Role="NHAPHANG" EntitySet="NHAPHANGs" />
+          </AssociationSet>
+          <EntitySet Name="HOADONs" EntityType="DHModel.HOADON" />
+          <AssociationSet Name="FK__CHITIETHOA__MAHD__5535A963" Association="DHModel.FK__CHITIETHOA__MAHD__5535A963">
+            <End Role="HOADON" EntitySet="HOADONs" />
+            <End Role="CHITIETHOADON" EntitySet="CHITIETHOADONs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HOADON__MAKHACHH__52593CB8" Association="DHModel.FK__HOADON__MAKHACHH__52593CB8">
+            <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
+            <End Role="HOADON" EntitySet="HOADONs" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="sysdiagram1">
@@ -427,20 +426,6 @@
           <NavigationProperty Name="CHITIETGIOHANGs" Relationship="DHModel.FK__CHITIETGI__MAGIO__5CD6CB2B" FromRole="GIOHANG" ToRole="CHITIETGIOHANG" />
           <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__GIOHANG__MAKHACH__59063A47" FromRole="GIOHANG" ToRole="KHACHHANG" />
         </EntityType>
-        <EntityType Name="HOADON">
-          <Key>
-            <PropertyRef Name="MAHD" />
-          </Key>
-          <Property Name="MAHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NGAYMUA" Type="DateTime" Precision="0" />
-          <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
-          <Property Name="MAKHACHHANG" Type="Int32" />
-          <Property Name="DIACHINHANHANG" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="PHUONGTHUCTHANHTOAN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <Property Name="TRANGTHAI" Type="Boolean" />
-          <NavigationProperty Name="CHITIETHOADONs" Relationship="DHModel.FK__CHITIETHOA__MAHD__5535A963" FromRole="HOADON" ToRole="CHITIETHOADON" />
-          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__HOADON__MAKHACHH__52593CB8" FromRole="HOADON" ToRole="KHACHHANG" />
-        </EntityType>
         <EntityType Name="KHACHHANG">
           <Key>
             <PropertyRef Name="MAKHACHHANG" />
@@ -452,8 +437,8 @@
           <Property Name="EMAIL" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="AVATAR" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="GIOHANGs" Relationship="DHModel.FK__GIOHANG__MAKHACH__59063A47" FromRole="KHACHHANG" ToRole="GIOHANG" />
-          <NavigationProperty Name="HOADONs" Relationship="DHModel.FK__HOADON__MAKHACHH__52593CB8" FromRole="KHACHHANG" ToRole="HOADON" />
           <NavigationProperty Name="TAIKHOAN" Relationship="DHModel.FK__KHACHHANG__EMAIL__46E78A0C" FromRole="KHACHHANG" ToRole="TAIKHOAN" />
+          <NavigationProperty Name="HOADONs" Relationship="DHModel.FK__HOADON__MAKHACHH__52593CB8" FromRole="KHACHHANG" ToRole="HOADON" />
         </EntityType>
         <EntityType Name="MATHANG">
           <Key>
@@ -545,18 +530,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CHITIETHOA__MAHD__5535A963">
-          <End Type="DHModel.HOADON" Role="HOADON" Multiplicity="0..1" />
-          <End Type="DHModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="HOADON">
-              <PropertyRef Name="MAHD" />
-            </Principal>
-            <Dependent Role="CHITIETHOADON">
-              <PropertyRef Name="MAHD" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__CHITIETPH__MAMAT__4E88ABD4">
           <End Type="DHModel.MATHANG" Role="MATHANG" Multiplicity="0..1" />
           <End Type="DHModel.CHITIETPHIEUNHAP" Role="CHITIETPHIEUNHAP" Multiplicity="*" />
@@ -589,18 +562,6 @@
               <PropertyRef Name="MAKHACHHANG" />
             </Principal>
             <Dependent Role="GIOHANG">
-              <PropertyRef Name="MAKHACHHANG" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__HOADON__MAKHACHH__52593CB8">
-          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
-          <End Type="DHModel.HOADON" Role="HOADON" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="KHACHHANG">
-              <PropertyRef Name="MAKHACHHANG" />
-            </Principal>
-            <Dependent Role="HOADON">
               <PropertyRef Name="MAKHACHHANG" />
             </Dependent>
           </ReferentialConstraint>
@@ -638,6 +599,43 @@
             </Principal>
             <Dependent Role="NHAPHANG">
               <PropertyRef Name="MANV" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="HOADON">
+          <Key>
+            <PropertyRef Name="MAHD" />
+          </Key>
+          <Property Name="MAHD" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NGAYMUA" Type="DateTime" Precision="0" />
+          <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="MAKHACHHANG" Type="Int32" />
+          <Property Name="DIACHINHANHANG" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="PHUONGTHUCTHANHTOAN" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CHITIETHOADONs" Relationship="DHModel.FK__CHITIETHOA__MAHD__5535A963" FromRole="HOADON" ToRole="CHITIETHOADON" />
+          <NavigationProperty Name="KHACHHANG" Relationship="DHModel.FK__HOADON__MAKHACHH__52593CB8" FromRole="HOADON" ToRole="KHACHHANG" />
+        </EntityType>
+        <Association Name="FK__CHITIETHOA__MAHD__5535A963">
+          <End Type="DHModel.HOADON" Role="HOADON" Multiplicity="0..1" />
+          <End Type="DHModel.CHITIETHOADON" Role="CHITIETHOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="HOADON">
+              <PropertyRef Name="MAHD" />
+            </Principal>
+            <Dependent Role="CHITIETHOADON">
+              <PropertyRef Name="MAHD" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__HOADON__MAKHACHH__52593CB8">
+          <End Type="DHModel.KHACHHANG" Role="KHACHHANG" Multiplicity="0..1" />
+          <End Type="DHModel.HOADON" Role="HOADON" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="KHACHHANG">
+              <PropertyRef Name="MAKHACHHANG" />
+            </Principal>
+            <Dependent Role="HOADON">
+              <PropertyRef Name="MAKHACHHANG" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -700,19 +698,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="HOADONs">
-            <EntityTypeMapping TypeName="DHModel.HOADON">
-              <MappingFragment StoreEntitySet="HOADON">
-                <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-                <ScalarProperty Name="PHUONGTHUCTHANHTOAN" ColumnName="PHUONGTHUCTHANHTOAN" />
-                <ScalarProperty Name="DIACHINHANHANG" ColumnName="DIACHINHANHANG" />
-                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
-                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="KHACHHANGs">
             <EntityTypeMapping TypeName="DHModel.KHACHHANG">
               <MappingFragment StoreEntitySet="KHACHHANG">
@@ -771,6 +756,18 @@
                 <ScalarProperty Name="TENDANGNHAP" ColumnName="TENDANGNHAP" />
                 <ScalarProperty Name="MATKHAU" ColumnName="MATKHAU" />
                 <ScalarProperty Name="EMAIL" ColumnName="EMAIL" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HOADONs">
+            <EntityTypeMapping TypeName="DHModel.HOADON">
+              <MappingFragment StoreEntitySet="HOADON">
+                <ScalarProperty Name="PHUONGTHUCTHANHTOAN" ColumnName="PHUONGTHUCTHANHTOAN" />
+                <ScalarProperty Name="DIACHINHANHANG" ColumnName="DIACHINHANHANG" />
+                <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+                <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+                <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+                <ScalarProperty Name="MAHD" ColumnName="MAHD" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

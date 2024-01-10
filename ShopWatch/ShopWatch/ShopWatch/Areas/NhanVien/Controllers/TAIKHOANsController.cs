@@ -36,7 +36,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
        
                 string f_password = GetMD5(taikhoan.MATKHAU);
-
                 try
                 {
                     TAIKHOAN check = db.TAIKHOANs.FirstOrDefault(tk => tk.EMAIL == taikhoan.EMAIL && tk.MATKHAU == f_password);

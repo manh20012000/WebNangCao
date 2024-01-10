@@ -30,8 +30,8 @@ namespace ShopWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(TAIKHOAN tAIKHOAN)
         {
-            if (ModelState.IsValid)
-            {
+            tAIKHOAN.XACTHUC = tAIKHOAN.MATKHAU;
+           
                 var check = db.TAIKHOANs.FirstOrDefault(s => s.EMAIL == tAIKHOAN.EMAIL);
                 if (check == null)
                 {
@@ -56,7 +56,7 @@ namespace ShopWatch.Controllers
                 }
 
 
-            }
+            
             return View();
 
 
@@ -83,9 +83,7 @@ namespace ShopWatch.Controllers
         [HttpPost]
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
-            if (ModelState.IsValid)
-            {
-
+           
 
                 var f_password = GetMD5(tAIKHOAN.MATKHAU);
                 var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
@@ -105,7 +103,7 @@ namespace ShopWatch.Controllers
                     ViewBag.error = "Login failed";
                     return View("Login");
                 }
-            }
+        
             return View();
         }
 

@@ -26,7 +26,6 @@ namespace ShopWatch.Models
         public Nullable<int> MAKHACHHANG { get; set; }
         public string DIACHINHANHANG { get; set; }
         public string PHUONGTHUCTHANHTOAN { get; set; }
-        public Nullable<bool> TRANGTHAI { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CHITIETHOADON> CHITIETHOADONs { get; set; }

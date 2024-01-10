@@ -30,6 +30,7 @@
                     </div>
                 </div>
 
+
                 <div class="form-group">
                     @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10">
@@ -98,12 +99,13 @@
                             @item.SOLUONGMUA
                         </td>
                         <td>
-                            @item.DONGIA
+                            @String.Format("{0:N0}", item.DONGIA)
+                           
                         </td>
                         <td>
                             @{
                                 double tempTong = (double)(item.DONGIA * item.SOLUONGMUA);
-                                @tempTong
+                                @String.Format("{0:N0}", tempTong)
                             }
                         </td>
                         <td>
