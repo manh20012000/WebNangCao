@@ -27,6 +27,7 @@
         <EntityTypeShape EntityType="DHModel.HOADON" Width="1.5" PointX="3.75" PointY="0.75" />
         <AssociationConnector Association="DHModel.FK__CHITIETHOA__MAHD__5535A963" />
         <AssociationConnector Association="DHModel.FK__HOADON__MAKHACHH__52593CB8" />
+        <EntityTypeShape EntityType="DHModel.THONGKE" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

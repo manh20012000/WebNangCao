@@ -127,5 +127,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="THONGKEs">
+      <EntityTypeMapping TypeName="DHModel.THONGKE">
+        <MappingFragment StoreEntitySet="THONGKE">
+          <ScalarProperty Name="SOLUONGBANCHAY" ColumnName="SOLUONGBANCHAY" />
+          <ScalarProperty Name="SOLUONGBANRA" ColumnName="SOLUONGBANRA" />
+          <ScalarProperty Name="SANPHAMBANCHAY" ColumnName="SANPHAMBANCHAY" />
+          <ScalarProperty Name="MASPBANCHAY" ColumnName="MASPBANCHAY" />
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
+          <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
+          <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

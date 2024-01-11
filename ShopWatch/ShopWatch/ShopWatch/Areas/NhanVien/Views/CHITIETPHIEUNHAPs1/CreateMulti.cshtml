@@ -27,26 +27,31 @@
 
         @if (@ViewBag.NHAPHANG != null)
         {
-            <div class="form-group">
-                <label class="font-weight-bold">MANHAPHANG:</label>
-                <span id="manhapHangSpan">@ViewBag.NHAPHANG.MANHAPHANG</span>
-            </div>
+        <div class="form-group">
+            <label class="font-weight-bold">MANHAPHANG:</label>
+            <span style="font-weight:500">@ViewBag.NHAPHANG.MANHAPHANG</span>
+        </div>
             <div class="form-group">
                 <label class="font-weight-bold">NGAYNHAP:</label>
-                <span>@ViewBag.NHAPHANG.NGAYNHAP</span>
+                <span style="font-weight:500">
+                    @String.Format("{0:dd/MM/yyyy}", @ViewBag.NHAPHANG.NGAYNHAP)
+                 
+
+                </span>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">MANV:</label>
-                <span>@ViewBag.NHAPHANG.MANV</span>
+                <span style="font-weight:500">@ViewBag.NHAPHANG.MANV</span>
             </div>
         }
     </div>
     <div class="col-md-6">
-        <h3 id="total-price">Giá tiền: </h3>
+        <h3 style="margin-top:-20px" id="total-price">Giá tiền: </h3>
+           <br />
         <form id="createMultiForm" action="/NhanVien/CHITIETPHIEUNHAPs1/CreateMulti" method="post">
             <input type="hidden" name="listInput" id="listInput" class="listInput" />
             <div class="col-md-6">
-                <input type="submit" value="Tạo Phiếu" style="width:120px;height:40px;background-color:chocolate;border-radius:20px" />
+                <input type="submit" value="Tạo Phiếu" style="width:150px;height:40px;background-color:chocolate;border-radius:5px" />
             </div>
         </form>
 

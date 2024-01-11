@@ -36,5 +36,6 @@ namespace ShopWatch.Models
         public virtual DbSet<NHAPHANG> NHAPHANGs { get; set; }
         public virtual DbSet<TAIKHOAN> TAIKHOANs { get; set; }
         public virtual DbSet<HOADON> HOADONs { get; set; }
+        public virtual DbSet<THONGKE> THONGKEs { get; set; }
     }
 }

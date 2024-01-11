@@ -115,6 +115,18 @@
     <Property Name="MATKHAU" Type="nvarchar" MaxLength="255" />
     <Property Name="TENDANGNHAP" Type="nvarchar" MaxLength="255" />
   </EntityType>
+  <EntityType Name="THONGKE">
+    <Key>
+      <PropertyRef Name="MATHONGKE" />
+    </Key>
+    <Property Name="MATHONGKE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NGAYTHONGKE" Type="date" />
+    <Property Name="TONGTIEN" Type="money" />
+    <Property Name="MASPBANCHAY" Type="nvarchar" MaxLength="100" />
+    <Property Name="SANPHAMBANCHAY" Type="nvarchar" MaxLength="100" />
+    <Property Name="SOLUONGBANRA" Type="int" />
+    <Property Name="SOLUONGBANCHAY" Type="int" />
+  </EntityType>
   <Association Name="FK__CHITIETGI__MAGIO__5CD6CB2B">
     <End Role="GIOHANG" Type="Self.GIOHANG" Multiplicity="0..1" />
     <End Role="CHITIETGIOHANG" Type="Self.CHITIETGIOHANG" Multiplicity="*" />
@@ -259,6 +271,7 @@
     <EntitySet Name="NHAPHANG" EntityType="Self.NHAPHANG" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="TAIKHOAN" EntityType="Self.TAIKHOAN" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="THONGKE" EntityType="Self.THONGKE" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__CHITIETGI__MAGIO__5CD6CB2B" Association="Self.FK__CHITIETGI__MAGIO__5CD6CB2B">
       <End Role="GIOHANG" EntitySet="GIOHANG" />
       <End Role="CHITIETGIOHANG" EntitySet="CHITIETGIOHANG" />

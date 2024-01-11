@@ -56,6 +56,7 @@
       <End Role="KHACHHANG" EntitySet="KHACHHANGs" />
       <End Role="HOADON" EntitySet="HOADONs" />
     </AssociationSet>
+    <EntitySet Name="THONGKEs" EntityType="DHModel.THONGKE" />
   </EntityContainer>
   <EntityType Name="sysdiagram1">
     <Key>
@@ -326,4 +327,16 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <EntityType Name="THONGKE">
+    <Key>
+      <PropertyRef Name="MATHONGKE" />
+    </Key>
+    <Property Name="MATHONGKE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NGAYTHONGKE" Type="DateTime" Precision="0" />
+    <Property Name="TONGTIEN" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="MASPBANCHAY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SANPHAMBANCHAY" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SOLUONGBANRA" Type="Int32" />
+    <Property Name="SOLUONGBANCHAY" Type="Int32" />
+  </EntityType>
 </Schema>

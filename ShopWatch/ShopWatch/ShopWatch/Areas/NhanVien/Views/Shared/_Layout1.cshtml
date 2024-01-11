@@ -15,13 +15,14 @@
             background-color: #04AA6D;
             color: white;
         }
+
         a {
             text-decoration: none; /* Loại bỏ dấu gạch chân */
             color: black; /* Màu chữ của liên kết */
         }
+
         .menu-item {
             transition: all 0.3s ease; /* Hiệu ứng chuyển đổi mềm mại */
-         
         }
 
             /* Khi di chuột vào menu-item */
@@ -29,6 +30,7 @@
                 background-color: #87CEFA; /* Màu nền khi hover */
                 transform: scale(1.05); /* Phóng to một chút */
             }
+
             .menu-item a.active {
                 background-color: #CD853F; /* Màu nền khi mục được chọn */
                 color: #007bff; /* Màu chữ khi mục được chọn */
@@ -123,10 +125,10 @@
                             </svg>
                         </span>
                     </a>
-                   @* <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
-                        <i class="bx bx-chevron-left bx-sm align-middle"></i>
-                        <span class="app-brand-text demo text-body fw-bold">ShopWatch</span>
-                    </a>*@
+                    @* <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+                            <i class="bx bx-chevron-left bx-sm align-middle"></i>
+                            <span class="app-brand-text demo text-body fw-bold">ShopWatch</span>
+                        </a>*@
                     <div class="user-info">
                         @if (Session["TenHienThi"] != null)
                         {
@@ -178,12 +180,19 @@
                             <div data-i18n="Basic">Danh sách mua hàng</div>
                         </a>
                     </li>
-                   
+
                     <li class="menu-header small text-uppercase"><span class="menu-header-text">Hóa đơn nhập hàng</span></li>
                     <li class="menu-item">
                         <a href="/Nhanvien/CHITIETPHIEUNHAPs1/index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Basic">Danh sách CT hóa đơn</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item">
+                        <a href="/NhanVien/THONGKEs/Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Thống kê </div>
                         </a>
                     </li>
                     <!-- Misc -->
@@ -301,7 +310,7 @@
                     </div>
                 </nav>
                 <div style="display: flex; justify-content: flex-end; margin-right: 40px;">
-                   
+
                 </div>
                 <div class="content-wrapper">
 
@@ -347,7 +356,7 @@
         const menuLinks = document.querySelectorAll('.menu-item a');
         menuLinks.forEach(link => {
             if (link.href === currentUrl) {
-                link.classList.add('active'); 
+                link.classList.add('active');
             }
         })
         $("#imageFile").change(function () {
@@ -359,7 +368,7 @@
                 reader.readAsDataURL(this.files[0]);
             }
         });
-    
+
         $(document).ready(function () {
             $(".dropdown button").click(function () {
                 const dropdownMenu = $(this).next(".dropdown-menu");
@@ -372,3 +381,5 @@
 
 </body>
 </html>
+
+//share
