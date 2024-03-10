@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
+using ShopWatch.Models.MetaDATA;
 namespace ShopWatch.Controllers
 {
    
@@ -13,8 +14,24 @@ namespace ShopWatch.Controllers
         private DHEntities db = new DHEntities();
         public ActionResult homeIndex(string searchValue)
         {
-            var items = db.MATHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
-            if (!string.IsNullOrEmpty(searchValue))
+            if (Session["UserEmail"] != null)
+            {
+                var items = from mathang in db.MATHANGs
+                            where mathang.TRANGTHAI == false
+                            select new MathangViewModel
+                            {
+                                MAMATHANG = mathang.MAMATHANG,
+                                TENHANG = mathang.TENHANG,
+                                GIAHANG = mathang.GIAHANG,
+                                NGAYSANXUAT = mathang.NGAYSANXUAT,
+                                TENHANGSANXUAT = mathang.TENHANGSANXUAT,
+                                BAOHANH = mathang.BAOHANH,
+                                LOAI = mathang.LOAI,
+                                KICHTHUOC = mathang.KICHTHUOC,
+                                ANHSANPHAM = mathang.ANHSANPHAM,
+                                SALE = mathang.SALE.TRANGTHAI == false ? mathang.SALE : null
+                            };
+                if (!string.IsNullOrEmpty(searchValue))
             {
                 items = items.Where(x =>
                        SqlFunctions.StringConvert((double)x.GIAHANG).Contains(searchValue) ||
@@ -30,6 +47,10 @@ namespace ShopWatch.Controllers
             }
 
             return View(items.ToList());
+
+            }
+            return RedirectToAction("Dangnhap", "TAIKHOANs");
+               
         }
       
        

@@ -1,0 +1,42 @@
+﻿@model ShopWatch.Models.VOUCHER
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>VOUCHER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+       
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHANTRAMGIAMGIA)
+        </dt>
+
+        <dd>
+            <label style="color:red"> @Html.DisplayFor(model => model.PHANTRAMGIAMGIA) %</label>
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIEUKIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIEUKIEN)
+        </dd>
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input  style="background-color:coral"type="submit" value="Delete" class="btn btn-default" /> 
+            
+        </div>
+    }
+</div>

@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
 namespace ShopWatch.Areas.NhanVien.Controllers
-{ [Authorize]
+{ 
     public class NHANVIENsController : Controller
     {
        
@@ -70,7 +70,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", nhanvien.EMAIL);
             return View(nhanvien);
         }
@@ -111,7 +110,18 @@ namespace ShopWatch.Areas.NhanVien.Controllers
                    db.SaveChanges(); 
                 ViewBag.Avatar = nhanvien.AVATAR;
                 TempData["SuccessMessage"] = "cập nhât thành công";
-                return RedirectToAction("Product", "MATHANGs");
+                if (nhanvien.TENCHUCNANG == "NV QUANLYSP")
+                {
+                    return RedirectToAction("Product", "MATHANGs");
+                }
+                else if (nhanvien.TENCHUCNANG == "NV NHAPHANG")
+                {
+                    return RedirectToAction("index", "NHAPHANGs");
+                }
+                else
+                {
+                    return RedirectToAction("index", "THONGKEs");
+                }
             }
             ViewBag.EMAIL = new SelectList(db.TAIKHOANs, "EMAIL", "MATKHAU", nhanvien.EMAIL);
             return View(nhanvien);

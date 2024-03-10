@@ -30,33 +30,56 @@ namespace ShopWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Register(TAIKHOAN tAIKHOAN)
         {
-            tAIKHOAN.XACTHUC = tAIKHOAN.MATKHAU;
-           
-                var check = db.TAIKHOANs.FirstOrDefault(s => s.EMAIL == tAIKHOAN.EMAIL);
-                if (check == null)
+            //  tAIKHOAN.XACTHUC = tAIKHOAN.MATKHAU;
+
+            var check = db.TAIKHOANs.FirstOrDefault(s => s.EMAIL == tAIKHOAN.EMAIL);
+            if (check == null)
+            {
+                tAIKHOAN.MATKHAU = GetMD5(tAIKHOAN.MATKHAU);
+                db.Configuration.ValidateOnSaveEnabled = false;
+                db.TAIKHOANs.Add(tAIKHOAN);
+                db.SaveChanges();
+                var Khachhang = new KHACHHANG
                 {
-                    tAIKHOAN.MATKHAU = GetMD5(tAIKHOAN.MATKHAU);
-                    db.Configuration.ValidateOnSaveEnabled = false;
-                    db.TAIKHOANs.Add(tAIKHOAN);
-                    db.SaveChanges();
-                    var Khachhang = new KHACHHANG
-                    {
-                        // Gán các giá trị từ tAIKHOAN
-                        EMAIL = tAIKHOAN.EMAIL,
-                        // Các thuộc tính khác của NHANVIEN
-                    };
-                    db.KHACHHANGs.Add(Khachhang);
-                    db.SaveChanges();
-                    return RedirectToAction("Dangnhap", "TAIKHOANs");
-                }
-                else
+                    // Gán các giá trị từ tAIKHOAN
+                    EMAIL = tAIKHOAN.EMAIL,
+                    // Các thuộc tính khác của NHANVIEN
+                };
+                db.KHACHHANGs.Add(Khachhang);
+                db.SaveChanges();
+                int id_khachhang = Khachhang.MAKHACHHANG;
+                VOUCHER newVoucher = new VOUCHER
                 {
-                    ViewBag.error = "Email already exists";
-                    return View();
-                }
+                    DIEUKIEN = "chưa có",
+                    TRANGTHAI = true,
+                    PHANTRAMGIAMGIA = 10,
+                };
+                db.VOUCHERs.Add(newVoucher);
+                db.SaveChanges();
+                int id_newVoucher = newVoucher.MAVOUCHER;
+                DateTime StartDate = DateTime.Today;
+                DateTime EndDate = StartDate.AddMonths(1);
+                QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
+                {
+                    MAKHACHHANG = id_khachhang,
+                    MAVOUCHER = id_newVoucher,
+                    NGAYBATDAU = StartDate,
+                    NGAYKETTHUC = EndDate,
+                    MAQUANLYVOUCHER=1,
+                };
+                db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
+                db.SaveChanges();
+
+                return RedirectToAction("Dangnhap", "TAIKHOANs");
+            }
+            else
+            {
+                ViewBag.error = "Email already exists";
+                return View();
+            }
 
 
-            
+
             return View();
 
 
@@ -83,27 +106,27 @@ namespace ShopWatch.Controllers
         [HttpPost]
         public ActionResult Dangnhap(TAIKHOAN tAIKHOAN)
         {
-           
 
-                var f_password = GetMD5(tAIKHOAN.MATKHAU);
-                var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
-                if (data.Count() > 0)
+
+            var f_password = GetMD5(tAIKHOAN.MATKHAU);
+            var data = db.TAIKHOANs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL) && s.MATKHAU.Equals(f_password)).ToList();
+            if (data.Count() > 0)
+            {
+                var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
+                if (data_khachhang != null)
                 {
-                    var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
-                    if (data_khachhang != null)
-                    {
-                        Session["UserEmail"] = data_khachhang.EMAIL;
-                      
-                        SetMaKH(data_khachhang.MAKHACHHANG);
-                        return RedirectToAction("homeIndex", "Home");
-                    }
+                    Session["UserEmail"] = data_khachhang.EMAIL;
+
+                    SetMaKH(data_khachhang.MAKHACHHANG);
+                    return RedirectToAction("homeIndex", "Home");
                 }
-                else
-                {
-                    ViewBag.error = "Login failed";
-                    return View("Login");
-                }
-        
+            }
+            else
+            {
+                ViewBag.error = "Login failed";
+                return View("Login");
+            }
+
             return View();
         }
 

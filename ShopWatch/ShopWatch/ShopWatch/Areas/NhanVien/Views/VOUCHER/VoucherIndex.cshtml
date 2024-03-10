@@ -1,0 +1,64 @@
+﻿@model IPagedList<ShopWatch.Models.VOUCHER>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "VoucherIndex";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<button style="background-color:aquamarine;width:10%;height:5%;margin:2%">
+    @Html.ActionLink("Create New", "Create")
+</button>
+<table class="table">
+    <tr style="background-color:#04AA6D;">
+        <th class="text-center">
+            <label style="color:black">MAVOUCHER</label>
+        </th>
+        <th class="text-center">
+            <label style="color:black">PHANTRAMGIAMGIA</label>
+        </th>
+
+        <th class="text-center">
+            <label style="color:black">ĐIỀU KIỆN</label>
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td class="text-center">
+        <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.MAVOUCHER)</label>
+    </td>
+    <td class="text-center">
+        <label style="color:red;font-size:18px">@Html.DisplayFor(modelItem => item.PHANTRAMGIAMGIA)<label>%</label></label>
+    </td>
+    <td class="text-center">
+        <label>@Html.DisplayFor(modelItem => item.DIEUKIEN)</label>
+    </td>
+    <td class="text-center">
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <div class="btn-group" role="group">
+                <button id="btnGroupDrop1"
+                        type="button" style="color:brown"
+                        class="btn btn-outline-secondary dropdown-toggle"
+                        data-bs-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false">
+                    Tùy chọn
+                </button>
+                <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MAVOUCHER }, new { @class = " btn btn-primary" })
+
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MAVOUCHER }, new { @class = "btn btn-primary" })
+                </div>
+            </div>
+        </div>
+    </td>
+</tr>
+    }
+
+</table>
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))

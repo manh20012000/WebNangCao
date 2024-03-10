@@ -21,8 +21,8 @@
     }
 </style>
 
-
-<center><h2>Detail</h2>
+<h2>Detail</h2>
+<center>
     <div class="form-horizontal">
 
         <hr />
@@ -47,9 +47,10 @@
                 {
                     <img src="@Url.Content(Model.AVATAR)" alt="Preview" class="previewImage" style="width: 200px; height: 200px" />
                 }
-                else
+               @* else
                 {
-            <img id="previewImage2" src="#" alt="Preview2" class="previewImage2" style="width:200px;height:200px" />            }
+            <img id="previewImage2" src="#" alt="Preview2" class="previewImage2" style="width:200px;height:200px" />         
+            }*@
 
             </div>
         </div>
@@ -59,8 +60,7 @@
             <label class="control-label col-md-2">NGÀY SINH  </label>
             <div class="col-md-10">
                 <div></div>
-                @Html.DisplayFor(model => model.NGAYSINH, new { type = "date", @class = "form-control", @Value = Model.NGAYSINH?.ToString("yyyy-MM-dd") })
-
+                @String.Format("{0:dd/MM/yyyy}", @Html.DisplayFor(model => model.NGAYSINH, new { type = "date", @class = "form-control" }) )
 
             </div>
         </div>

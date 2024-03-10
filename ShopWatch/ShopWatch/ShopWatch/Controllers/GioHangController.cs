@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
+using ShopWatch.Models.MetaDATA;
 namespace ShopWatch.Controllers
 {
     public class GioHangController : AllController
@@ -15,65 +16,92 @@ namespace ShopWatch.Controllers
         }
         // GET: GioHang
         [HttpGet]
-        public ActionResult Index()// cái này có tác dụng để xem ( tức ng dùng ko ấn vào add to cart mà ấn vào giỏ hnagf ngay 
+        public ActionResult Index()
         {
             var user = Session["UserEmail"] as string;
+
             if (user != null)
             {
-                   var khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
-            // int? id_khachhang = GetMaKH();
-          
+                var khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
+
                 if (khachhang != null)
                 {
                     var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang.MAKHACHHANG);
 
                     if (giohang != null)
                     {
-                        return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList());
+                        var items = from chiteitgiohang in db.CHITIETGIOHANGs
+
+                                    where chiteitgiohang.MAGIOHANG == giohang.MAGIOHANG
+                                    select new ChitietgiohangViewModel
+                                    {
+                                         MACHITIETGIOHANG=chiteitgiohang.MACHITIETGIOHANG,
+                                         SOLUONGMUA=chiteitgiohang.SOLUONGMUA,
+                                         GIOHANG=chiteitgiohang.GIOHANG,
+                                         MATHANG=new MathangViewModel
+                                         {
+                                           ANHSANPHAM=chiteitgiohang.MATHANG.ANHSANPHAM,
+                                            MAMATHANG = chiteitgiohang.MATHANG.MAMATHANG,
+                                            TENHANG = chiteitgiohang.MATHANG.TENHANG,
+                                            GIAHANG = chiteitgiohang.MATHANG.GIAHANG,
+                                            NGAYSANXUAT = chiteitgiohang.MATHANG.NGAYSANXUAT,
+                                            TENHANGSANXUAT = chiteitgiohang.MATHANG.TENHANGSANXUAT,
+                                            BAOHANH = chiteitgiohang.MATHANG.BAOHANH,
+                                            LOAI = chiteitgiohang.MATHANG.LOAI,
+                                            KICHTHUOC = chiteitgiohang.MATHANG.KICHTHUOC,
+                                            SALE = chiteitgiohang.MATHANG.SALE.TRANGTHAI == false ? chiteitgiohang.MATHANG.SALE : null
+                                        },
+                                    };
+                      
+                        return View(items.ToList());
                     }
                 }
-            return View();
+
+                return View();
             }
             else
             {
                 return RedirectToAction("Dangnhap", "TAIKHOANs");
             }
-         
         }
-        [HttpPost]
+[HttpPost]
         public ActionResult Index(int giohang)//lấy id giỏ hàng truy vấn nhanh hơn 
         {
             ViewBag.id_khachhang = GetMaKH();
-            if ( ViewBag.id_khachhang != null)
+            if (ViewBag.id_khachhang != null)
             {
                 return View(db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang).ToList());
             }
             return View();
         }
-
-        public ActionResult AddToCart(int? sanpham)
+        
+        public ActionResult AddToCart(String sanpham)
         {
-            int? khachhang = GetMaKH();
-            
-            int id_giohang = check_giohang(khachhang);
-            var find_sp = db.MATHANGs.Find(sanpham);
-            var check_sp = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == id_giohang && ctgh.MAMATHANG == sanpham).FirstOrDefault();
-            if(check_sp == null)
+
+            var user = Session["UserEmail"] as string;
+
+            if (user != null)
             {
-                db.CHITIETGIOHANGs.Add(new CHITIETGIOHANG
-                {
-                    MAGIOHANG = id_giohang,
-                    MAMATHANG = sanpham,
-                    SOLUONGMUA = 1,
-                    DONGIA = find_sp.GIAHANG
-                });
-            }
-            else
-            {
-                check_sp.SOLUONGMUA += 1;
+                var Khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
+                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == Khachhang.MAKHACHHANG);
+                    var check_sp = db.CHITIETGIOHANGs.Where(m => m.MAMATHANG == sanpham).FirstOrDefault();
+                    if(check_sp == null)
+                    {
+                        db.CHITIETGIOHANGs.Add(new CHITIETGIOHANG
+                        {
+                            MAGIOHANG = giohang.MAGIOHANG,
+                            MAMATHANG = sanpham,
+                            SOLUONGMUA = 1,
+                           /* DONGIA = find_sp.GIAHANG*/
+                        });
+                    }
+                    else
+                    {
+                        check_sp.SOLUONGMUA += 1;
+                    }
             }
             db.SaveChanges();
-            return RedirectToAction("Index", new { giohang = id_giohang });
+            return RedirectToAction("Index","GioHang");
         }
         public ActionResult up_number(int id_ctgh, int number)
         {
@@ -137,7 +165,7 @@ namespace ShopWatch.Controllers
             var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
             update.TENKHACHHANG = model.TENKHACHHANG;
             update.SDT = model.SDT;
-            update.DIACHI = model.DIACHI;
+   /*         update.DIACHI = model.DIACHI;*/
             db.SaveChanges();
 
             var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == model.MAKHACHHANG);

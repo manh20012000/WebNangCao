@@ -12,7 +12,7 @@ using ShopWatch.Models;
 
 namespace ShopWatch.Areas.NhanVien.Controllers
 {
-    [Authorize]
+ 
     public class NHAPHANGsController : Controller
     {
         private DHEntities db = new DHEntities();
@@ -22,18 +22,22 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         {
             if (Session["UserEmail"] != null)
             {
-               var items = db.NHAPHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
-                if (!string.IsNullOrEmpty(searchValue))
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
                 {
-                    items = items.Where(x =>
-                          SqlFunctions.StringConvert((double)x.THANHTIEN).Contains(searchValue) ||
-                          SqlFunctions.DatePart("dd", x.NGAYNHAP).ToString().Contains(searchValue) ||
-                          SqlFunctions.DatePart("MM", x.NGAYNHAP).ToString().Contains(searchValue) ||
-                          SqlFunctions.DatePart("yyyy", x.NGAYNHAP).ToString().Contains(searchValue)
-  );
+                    var items = db.NHAPHANGs.Where(m => m.TRANGTHAI != true).AsQueryable();
+                    if (!string.IsNullOrEmpty(searchValue))
+                    {
+                        items = items.Where(x =>
+                              SqlFunctions.StringConvert((double)x.THANHTIEN).Contains(searchValue) ||
+                              SqlFunctions.DatePart("dd", x.NGAYNHAP).ToString().Contains(searchValue) ||
+                              SqlFunctions.DatePart("MM", x.NGAYNHAP).ToString().Contains(searchValue) ||
+                              SqlFunctions.DatePart("yyyy", x.NGAYNHAP).ToString().Contains(searchValue)
+      );
+                    }
+                    return View(items.ToList());
                 }
-                return View(items.ToList());
-
+                return RedirectToAction("Index", "BackToPemission");
             }
             return RedirectToAction("LoginUser", "TAIKHOANs");
         }
@@ -41,7 +45,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         // GET: NhanVien/NHAPHANGs/Details/5
         public ActionResult Details(int? id)
         {
-            if (id == null)
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
+                {
+                    if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -50,19 +59,34 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             {
                 return HttpNotFound();
             }
-            return View(nHAPHANG);
+                    return View(nHAPHANG);
+                }
+
+                return RedirectToAction("Index", "BackToPemission");
+            }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
         }
 
         // GET: NhanVien/NHAPHANGs/Create
         public ActionResult Create()
         {
-            var newReceipt = new NHAPHANG
+            if (Session["UserEmail"] != null)
             {
-                NGAYNHAP = DateTime.Today // Gán ngày hiện tại cho trường NGAYNHAP
-            };
-            ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV");
-            return View(newReceipt);
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
+                {
+                    var newReceipt = new NHAPHANG
+                    {
+                        NGAYNHAP = DateTime.Today // Gán ngày hiện tại cho trường NGAYNHAP
+                    };
+                    ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV");
+                    return View(newReceipt);
+                }
+            
+            return RedirectToAction("Index", "BackToPemission");
         }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
+    }
 
         // POST: NhanVien/NHAPHANGs/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
@@ -71,7 +95,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(NHAPHANG nhaphang)
         {
-            if (ModelState.IsValid)
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
+                {
+                    if (ModelState.IsValid)
             {
                 nhaphang.THANHTIEN = 0;
                 nhaphang.TRANGTHAI = false;
@@ -83,13 +112,22 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
             ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV", nhaphang.MANV);
             return View(nhaphang);
+                }
+                return RedirectToAction("Index", "BackToPemission");
+            }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
         }
        
 
         // GET: NhanVien/NHAPHANGs/Edit/5
         public ActionResult EditNhapHang(int? id)
         {
-            if (id == null)
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
+                {
+                    if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -100,6 +138,10 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
             ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV", nHAPHANG.MANV);
             return View(nHAPHANG);
+                }
+                return RedirectToAction("Index", "BackToPemission");
+            }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
         }
 
     
@@ -107,7 +149,12 @@ namespace ShopWatch.Areas.NhanVien.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult EditNhapHang(NHAPHANG nhaphang)
         {
-            if (ModelState.IsValid)
+            if (Session["UserEmail"] != null)
+            {
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV NHAPHANG")
+                {
+                    if (ModelState.IsValid)
             {
                 db.Entry(nhaphang).State = EntityState.Modified;
                 db.SaveChanges();
@@ -115,6 +162,10 @@ namespace ShopWatch.Areas.NhanVien.Controllers
             }
             ViewBag.MANV = new SelectList(db.NHANVIENs, "MANV", "TENNV", nhaphang.MANV);
             return View(nhaphang);
+                }
+                return RedirectToAction("Index", "BackToPemission");
+            }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
         }
 
       /*  public ActionResult Delete(int? id)

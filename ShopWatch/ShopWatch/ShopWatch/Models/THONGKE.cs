@@ -16,7 +16,7 @@ namespace ShopWatch.Models
     {
         public int MATHONGKE { get; set; }
         public Nullable<System.DateTime> NGAYTHONGKE { get; set; }
-        public Nullable<decimal> TONGTIEN { get; set; }
+        public Nullable<double> TONGTIEN { get; set; }
         public string MASPBANCHAY { get; set; }
         public string SANPHAMBANCHAY { get; set; }
         public Nullable<int> SOLUONGBANRA { get; set; }

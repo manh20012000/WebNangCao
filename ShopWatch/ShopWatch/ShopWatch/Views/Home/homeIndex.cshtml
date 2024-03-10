@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopWatch.Models.MATHANG>
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.MathangViewModel>
 @{
     ViewBag.Title = "homeIndex";
     Layout = null;
@@ -135,7 +135,7 @@
 
                                             @if (item.SALE != null)
                                             {<a href="/CHITIETMATHANG/Index?id_sanpham=@item.MAMATHANG">
-                                                    <div class="offer" style="font-size:12px;">Sale @item.SALE %</div>
+                                                    <div class="offer" style="font-size:12px;">Sale @item.SALE.PHANTRAMSALE %</div>
                                                     <img src="@item.ANHSANPHAM" style="width:250px;height:250px" alt="">
                                                     <div class="productname">
 
@@ -159,7 +159,8 @@
                                             }
                                             <div class="button_group" style=" text-align:center">
                                                 <button class="button add-cart" type="button" style="background-color: #E0EEEE; ">
-                                                    @Html.ActionLink("Add To Cart", "AddToCart", "GioHang", new { sanpham = item.MAMATHANG }, "")
+                                                    @Html.ActionLink("Add To Cart", "AddToCart", "GioHang", new { sanpham = item.MAMATHANG }, null)
+
                                                 </button>
                                                 <button class="button wishlist" type="button" style="background-color: #E0EEEE "><i class="fa fa-heart-o"></i></button>
                                             </div>

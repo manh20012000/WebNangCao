@@ -28,14 +28,14 @@ namespace ShopWatch.Models
         public string EMAIL { get; set; }
         [Required(ErrorMessage = "Please enter the tenhienthi")]
         public string TENDANGNHAP { get; set; }
-        /*    [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]*/
+        /*   [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,15}$")]*/
 
         [Required(ErrorMessage = "Please enter the password")]
         public string MATKHAU { get; set; }
 
-        [Compare("MATKHAU", ErrorMessage = "The verification does not match the password")]
-        [Required(ErrorMessage = "Please enter the xac minh")]
-        public string XACTHUC { get; set; }
+
+        [Required(ErrorMessage = "Please enter the phan quyen")]
+        public string PHANQUYEN { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<KHACHHANG> KHACHHANGs { get; set; }

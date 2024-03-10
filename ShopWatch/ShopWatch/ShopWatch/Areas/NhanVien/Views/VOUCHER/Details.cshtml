@@ -1,0 +1,44 @@
+﻿@model ShopWatch.Models.VOUCHER
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>VOUCHER</h4>
+    <hr />
+    <dl class="dl-horizontal">
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PHANTRAMGIAMGIA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PHANTRAMGIAMGIA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIEUKIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIEUKIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAVOUCHER }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

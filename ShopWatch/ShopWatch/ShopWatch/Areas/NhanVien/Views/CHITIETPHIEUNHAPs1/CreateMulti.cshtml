@@ -1,4 +1,4 @@
-﻿@model IPagedList<ShopWatch.Models.MATHANG>
+﻿﻿@model IPagedList<ShopWatch.Models.MATHANG>
 @using PagedList;
 @using PagedList.Mvc;
 @{
@@ -24,37 +24,30 @@
 <div class="row">
     <div class="col-md-6">
 
-
         @if (@ViewBag.NHAPHANG != null)
         {
-        <div class="form-group">
-            <label class="font-weight-bold">MANHAPHANG:</label>
-            <span style="font-weight:500">@ViewBag.NHAPHANG.MANHAPHANG</span>
-        </div>
+            <div class="form-group">
+                <label class="font-weight-bold">MANHAPHANG:</label>
+                <span id="manhapHangSpan">@ViewBag.NHAPHANG.MANHAPHANG</span>
+            </div>
             <div class="form-group">
                 <label class="font-weight-bold">NGAYNHAP:</label>
-                <span style="font-weight:500">
-                    @String.Format("{0:dd/MM/yyyy}", @ViewBag.NHAPHANG.NGAYNHAP)
-                 
-
-                </span>
+                <span>@ViewBag.NHAPHANG.NGAYNHAP</span>
             </div>
             <div class="form-group">
                 <label class="font-weight-bold">MANV:</label>
-                <span style="font-weight:500">@ViewBag.NHAPHANG.MANV</span>
+                <span>@ViewBag.NHAPHANG.MANV</span>
             </div>
         }
     </div>
     <div class="col-md-6">
-        <h3 style="margin-top:-20px" id="total-price">Giá tiền: </h3>
-           <br />
+        <h3 id="total-price">Giá tiền: </h3>
         <form id="createMultiForm" action="/NhanVien/CHITIETPHIEUNHAPs1/CreateMulti" method="post">
-            <input type="hidden" name="listInput" id="listInput" class="listInput" />
+          @*  <input type="text" name="listInput" id="listInput" class="listInput" />*@
             <div class="col-md-6">
-                <input type="submit" value="Tạo Phiếu" style="width:150px;height:40px;background-color:chocolate;border-radius:5px" />
+                <input type="submit" value="Tạo Phiếu" style="width:120px;height:40px;background-color:chocolate;border-radius:20px" />
             </div>
         </form>
-
     </div>
 </div>
 <div class="row">
@@ -86,8 +79,6 @@
                         <th style=" padding: 15px; text-align: center;">
                             <label> LOAI</label>
                         </th>
-
-
                         <th style=" padding: 15px; text-align: center;">
                             <label>GIAHANG</label>
 
@@ -101,11 +92,10 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-
                             <td class="text-center">
                                 <input type="checkbox" class="product-checkbox" />
                             </td>
-                            <td class="text-center" style="font-weight:700">
+                            <td class="text-center"style="font-weight:700" >
                                 @Html.DisplayFor(modelItem => item.MAMATHANG)
                             </td>
                             <td class="text-center" style="font-weight:700">
@@ -121,7 +111,7 @@
                                 @Html.DisplayFor(modelItem => item.LOAI)
                             </td>
                             <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
-                                <label class="gia-hang-label">@*@Html.DisplayFor(modelItem => item.GIAHANG) *@ @String.Format("{0:N0}", item.GIAHANG)</label>
+                                <label class="gia-hang-label"> @String.Format("{0:N0}", item.GIAHANG)</label>
                             </td>
                             <td class="text-center">
                                 <div class="quantity-control" id="quantity-control" style="display:none;flex-direction:row">
@@ -139,7 +129,6 @@
                     var manhapHangSpan = document.getElementById('manhapHangSpan');
                     var manhapHangValue = manhapHangSpan.textContent;
                     var selectedItems = []; // Danh sách các CHITIETPHIEUNHAP đã chọn
-
                     function updateTotalPrice() {
                         var totalPrice = selectedItems.reduce(function (total, item) {
                             return total + item.GiaTien;
@@ -150,13 +139,15 @@
 
                     function calculatePriceAndAdd(row, quantity) {
                         var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, ''));
+                        var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim();
                         var chitietphieunhap = {
-                            MAMATHANG: parseInt(row.querySelector('.text-center:nth-child(2)').textContent),
+                            MAMATHANG: row.querySelector('.text-center:nth-child(2)').textContent.trim(),
                             SOLUONG: quantity,
                             GiaTien: giaHang * quantity,
                             GIANHAP: giaHang * quantity,
                             MANHAPHANG: manhapHangValue,
                         };
+                        console.log(mamathang,'mamathanng')
                         console.log(JSON.stringify(chitietphieunhap));
                         var index = selectedItems.findIndex(item => item.MAMATHANG === chitietphieunhap.MAMATHANG);
                         if (index === -1) {
@@ -180,7 +171,7 @@
                             var row = this.closest('tr');
                             toggleQuantityControl(row, this.checked);
                             if (!this.checked) {
-                                var index = selectedItems.findIndex(item => item.MAMATHANG === parseInt(row.querySelector('.text-center:nth-child(2)').textContent));
+                                var index = selectedItems.findIndex(item => item.MAMATHANG === row.querySelector('.text-center:nth-child(2)').textContent);
                                 if (index !== -1) {
                                     selectedItems.splice(index, 1);
                                 }
@@ -234,6 +225,7 @@
                             data: selectedItemsData,
                             success: function (response) {
                                 console.log('Data sent successfully');
+                                alert('nhập hàng thành công')
                                 // Cập nhật giao diện sau khi gửi dữ liệu
                             },
                             error: function (error) {

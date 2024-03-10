@@ -90,7 +90,7 @@ namespace ShopWatch.Controllers
             var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
             update.TENKHACHHANG = model.TENKHACHHANG;
             update.SDT = model.SDT;
-            update.DIACHI = model.DIACHI;
+           /* update.DIACHI = model.DIACHI;*/
             var kt = db.SaveChanges();
             if(kt > 0)
             {

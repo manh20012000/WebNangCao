@@ -15,12 +15,12 @@ namespace ShopWatch.Controllers
         private DHEntities db = new DHEntities();
         public ActionResult hoadonIndex()
         {
-            return View(db.HOADONs.ToList());
+            return View(db.DATHANGs.ToList());
         }
         // GET: HOADONs
         public ActionResult Index()
         {
-            var hOADONs = db.HOADONs.Include(h => h.KHACHHANG);
+            var hOADONs = db.DATHANGs.Include(h => h.KHACHHANG);
             return View(hOADONs.ToList());
         }
 
@@ -31,7 +31,7 @@ namespace ShopWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HOADON hOADON = db.HOADONs.Find(id);
+            DATHANG hOADON = db.DATHANGs.Find(id);
             if (hOADON == null)
             {
                 return HttpNotFound();
@@ -51,11 +51,11 @@ namespace ShopWatch.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create( HOADON hOADON)
+        public ActionResult Create(DATHANG hOADON)
         {
             if (ModelState.IsValid)
             {
-                db.HOADONs.Add(hOADON);
+                db.DATHANGs.Add(hOADON);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
@@ -71,7 +71,7 @@ namespace ShopWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HOADON hOADON = db.HOADONs.Find(id);
+            DATHANG hOADON = db.DATHANGs.Find(id);
             if (hOADON == null)
             {
                 return HttpNotFound();
@@ -85,7 +85,7 @@ namespace ShopWatch.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(HOADON hOADON)
+        public ActionResult Edit(DATHANG hOADON)
         {
             if (ModelState.IsValid)
             {
@@ -104,7 +104,7 @@ namespace ShopWatch.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            HOADON hOADON = db.HOADONs.Find(id);
+            DATHANG hOADON = db.DATHANGs.Find(id);
             if (hOADON == null)
             {
                 return HttpNotFound();
@@ -117,8 +117,8 @@ namespace ShopWatch.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            HOADON hOADON = db.HOADONs.Find(id);
-            db.HOADONs.Remove(hOADON);
+            DATHANG hOADON = db.DATHANGs.Find(id);
+            db.DATHANGs.Remove(hOADON);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

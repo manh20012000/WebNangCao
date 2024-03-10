@@ -1,16 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using ShopWatch.Models;
-
 namespace ShopWatch.Areas.NhanVien.Controllers
 {
-    [Authorize]
+
     public class THONGKEsController : Controller
     {
         private DHEntities db = new DHEntities();
@@ -18,33 +15,37 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
         public ActionResult Index(int?month, int?year)
         {
-
-
-            if (month.HasValue && year.HasValue)
+            if (Session["UserEmail"] != null)
             {
-                var tongTien = db.HOADONs
+                string phanquyen = Session["phanquyen"] as string;
+                if (phanquyen == "NV KETOAN")
+                {
+
+                    if (month.HasValue && year.HasValue)
+            {
+                var tongTien = db.DATHANGs
                     .Where(hd => hd.NGAYMUA.Value.Month == month && hd.NGAYMUA.Value.Year == year)
                     .Sum(hd => hd.TONGTIEN);
                 var existingThongKe = db.THONGKEs.FirstOrDefault(tk => tk.NGAYTHONGKE.Value.Month == month && tk.NGAYTHONGKE.Value.Year == year);
 
-                var maHoaDons = db.HOADONs
+                var maHoaDons = db.DATHANGs
                .Where(hd => hd.NGAYMUA.Value.Month == month && hd.NGAYMUA.Value.Year == year)
-               .Select(hd => hd.MAHD)
+               .Select(hd => hd.MADH)
                .ToList();
 
-                var maMatHangBanNhieuNhat = db.CHITIETHOADONs
-                    .Where(ct => maHoaDons.Contains(ct.MAHD.Value)) // Sử dụng Contains trên List
+                var maMatHangBanNhieuNhat = db.CHITIETDATHANGs
+                    .Where(ct => maHoaDons.Contains(ct.MADH)) // Sử dụng Contains trên List
                     .GroupBy(ct => ct.MAMATHANG)
                     .OrderByDescending(g => g.Sum(ct => ct.SOLUONG))
                     .Select(g => g.Key)
                     .FirstOrDefault();
 
 
-                var soSanPhamBanRa = db.CHITIETHOADONs
-                    .Where(ct => maHoaDons.Contains(ct.MAHD.Value))
+                var soSanPhamBanRa = db.CHITIETDATHANGs
+                    .Where(ct => maHoaDons.Contains(ct.MADH))
                     .Sum(ct => ct.SOLUONG);
-                var tongSoSanPhamchay = db.CHITIETHOADONs
-                  .Where(ct => ct.MAMATHANG == maMatHangBanNhieuNhat && maHoaDons.Contains(ct.MAHD.Value))
+                var tongSoSanPhamchay = db.CHITIETDATHANGs
+                  .Where(ct => ct.MAMATHANG == maMatHangBanNhieuNhat && maHoaDons.Contains(ct.MADH))
                      .Sum(ct => ct.SOLUONG);
                 var mathang = db.MATHANGs.Find(maMatHangBanNhieuNhat);
                 if (existingThongKe != null)
@@ -78,6 +79,10 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
 
             return View(db.THONGKEs.ToList());
+                }
+                return RedirectToAction("Index", "BackToPemission");
+            }
+            return RedirectToAction("LoginUser", "TAIKHOANs");
         }
 
         // GET: NhanVien/THONGKEs/Details/5

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<ShopWatch.Models.CHITIETGIOHANG>
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.ChitietgiohangViewModel>
 
 @{
     Layout = null;
@@ -131,7 +131,7 @@
             <div class="page-index">
                 <div class="container">
                     <p>
-                      
+
                     </p>
                 </div>
             </div>
@@ -144,125 +144,139 @@
                     <div class="col-md-12">
                         <div>
                             <h3 class="title">
-                                GIỎ HÀNG 
+                                GIỎ HÀNG
                             </h3>
-                         
+
                         </div>
                         <div class="clearfix">
                         </div>
-                        <table class="shop-table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        ẢNH
-                                    </th>
-                                    <th>
-                                       CHI TIẾT
-                                    </th>
-                                    <th>
-                                       GIÁ
-                                    </th>
-                                    <th>
-                                       SỐ LƯỢNG 
-                                    </th>
-                                    <th>
-                                       TỔNG
-                                    </th>
-                                    <th>
-                                       XÓA
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @{
-                                    decimal tongtien = 0;
-                                   
-                                    if (Model != null)
-                                    {
-                                        foreach (var item in Model)
-                                        {
-                                            <tr>
-                                                <td>
-                                                    <img src="@item.MATHANG.ANHSANPHAM" alt="">
-                                                </td>
-                                                <td>
-                                                    <div class="shop-details">
-                                                        <div class="productname">
-                                                            @item.MATHANG.TENHANG
-                                                        </div>
-                                                        <p style="font-size:14px">
-                                                            Guarantee:
-                                                            <span class="light-red" style="font-size:18px">
-                                                                @item.MATHANG.BAOHANH
-                                                            </span>
-                                                        </p>
-                                                        <p style="font-size:14px">
-                                                            Type:
-                                                            <span class="light-red" style="font-size:18px">
-                                                                @item.MATHANG.LOAI
-                                                            </span>
-                                                        </p>
-                                                        <p style="font-size:14px">
-                                                            Size:
-                                                            <span class="light-red" style="font-size:18px">
-                                                                @item.MATHANG.KICHTHUOC
-                                                            </span>
-                                                        </p>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5>
-                                                        <strong class="black">
-                                                            @String.Format("{0:N0}", item.DONGIA)
-                                                         
-                                                        </strong>
-                                                    </h5>
-                                                </td>
-                                                <td>
-                                                    <div>
-                                                        @if (item.SOLUONGMUA > 1)
-                                                        {
-                                                            @Html.ActionLink("-", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = -1 }, new { @class = "quantity-link" })
-                                                        }
-                                                        @Html.DisplayFor(modelItem => item.SOLUONGMUA)
-                                                        @Html.ActionLink("+", "up_number", "GioHang", new { id_ctgh = item.MACHITIETGIOHANG, number = +1 }, new { @class = "quantity-link" })
+                        <table id="example" class="table">
 
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <h5>
-                                                        <strong class="red">
-                                                            @{
-                                                                decimal tonggia = (decimal)(item.SOLUONGMUA * item.DONGIA);
-                                                                tongtien += tonggia;
-                                                            }
-                                                            @String.Format("{0:N0}", tongtien)
-                                                        </strong>
-                                                    </h5>
-                                                </td>
-                                                <td>
-                                                    @Html.ActionLink("Xoa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
-                                                </td>
-                                            </tr>
-                                        }
-                                    }
+                            <tr style="background-color:#04AA6D; color: white;">
+                                <th style=" padding: 15px; text-align: center;">
+                                    LỰA CHỌN
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    ẢNH
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    CHI TIẾT
+                                </th>
 
-                                }
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="6">
-                                        <button class="pull-left" >
-                                           Tiếp tục mua hàng
-                                        </button>
+
+                                <th style=" padding: 15px; text-align: center;">
+                                    SALE
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    GIÁ HÀNG
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    SỐ LƯỢNG
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
                                   
-                                            <button class="pull-right" style="margin-left:20px;">
-                                                @Html.ActionLink("Đơn hàng", "DonHang", "DatHang")
-                                            </button>
-                                    
-                                    </td>
-                                </tr>
-                            </tfoot>
+                                </th>
+                            </tr>
+
+                            @{
+                                decimal tongtien = 0;
+
+                                if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                                        <tr>
+                                                            <td class="text-center" style="width:60px;height:60px">
+                                                                <input type="checkbox" class="product-checkbox" />
+                                                            <td class="text-center" style="font-weight:700 ;display:none">
+                                                                @Html.DisplayFor(modelItem => item.MATHANG.MAMATHANG)
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700">
+                                                                <img src="@item.MATHANG.ANHSANPHAM" alt="" style="width:100px;height:100px">
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700;width:200px">
+                                                                <div class="shop-details">
+                                                                    <div class="productname">
+                                                                        <label style="font-size:25px;font-weight:700">
+                                                                            @item.MATHANG.TENHANG
+
+                                                                        </label>
+
+                                                                    </div>
+                                                                    <p style="font-size:14px">
+                                                                        Guarantee:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.BAOHANH
+                                                                        </span>
+                                                                    </p>
+                                                                    <p style="font-size:14px">
+                                                                        Type:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.LOAI
+                                                                        </span>
+                                                                    </p>
+                                                                    <p style="font-size:14px">
+                                                                        Size:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.KICHTHUOC
+                                                                        </span>
+                                                                    </p>
+
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700">
+
+                                                                <label style="color:red;font-size:16px">
+                                                                    @if (item.MATHANG.SALE != null)
+                                                                    {
+                                                                        <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600">
+                                                                            @item.MATHANG.SALE.PHANTRAMSALE   %
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600;display:none">
+                                                                            0
+                                                                        </span>
+                                                                    }
+                                                                </label>
+
+                                                            </td>
+                                                            <td class="text-center" style="font-size:18px;color:red;font-weight:500">
+                                                                <label class="gia-hang-label"> @String.Format("{0:N0}", @item.MATHANG.GIAHANG) VND</label>
+                                                            </td>
+
+
+                                                            <td class="text-center">
+                                                                <div class="quantity-control" id="quantity-control" style="display:none;flex-direction:row">
+                                                                    <button class="quantity-decrease " style="background-color:coral">-</button>
+                                                                    <input type="text" id="quantityInput" class="quantity-input" value="0" style="width:40px;height:40px" />
+                                                                    <button class="quantity-increase" style="background-color:coral">+</button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                               
+                                                                <a href="@Url.Action("xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })" class="btn btn-outline-secondary" style="color: brown">
+                                                                    Tùy chọn
+                                                                    <i class="fas fa-info-circle"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                    }
+                                }
+                            }
+                            <tr>
+                                <td class="text-center" style="font-weight:700">
+                                    <button class="pull-left">
+                                        Tiếp tục mua hàng
+                                    </button>
+                                    <button class="pull-right" style="margin-left:20px;">
+                                        @Html.ActionLink("Đơn hàng", "DonHang", "DatHang")
+                                    </button>
+
+                                </td>
+                            </tr>
+
                         </table>
                         <div class="clearfix">
                         </div>
@@ -270,21 +284,21 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="shippingbox">
                                     <h5>
-                                       ƯỚC TÍNH VẬN CHUYỂN VÀ THUẾ
+                                        ƯỚC TÍNH VẬN CHUYỂN VÀ THUẾ
                                     </h5>
                                     <form>
                                         <label>
-                                           Quốc gia *
+                                            Quốc gia *
                                         </label>
-                                        
+
                                         <label>
                                             Tỉnh
                                         </label>
-                                     
+
                                         <label>
-                                           Mã Zip
+                                            Mã Zip
                                         </label>
-                                     
+
                                         <div class="clearfix">
                                         </div>
                                         <button>
@@ -296,7 +310,7 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="shippingbox">
                                     <h5>
-                                       MÃ GIẢM GIÁ
+                                        MÃ GIẢM GIÁ
                                     </h5>
                                     <form>
                                         <label>
@@ -306,7 +320,7 @@
                                         <div class="clearfix">
                                         </div>
                                         <button>
-                                           Nhận Báo Giá
+                                            Nhận Báo Giá
                                         </button>
                                     </form>
                                 </div>
@@ -314,15 +328,21 @@
                             <div class="col-md-4 col-sm-6">
                                 <div class="shippingbox">
                                     <div class="grandtotal">
-                                        <h5>
-                                            TỔNG CỘNG 
-                                        </h5>
-                                        <span>
-                                            @String.Format("{0:N0}", tongtien) 
-                                        </span>
+
+                                        <label id="total-price" style="font-size:20px;font-weight:bold;color:red"> </label>
                                     </div>
-                                    <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;">
-                                        QUY TRÌNH ĐẶT HÀNG 
+
+
+                                    <form id="chitietdathang" action="/DatHang/PhieuDatHang" method="post">
+                                        @*<input type="text" name="listInput" id="listInput" class="listInput" />*@
+                                        <div class="col-md-6" style="margin-top:50px">
+                                            <input type="submit" value=" ĐẶT HÀNG" style="width:120px;height:40px;background-color:chocolate;border-radius:10px" />
+                                        </div>
+                                    </form>
+
+
+                                    @* <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;">*@
+
                                     </a>
                                 </div>
                             </div>
@@ -545,6 +565,135 @@
         </div>
     </div>
     <!-- Bootstrap core JavaScript==================================================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        let tongtien = 0;
+        var selectedItems = []; // Danh sách các mathang chọn  đã chọn
+        function updateTotalPrice() {
+            var totalPrice = selectedItems.reduce(function (total, item) {
+                tongtien = total + item.GiaTien;
+                return total + item.GiaTien;
+            }, 0);
+            var totalPriceDisplay = document.getElementById('total-price');
+
+            totalPriceDisplay.textContent = "Tổng Tiền: " + totalPrice + ' VND'; // Hiển thị tổng giá tiền với 2 chữ số thập phân
+        }
+        function calculatePriceAndAdd(row, quantity) {
+            var giaHangElement = row.querySelector('.gia-hang-label');
+            var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, ''));
+            var phanTramGiamGia = parseFloat(row.querySelector('.phantram-giamgia-label').textContent.replace(/\D/g, ''));
+        
+            if (isNaN(phanTramGiamGia)) {
+                phanTramGiamGia = 0;
+
+            }
+
+            var giaTien = giaHang * quantity * (1 - phanTramGiamGia / 100);
+            console.log(giaTien, 'giaten')
+            var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim();
+            var chitietDatHang = {
+                MAMATHANG: mamathang,
+                SOLUONG: quantity,
+                GiaTien: giaTien,
+                GIANHAP: giaHang * quantity,
+
+            };
+
+            var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang);
+            if (index === -1) {
+                selectedItems.push(chitietDatHang);
+            } else {
+                selectedItems[index].SOLUONG = quantity;
+                selectedItems[index].GiaTien = giaTien;
+            }
+           
+            updateTotalPrice();
+        }
+
+
+        function toggleQuantityControl(row, show) {
+            var quantityControl = row.querySelector('.quantity-control');
+            quantityControl.style.display = show ? 'block' : 'none';
+        }
+
+        var checkboxes = document.querySelectorAll('.product-checkbox');
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var row = this.closest('tr');
+                toggleQuantityControl(row, this.checked);
+                if (!checkbox.checked) {
+                   
+                    var index = selectedItems.findIndex(item => item.MAMATHANG === row.querySelector('.text-center:nth-child(1)').textContent);
+                    if (index !== -1) {
+                        selectedItems.splice(index, 1);
+                    }
+                   
+                    var Mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim();
+                    var sotien = 0;
+                    var selectedItem = selectedItems.find(item => item.MAMATHANG === Mamathang);
+                    if (selectedItem) {
+                        sotien = selectedItem.GiaTien;
+                    }
+                    // Trừ sotien từ tổng giá tiền và cập nhật lại total view
+                    tongtien -= sotien;
+                    var totalPriceDisplay = document.getElementById('total-price');
+                    totalPriceDisplay.textContent = "Tổng Tiền: " + tongtien + ' VND'; // Hiển thị tổng giá tiền với 2 chữ số thập phân
+                    // Loại bỏ item khỏi selectedItems
+                    var index = selectedItems.findIndex(item => item.MAMATHANG === Mamathang);
+                    if (index !== -1) {
+                        selectedItems.splice(index, 1);
+                    }
+                }
+            });
+        });
+        var increaseButtons = document.querySelectorAll('.quantity-increase');
+        var decreaseButtons = document.querySelectorAll('.quantity-decrease');
+
+        increaseButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = this.closest('tr');
+                var quantityInput = row.querySelector('.quantity-input');
+                var quantity = parseInt(quantityInput.value) + 1;
+                quantityInput.value = quantity;
+                calculatePriceAndAdd(row, quantity);
+            });
+        });
+
+        decreaseButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = this.closest('tr');
+                var quantityInput = row.querySelector('.quantity-input');
+                var quantity = parseInt(quantityInput.value) - 1;
+                if (quantity >= 0) {
+                    quantityInput.value = quantity;
+                    calculatePriceAndAdd(row, quantity);
+                }
+            });
+        });
+
+        $('#chitietdathang').submit(function (event) {
+            event.preventDefault();
+            var requestData = {
+                selectedItemsData: selectedItems,
+                giatien: tongtien,
+                    };
+            $.ajax({
+                type: 'POST',
+                url: '/DatHang/PhieuDatHang',
+                contentType: 'application/json',
+                data: JSON.stringify(requestData),
+                success: function (response) {
+                    console.log('Data sent successfully');
+                    alert('nhập hàng thành công')
+                    // Cập nhật giao diện sau khi gửi dữ liệu
+                },
+                error: function (error) {
+                    console.error('Error:', error);
+                }
+            });
+        });
+    </script>
     <script type="text/javascript" src="~/assets/KhachHang/js/jquery-1.10.2.min.js">
     </script>
     <script type="text/javascript" src="~/assets/KhachHang/js/bootstrap.min.js">
@@ -555,6 +704,6 @@
     </script>
     <script type="text/javascript" src="~/assets/KhachHang/js/script.min.js">
     </script>
-    
+
 </body>
 </html>

@@ -39,8 +39,9 @@
             }
     </style>
     <!-- Favicon -->
+    <link rel="stylesheet" href="~/assets/fontawesome-free-6.3.0-web/css/all.min.css">
     <link rel="icon" type="image/x-icon" href="~/assets/NhanVien/img/favicon/favicon.ico" />
-
+  
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -151,7 +152,7 @@
                     </li>
 
 
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Mặt hàng</span></li>
+                    <li class="menu-header small text-uppercase"><span style="color: red; font-size: 18px" class="menu-header-text">QUẢN LÝ MẶT HÀNG</span></li>
                     <!-- Trang chủ -->
                     <li class="menu-item">
                         <a href="/NhanVien/MATHANGs/Product" class="menu-link">
@@ -166,33 +167,57 @@
                             <div data-i18n="Basic">Thêm mặt hàng </div>
                         </a>
                     </li>
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Nhập hàng</span></li>
+                    <li class="menu-item">
+                        <a href="/NhanVien/SALEs/Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Quản lý sale </div>
+                        </a>
+                    </li>
+                    <li class="menu-header small text-uppercase"><span style="color: orangered;font-size:18px" class="menu-header-text">QUẢN LÝ NHẬP HÀNG</span></li>
                     <!-- Thêm sản phẩm  -->
                     <li class="menu-item">
                         <a href="/Nhanvien/NHAPHANGs/Create" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic"> phiếu nhập</div>
+                            <div data-i18n="Basic">Phiếu nhập</div>
                         </a>
                     </li> <!-- Thêm sản phẩm  -->
                     <li class="menu-item">
                         <a href="/Nhanvien/NHAPHANGs/index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Danh sách mua hàng</div>
+                            <div data-i18n="Basic">Danh sách phiếu nhập </div>
                         </a>
                     </li>
-
-                    <li class="menu-header small text-uppercase"><span class="menu-header-text">Hóa đơn nhập hàng</span></li>
+                    <li class="menu-item">
+                        <a href="/NhanVien/VOUCHER/VoucherIndex" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Quản lý voucher </div>
+                        </a>
+                    </li>
                     <li class="menu-item">
                         <a href="/Nhanvien/CHITIETPHIEUNHAPs1/index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
                             <div data-i18n="Basic">Danh sách CT hóa đơn</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="/Nhanvien/QUANLYVOUCHERs/index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Quản lý voucher</div>
+                        </a>
+                    </li>
+                    <li class="menu-header small text-uppercase"><span class="menu-header-text" style="color:forestgreen;font-size:18px">QUẢN LÝ THỐNG KÊ</span></li>
+
 
                     <li class="menu-item">
                         <a href="/NhanVien/THONGKEs/Index" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-collection"></i>
-                            <div data-i18n="Basic">Thống kê </div>
+                            <div data-i18n="Basic">Thống Kê Mua Hàng </div>
+                        </a>
+                    </li>
+                    <li class="menu-item">
+                        <a href="/NhanVien/THONGKENHAPHANG/Index" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-collection"></i>
+                            <div data-i18n="Basic">Thống Kê Nhập Hàng </div>
                         </a>
                     </li>
                     <!-- Misc -->
@@ -322,12 +347,7 @@
             </div>
         </div>
     </div>
-    <footer class="main-footer">
-        <div class="pull-right hidden-xs">
-            <b>Version</b> 2.3.0
-        </div>
-        <strong>Copyright &copy; 2014-2015 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights reserved.
-    </footer>
+   
 
     <script src="~/assets/NhanVien/vendor/libs/jquery/jquery.js"></script>
     <script src="~/assets/NhanVien/vendor/libs/popper/popper.js"></script>
@@ -335,7 +355,7 @@
     <script src="~/assets/NhanVien/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
     <script src="~/assets/NhanVien/vendor/js/menu.js"></script>
     <script src="~/assets/NhanVien/vendor/libs/apex-charts/apexcharts.js"></script>
-    <script src="~/assets/NhanVien/js/main.js"></script>
+  
 
     <script src="~/assets/NhanVien/js/dashboards-analytics.js"></script>
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -349,7 +369,7 @@
     <script src="~/assets/Admin/plugins/datatables/jquery.dataTables.min.js"></script>
     <script src="~/assets/Admin/plugins/datatables/dataTables.bootstrap.min.js"></script>
     <script src="~/assets/Admin/plugins/datatables/dataTables.alphabetSearch.js"></script>
-    <script src="~/assets/NhanVien/js/nhanvien.js"></script>
+    
 
     <script>
         const currentUrl = window.location.href;
@@ -382,4 +402,3 @@
 </body>
 </html>
 
-//share

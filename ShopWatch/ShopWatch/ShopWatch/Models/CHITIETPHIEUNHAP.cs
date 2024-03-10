@@ -14,13 +14,13 @@ namespace ShopWatch.Models
     
     public partial class CHITIETPHIEUNHAP
     {
-        public Nullable<int> MAMATHANG { get; set; }
+        public string MAMATHANG { get; set; }
         public int MACTPHIEUNHAP { get; set; }
         public Nullable<int> SOLUONG { get; set; }
         public Nullable<int> MANHAPHANG { get; set; }
-        public Nullable<decimal> GIANHAP { get; set; }
+        public Nullable<double> GIANHAP { get; set; }
     
-        public virtual MATHANG MATHANG { get; set; }
         public virtual NHAPHANG NHAPHANG { get; set; }
+        public virtual MATHANG MATHANG { get; set; }
     }
 }

@@ -122,8 +122,6 @@
 
                                 </div>
                                 <div> @Html.ValidationMessageFor(model => model.TENDANGNHAP, "", new { @class = "text-danger" })</div>
-
-
                                 <label for="email" class="form-label">MATKHAU</label>
                                 <div class="mb-3 form-password-toggle">
 
@@ -135,16 +133,24 @@
                                 <div>
                                     @Html.ValidationMessageFor(model => model.MATKHAU, "", new { @class = "text-danger" })
                                 </div>
-                                <label for="email" class="form-label">XAC THUC</label>
-                                <div class="mb-3 form-password-toggle">
-                                    <div class="input-group input-group-merge">
-                                        @Html.PasswordFor(model => model.XACTHUC, new { name = "password", @class = "form-control", placeholder = "Enter XACTHUC" })
-                                        <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                                <label for="email" class="form-label">PHÂN QUYỀN</label>
+                               
+                                <div class="mb-3 form-group">
+                                  
+                                    <div class="input-group ">
+                                        @Html.DropDownListFor(model => model.PHANQUYEN, new SelectList(
+                                            new List<SelectListItem>
+                                            {
+                                                new SelectListItem { Value = "NV NHAPHANG", Text = "NV NHAPHANG" },
+                                                new SelectListItem { Value = "NV QUANLYSP", Text = "NV QUANLYSP" },
+                                                new SelectListItem { Value = "NV KETOAN", Text = "NV KETOAN" },
+                                            }, "Value", "Text"), "Chọn phân quyền",
+                                            new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.PHANQUYEN, "", new { @class = "text-danger" })
                                     </div>
                                 </div>
-                                <div>
-                                    @Html.ValidationMessageFor(model => model.XACTHUC, "", new { @class = "text-danger" })
-                                </div>
+                                    
+                         
                                 <input type="submit" value="Sign up" class="btn btn-primary d-grid w-100" />
                             </form>
                             <p class="text-center">

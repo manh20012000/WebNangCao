@@ -13,15 +13,16 @@
                 @if(ViewBag.NHAPHANG!=null){
                 <div class="form-group">
                     <label class="font-weight-bold">MANHAPHANG:</label>
-                    <span>@ViewBag.NHAPHANG.MANHAPHANG</span>
+                    <span style="font-weight:bolder">@ViewBag.NHAPHANG.MANHAPHANG</span>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">NGAYNHAP:</label>
-                    <span>@ViewBag.NHAPHANG.NGAYNHAP</span>
+
+                    <span style="font-weight:bolder">   @String.Format("{0:dd/MM/yyyy}", @ViewBag.NHAPHANG.NGAYNHAP)</span>
                 </div>
                 <div class="form-group">
                     <label class="font-weight-bold">MANV:</label>
-                    <span>@ViewBag.NHAPHANG.MANV</span>
+                    <span style="font-weight:bolder">@ViewBag.NHAPHANG.MANV</span>
                 </div>
                 }
             </div>
@@ -33,11 +34,11 @@
         @using (Html.BeginForm("Create", "CHITIETPHIEUNHAPs1", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
-           <input type="hidden" id="MANHAPHANG" name="MANHAPHANG" value="@ViewBag.NHAPHANG.MANHAPHANG" />
+            <input type="hidden" id="MANHAPHANG" name="MANHAPHANG" value="@ViewBag.NHAPHANG.MANHAPHANG" />
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-            <div class="form-group">
+            <div class="form-group" >
                 @Html.LabelFor(model => model.MAMATHANG, "MAMATHANG", htmlAttributes: new { @class = "control-label col-md-2", style = "width:23%" })
-                <div class="col-md-10">
+                <div class="col-md-10"style="margin-top:40px">
                     @Html.DropDownList("MAMATHANG", (SelectList)ViewBag.MAMATHANG, "--Nhập mã bạn chọn --", new { @class = "form-control", onchange = "ProductInfor(this)" })
                     @Html.ValidationMessageFor(model => model.MAMATHANG, "", new { @class = "text-danger" })
 
@@ -63,53 +64,53 @@
             </div>
         }
     </div>
-        <script>
-            function calculateTotal() {
+    <script>
+        function calculateTotal() {
 
-                var quantity = parseInt($('#SOLUONG').val()); // Lấy số lượng từ trường SOLUONG
-                var price = parseFloat($('#GIAHANG').text()); // Lấy giá nhập từ trường GIANHAP
-                if (isNaN(price)) {
-                    alert('Vui lòng chọn mặt hàng');
-                    return;
-                }
-                console.log("giá tri là " + quantity, price);
-                var totalPrice = quantity * price; // Tính tổng giá nhập
-                $('#GIANHAP').val(totalPrice);
-                $('#totalPrice').html('Total: ' + totalPrice + "   VND"); // Hiển thị tổng giá nhập
+            var quantity = parseInt($('#SOLUONG').val()); // Lấy số lượng từ trường SOLUONG
+            var price = parseFloat($('#GIAHANG').text()); // Lấy giá nhập từ trường GIANHAP
+            if (isNaN(price)) {
+                alert('Vui lòng chọn mặt hàng');
+                return;
             }
-        </script>
-        <div id="Input" style="width:50%">
-            <div id="productInfo" style="justify-content:center;align-content:center;">
-                <h4>Thông tin sản phẩm </h4>
-                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                <script>
-                    function ProductInfor(selectObject) {
+            console.log("giá tri là " + quantity, price);
+            var totalPrice = quantity * price; // Tính tổng giá nhập
+            $('#GIANHAP').val(totalPrice);
+            $('#totalPrice').html('Total: ' + totalPrice + "   VND"); // Hiển thị tổng giá nhập
+        }
+    </script>
+    <div id="Input" style="width:50%">
+        <div id="productInfo" style="text-align: center;">
+            <h4 style="font-weight: bold; border-bottom: 2px solid #333;">Thông tin sản phẩm</h4>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+            <script>
+                function ProductInfor(selectObject) {
 
-                        var selectedValue = selectObject.value;
-                        if (selectedValue !== '') {
-                            $.ajax({
-                                url: '/NhanVien/CHITIETPHIEUNHAPs1/ProductDetails/' + selectedValue,
-                                type: 'POST',
-                                success: function (data) {
-                                    console.log("haodhsj" + typeof (data.GIAHANG))
-                                    console.log(JSON.stringify(data) + "gía trị data")
-                                    $('#productInfo').html('<h4>Thông tin sản phẩm</h4>' +
-                                        '<p>Mã mặt hàng: ' + data.MAMATHANG + '</p>' +
-                                        '<p>Tên hàng: ' + data.TENHANG + '</p>' +
-                                        '<p>Ảnh sản phẩm: <img Style="width:200px;height:200px"  src="' + data.ANHSANPHAM + '"></p>' +
-                                        '<p id="GIAHANG">' + data.GIAHANG + '  .VND</p>');
-                                },
-                                error: function (error) {
-                                    console.log(error);
-                                }
-                            });
-                        }
+                    var selectedValue = selectObject.value;
+                    if (selectedValue !== '') {
+                        $.ajax({
+                            url: '/NhanVien/CHITIETPHIEUNHAPs1/ProductDetails/' + selectedValue,
+                            type: 'POST',
+                            success: function (data) {
+                                console.log("haodhsj" + typeof (data.GIAHANG))
+                                console.log(JSON.stringify(data) + "gía trị data")
+                                $('#productInfo').html('<h4 style="font-weight: bold; border-bottom: 2px solid #333;">Thông tin sản phẩm</h4>' +
+                                    '<p><strong>Mã mặt hàng:</strong> ' + data.MAMATHANG + '</p>' +
+                                    '<p><strong>Tên hàng:</strong> ' + data.TENHANG + '</p>' +
+                                    '<p><strong>Ảnh sản phẩm:</strong> <img Style="width:200px;height:200px"  src="' + data.ANHSANPHAM + '"></p>' +
+                                    '<p><strong id="GIAHANG" style="color: red;">' + data.GIAHANG + '  .VND</strong></p>');
+                            },
+                            error: function (error) {
+                                console.log(error);
+                            }
+                        });
                     }
-                </script>
-
-            </div>
+                }
+            </script>
         </div>
     </div>
+
+</div>
 
 
 
