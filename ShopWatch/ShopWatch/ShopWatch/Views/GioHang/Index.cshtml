@@ -257,7 +257,7 @@
                                                             <td class="text-center">
                                                                
                                                                 <a href="@Url.Action("xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })" class="btn btn-outline-secondary" style="color: brown">
-                                                                    Tùy chọn
+                                                                  Xóa
                                                                     <i class="fas fa-info-circle"></i>
                                                                 </a>
                                                             </td>
@@ -331,9 +331,7 @@
 
                                         <label id="total-price" style="font-size:20px;font-weight:bold;color:red"> </label>
                                     </div>
-
-
-                                    <form id="chitietdathang" action="/DatHang/PhieuDatHang" method="post">
+                                    <form id="chitietdathang" action="/GioHang/form_DatHang" method="post">
                                         @*<input type="text" name="listInput" id="listInput" class="listInput" />*@
                                         <div class="col-md-6" style="margin-top:50px">
                                             <input type="submit" value=" ĐẶT HÀNG" style="width:120px;height:40px;background-color:chocolate;border-radius:10px" />
@@ -680,13 +678,13 @@
                     };
             $.ajax({
                 type: 'POST',
-                url: '/DatHang/PhieuDatHang',
+                url: '/DatHang/DonHang',
                 contentType: 'application/json',
                 data: JSON.stringify(requestData),
                 success: function (response) {
+                    
                     console.log('Data sent successfully');
-                    alert('nhập hàng thành công')
-                    // Cập nhật giao diện sau khi gửi dữ liệu
+                    window.location.href = `/GioHang/form_DatHang?selectedItemsData=${encodeURIComponent(JSON.stringify(requestData.selectedItemsData))}&giatien=${encodeURIComponent(requestData.giatien)}`;
                 },
                 error: function (error) {
                     console.error('Error:', error);

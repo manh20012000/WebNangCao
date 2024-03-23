@@ -1,0 +1,157 @@
+﻿@model ShopWatch.Models.MATHANG
+@{
+
+    var danhSachAnh = ViewBag.DanhSachAnh as List<string>;
+    var sale = ViewBag.Sale ;
+}
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    #imshowID {
+        width: 150px;
+        height: 135px;
+    }
+    .thumbnail-container {
+        position: relative;
+        display: inline-block;
+        margin: 10px;
+    }
+
+    .thumbnail {
+        width: 100px; /* Kích thước ảnh */
+        height: 100px;
+        transition: transform 0.3s; /* Hiệu ứng chuyển động */
+    }
+
+        .thumbnail:hover {
+            transform: scale(1.1); /* Kích thước lớn hơn khi hover */
+            border: 2px solid black; /* Viền đen */
+        }
+    .label-container {
+        margin: 10px 0;
+        text-align: left;
+        display: inline-block; /* Hiển thị trên cùng một dòng */
+        vertical-align: top; /* Dàn trải theo đỉnh */
+        width: 48%; /* Chỉnh kích thước để nằm trên cùng một dòng */
+    }
+
+        .label-container label {
+            font-weight: bold;
+        }
+
+        .label-container img {
+            max-width: 100%;
+            height: auto;
+            margin-top: 10px;
+        }
+
+    .thumbnail-container {
+        display: inline-block;
+        vertical-align: top;
+        margin: 10px;
+    }
+
+    .detail-container {
+        text-align: center;
+    }
+
+</style>
+<h2>Details Product</h2>
+
+<center>
+    <div>
+
+        <hr />
+        <div class="dl-horizontal flex-container">
+            <div class="label-container">
+                <label> @Html.DisplayNameFor(model => model.TENHANG)</label>
+                <label style="color:red">: @Html.DisplayFor(model => model.TENHANG)</label>
+            </div>
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.ANHSANPHAM)</label>
+                <img src=" @Html.DisplayFor(model => model.ANHSANPHAM)" id="imshowID" class="thumbnail" />
+            </div>
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.NGAYSANXUAT)</label>
+                <label style="color:red">: @String.Format("{0:dd/MM/yyyy}", @Html.DisplayFor(model => model.NGAYSANXUAT), new { type = "date", @class = "form-control " })</label>
+            </div>
+
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.TENHANGSANXUAT)</label>
+                <label style="color:red">:@Html.DisplayFor(model => model.TENHANGSANXUAT)</label>
+            </div>
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.GIAHANG)</label>
+                <label style="color:red">:@Html.DisplayFor(model => model.GIAHANG)</label>
+            </div>
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.BAOHANH)</label>
+                <label style="color:red"> :@Html.DisplayFor(model => model.BAOHANH)</label>
+            </div>
+
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.LOAI)</label>
+                <label style="color:red">:@Html.DisplayFor(model => model.LOAI)</label>
+            </div>
+
+
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.KICHTHUOC)</label>
+                <label style="color:red">:@Html.DisplayFor(model => model.KICHTHUOC)   mm</label>
+
+            </div>
+            @if (ViewBag.Sale != null)
+            {
+        <div>
+            <label> Sale của sản phẩm </label>
+
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.SALE.MASALE)</label>
+                <label style="color:red">@Html.DisplayFor(model => model.SALE.MASALE)</label>
+            </div>
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.SALE.PHANTRAMSALE)</label>
+                <label style="color:red">@Html.DisplayFor(model => model.SALE.PHANTRAMSALE)</label>
+            </div>
+            <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.SALE.NGAYBATDAU)</label>
+                <label style="color:red">@Html.DisplayFor(model => model.SALE.NGAYBATDAU)</label>
+            </div>  <div class="label-container">
+                <label>@Html.DisplayNameFor(model => model.SALE.NGAYHETHAN)</label>
+                <label style="color:red">@Html.DisplayFor(model => model.SALE.NGAYHETHAN)</label>
+            </div>
+        </div>
+            }
+
+        </div>
+        <h3>Ảnh Sản Phẩm:</h3>
+        @foreach (var anh in danhSachAnh)
+        {
+
+            <div class="thumbnail-container">
+                <img src="@anh" alt="Ảnh sản phẩm" class="thumbnail" />
+            </div>
+        }
+    </div>
+
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MAMATHANG }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+</center>
+

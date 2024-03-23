@@ -1,0 +1,84 @@
+﻿@model ShopWatch.Models.NHANVIEN
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .btn-default {
+        width: 99px;
+        background-color: burlywood;
+        height: 35px;
+        justify-content: flex-end;
+        align-items: center;
+        align-content: center;
+    }
+    bntclass{
+        margin-top:100px;
+    }
+    .form-control {
+        font-weight: 800
+    }
+</style>
+
+<h2>Detail</h2>
+<center>
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.MANV)
+
+        <div class="form-group">
+          <label class = "control-label col-md-2">TÊN NHÂN VIÊN </label>
+            <div class="col-md-10">
+        
+                @Html.DisplayFor(model => model.TENNV, new {style = "font-weight: 800", htmlAttributes = new { @class = "form-control"  } })
+           
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.AVATAR, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+
+                @Html.ValidationMessageFor(model => model.AVATAR, "", new { @class = "text-danger" })
+
+                @if (!string.IsNullOrEmpty(Model.AVATAR))
+                {
+                    <img src="@Url.Content(Model.AVATAR)" alt="Preview" class="previewImage" style="width: 200px; height: 200px" />
+                }
+               @* else
+                {
+            <img id="previewImage2" src="#" alt="Preview2" class="previewImage2" style="width:200px;height:200px" />         
+            }*@
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+            <label class="control-label col-md-2">NGÀY SINH  </label>
+            <div class="col-md-10">
+                <div></div>
+                @String.Format("{0:dd/MM/yyyy}", @Html.DisplayFor(model => model.NGAYSINH, new { type = "date", @class = "form-control" }) )
+
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">SỐ ĐIỆN THOẠI  </label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-md-2">EMAIL </label>
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.EMAIL, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+    </div>
+</center>
+<div class="col-md-offset-5 "> @Html.ActionLink("EditProfile", "EditProfile", new { id = Model.MANV }, new { @class = "btn btn-default bntclass" })</div>

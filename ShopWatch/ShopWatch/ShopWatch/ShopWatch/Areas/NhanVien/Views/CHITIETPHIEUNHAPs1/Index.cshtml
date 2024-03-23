@@ -1,0 +1,149 @@
+﻿@model IEnumerable<ShopWatch.Models.CHITIETPHIEUNHAP>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .edit-button,
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        background: linear-gradient(to right, #87CEFA, #4682B4);
+        border: none;
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+    .bnts {
+        background-color: burlywood;
+        margin-left: 20px;
+    }
+
+    .seache {
+        display: flex;
+        padding: 20px
+    }tbody {
+ 
+  overflow: scroll;
+}
+    #table-wrapper {
+        position: relative;
+    }
+
+    #table-scroll {
+        height: 500px;
+        overflow: auto;
+        margin-top: 20px;
+    }
+
+    #table-wrapper table {
+        width: 100%;
+    }
+        #table-wrapper table thead th .text {
+            position: absolute;
+            top: -20px;
+            z-index: 2;
+            height: 20px;
+            width: 35%;
+            border: 1px solid red;
+        }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("Index", "CHITIETPHIEUNHAPs1", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+        <div class="input-group-container">
+            <div class="seache">
+                <input type="text" name="searchValue" class="form-control" placeholder="Nhập vào giá tiền" aria-label="Search" aria-describedby="basic-addon2">
+                <button class="btn btn-outline-secondary bnts" type="submit">Search</button>
+            </div>
+        </div>
+        }
+    </div>
+</div>
+<div class="table-container">
+    <div id="table-wrapper">
+        <div id="table-scroll">
+            <table class="tablet">
+                <tr>
+                    <th style=" padding: 15px; text-align: center;">
+                        @Html.DisplayNameFor(model => model.NHAPHANG.MANHAPHANG)
+                    </th>
+                    <th style=" padding: 15px; text-align: center;">
+                        @Html.DisplayNameFor(model => model.MATHANG.MAMATHANG)
+                    </th>
+                    <th style=" padding: 15px; text-align: center;">
+                        @Html.DisplayNameFor(model => model.NHAPHANG.MANV)
+                    </th>
+                    <th style=" padding: 15px; text-align: center;">
+                        @Html.DisplayNameFor(model => model.MATHANG.TENHANG)
+                    </th>
+                    <th style=" padding: 15px; text-align: center;">
+                        @Html.DisplayNameFor(model => model.SOLUONG)
+                    </th>
+                    <th style=" padding: 15px; text-align:center;">
+                        @String.Format("{0:N0}", @Html.DisplayNameFor(model => model.GIANHAP))
+                    </th>
+
+
+                    <th></th>
+                </tr>
+               
+                    @foreach (var item in Model)
+                    {
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAPHANG.MANHAPHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MATHANG.MAMATHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NHAPHANG.MANV)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MATHANG.TENHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SOLUONG)
+                </td>
+                <td>
+                    @String.Format("{0:N0}", item.GIANHAP)
+                </td>
+
+
+                <td class="text-center">
+                    <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+                        <div class="btn-group" role="group">
+                            <button id="btnGroupDrop1"
+                                    type="button" style="color:brown"
+                                    class="btn btn-outline-secondary dropdown-toggle"
+                                    data-bs-toggle="dropdown"
+                                    aria-haspopup="true"
+                                    aria-expanded="false">
+                                Tùy chọn
+                            </button>
+                            <div class="dropdown-menu" aria-labelledb0pxy="btnGroupDrop1" style="width:20px">
+
+                                @Html.ActionLink("DetailReceipt", "DetailReceipt", new { id = item.MACTPHIEUNHAP }, new { @class = " btn btn-primary" })
+
+                                @Html.ActionLink("Delete", "deleteReceipt", new { id = item.MACTPHIEUNHAP }, new { @class = "delete-button" })
+                            </div>
+                        </div>
+                    </div>
+                </td>
+
+            </tr>
+
+                    }
+                
+            </table>
+            </div>
+        </div>
+        </div>

@@ -1,0 +1,704 @@
+﻿@model IEnumerable<ShopWatch.Models.MetaDATA.ChitietgiohangViewModel>
+
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="images/favicon.png">
+    <title>
+        Welcome to FlatShop
+    </title>
+    <link href="~/assets/KhachHang/css/bootstrap.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,300,300italic,400italic,500,700,500italic,100italic,100' rel='stylesheet' type='text/css'>
+    <link href="~/assets/KhachHang/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/assets/KhachHang/css/flexslider.css" type="text/css" media="screen" />
+    <link href="~/assets/KhachHang/css/style.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js">
+    </script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js">
+    </script>
+    <![endif]-->
+</head>
+<style>
+   
+
+    .quantity-link {
+        padding: 5px 10px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #000; /* Màu chữ của nút */
+        border: 1px solid #000; /* Viền của nút */
+        border-radius: 5px; /* Bo tròn góc của nút */
+        cursor: pointer;
+    }
+</style>
+<body>
+
+    <div class="wrapper">
+        <div class="header">
+            <div class="container">
+                <div class="row" style="display:flex; justify-content:space-between">
+                    <div class="col-md-2 col-sm-2">
+                        <div class="logo"><a href="index.html"><img src="~/assets/KhachHang/images/products/removebg-preview.png" style="width:80px;height:80px" alt="FlatShop"></a></div>
+                    </div>
+                    <div class="col-md-10 col-sm-10">
+                        ">
+                        <div class="header_top">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <ul class="option_nav">
+                                        <li class="dorpdown">
+                                            <a href="#">Eng</a>
+                                            <ul class="subnav">
+                                                <li><a href="#">Eng</a></li>
+                                                <li><a href="#">Vns</a></li>
+                                                <li><a href="#">Fer</a></li>
+                                                <li><a href="#">Gem</a></li>
+                                            </ul>
+                                        </li>
+                                        <li class="dorpdown">
+                                            <a href="#">USD</a>
+                                            <ul class="subnav">
+                                                <li><a href="#">USD</a></li>
+                                                <li><a href="#">UKD</a></li>
+                                                <li><a href="#">FER</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">
+                                    <ul class="topmenu">
+                                        <li><a href="#">About Us</a></li>
+                                        <li><a href="#">News</a></li>
+                                        <li><a href="#">Service</a></li>
+                                        <li><a href="#">Recruiment</a></li>
+                                        <li><a href="#">Media</a></li>
+                                        <li><a href="#">Support</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-3">
+                                    <ul class="usermenu">
+                                        <li><a href="/TAIKHOANs/Dangnhap" class="log">Login</a></li>
+                                        <li><a href="/KHACHHANGs/Edit" class="reg">profile</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                        <div class="header_bottom">
+                            <ul class="option">
+                                <li id="search" class="search">
+                                    <form action="/Home/homeIndex" method="post">
+                                        <input class="search-submit" type="submit" value="">
+                                        <input class="search-input" placeholder="Enter your search term..." type="text" value="" name="searchValue" id="searchValue">
+                                    </form>
+                                </li>
+                                <li class="option-cart">
+                                    <a href="/GioHang/Index" class="cart-icon">cart</a>
+
+                                </li>
+                            </ul>
+                            <div class="navbar-header"><button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button></div>
+                            <div class="navbar-collapse collapse">
+                                <ul class="nav navbar-nav">
+                                    <li class="active dropdown">
+                                        <a href="/Home/homeIndex">Home</a>
+
+                                    </li>
+                                    <li><a href="/DatHang/DonHang">Order Information placed</a></li>
+
+
+                                    <li><a href="/KHACHHANGs/Edit">Profile</a></li>
+                                    <li><a href="productgird.html">blog</a></li>
+                                    <li><a href="/GioHang/Index">Cart</a></li>
+                                    <li><a href="contact.html">contact us</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix">
+            </div>
+            <div class="page-index">
+                <div class="container">
+                    <p>
+
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+        <div class="container_fullwidth" style=" font-weight: 400; font-family: 'Times New Roman', Times, serif">
+            <div class="container shopping-cart">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div>
+                            <h3 class="title">
+                                GIỎ HÀNG
+                            </h3>
+
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                        <table id="example" class="table">
+
+                            <tr style="background-color:#04AA6D; color: white;">
+                                <th style=" padding: 15px; text-align: center;">
+                                    LỰA CHỌN
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    ẢNH
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    CHI TIẾT
+                                </th>
+
+
+                                <th style=" padding: 15px; text-align: center;">
+                                    SALE
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    GIÁ HÀNG
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                    SỐ LƯỢNG
+                                </th>
+                                <th style=" padding: 15px; text-align: center;">
+                                  
+                                </th>
+                            </tr>
+
+                            @{
+                                decimal tongtien = 0;
+
+                                if (Model != null)
+                                {
+                                    foreach (var item in Model)
+                                    {
+                                                        <tr>
+                                                            <td class="text-center" style="width:60px;height:60px">
+                                                                <input type="checkbox" class="product-checkbox" />
+                                                            <td class="text-center" style="font-weight:700 ;display:none">
+                                                                @Html.DisplayFor(modelItem => item.MATHANG.MAMATHANG)
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700">
+                                                                <img src="@item.MATHANG.ANHSANPHAM" alt="" style="width:100px;height:100px">
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700;width:200px">
+                                                                <div class="shop-details">
+                                                                    <div class="productname">
+                                                                        <label style="font-size:25px;font-weight:700">
+                                                                            @item.MATHANG.TENHANG
+
+                                                                        </label>
+
+                                                                    </div>
+                                                                    <p style="font-size:14px">
+                                                                        Guarantee:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.BAOHANH
+                                                                        </span>
+                                                                    </p>
+                                                                    <p style="font-size:14px">
+                                                                        Type:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.LOAI
+                                                                        </span>
+                                                                    </p>
+                                                                    <p style="font-size:14px">
+                                                                        Size:
+                                                                        <span class="light-red" style="font-size:18px">
+                                                                            @item.MATHANG.KICHTHUOC
+                                                                        </span>
+                                                                    </p>
+
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center" style="font-weight:700">
+
+                                                                <label style="color:red;font-size:16px">
+                                                                    @if (item.MATHANG.SALE != null)
+                                                                    {
+                                                                        <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600">
+                                                                            @item.MATHANG.SALE.PHANTRAMSALE   %
+                                                                        </span>
+                                                                    }
+                                                                    else
+                                                                    {
+                                                                        <span class="phantram-giamgia-label" style="font-size:18px;font-weight:600;display:none">
+                                                                            0
+                                                                        </span>
+                                                                    }
+                                                                </label>
+
+                                                            </td>
+                                                            <td class="text-center" style="font-size:18px;color:red;font-weight:500">
+                                                                <label class="gia-hang-label"> @String.Format("{0:N0}", @item.MATHANG.GIAHANG) VND</label>
+                                                            </td>
+
+
+                                                            <td class="text-center">
+                                                                <div class="quantity-control" id="quantity-control" style="flex-direction:row">
+                                                                    <button class="quantity-decrease " style="background-color:coral">-</button>
+                                                                    <input type="text" id="quantityInput" class="quantity-input" value="1" style="width:40px;height:40px" />
+                                                                    <button class="quantity-increase" style="background-color:coral">+</button>
+                                                                </div>
+                                                            </td>
+                                                            <td class="text-center">
+                                                               
+                                                                <a href="@Url.Action("xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })" class="btn btn-outline-secondary" style="color: brown">
+                                                                  Xóa
+                                                                    <i class="fas fa-info-circle"></i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                    }
+                                }
+                            }
+                            <tr>
+                                <td class="text-center" style="font-weight:700">
+                                    <button class="pull-left">
+                                        Tiếp tục mua hàng
+                                    </button>
+                                    <button class="pull-right" style="margin-left:20px;">
+                                        @Html.ActionLink("Đơn hàng", "DonHang", "DatHang")
+                                    </button>
+
+                                </td>
+                            </tr>
+
+                        </table>
+                        <div class="clearfix">
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-sm-6">
+                                <div class="shippingbox">
+                                    <h5>
+                                        ƯỚC TÍNH VẬN CHUYỂN VÀ THUẾ
+                                    </h5>
+                                    <form>
+                                        <label>
+                                            Quốc gia *
+                                        </label>
+
+                                        <label>
+                                            Tỉnh
+                                        </label>
+
+                                        <label>
+                                            Mã Zip
+                                        </label>
+
+                                        <div class="clearfix">
+                                        </div>
+                                        <button>
+                                            Nhận Báo Giá
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="shippingbox">
+                                    <h5>
+                                        MÃ GIẢM GIÁ
+                                        <a href="~/Views/DIADIEMs/Edit.cshtml">~/Views/DIADIEMs/Edit.cshtml</a>
+                                    </h5>
+                                    <form>
+                                        <label>
+                                            Enter your coupon code if you have one
+                                        </label>
+                                        <input type="text" name="">
+                                        <div class="clearfix">
+                                        </div>
+                                        <button>
+                                            Nhận Báo Giá
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="col-md-4 col-sm-6">
+                                <div class="shippingbox">
+                                    <div class="grandtotal">
+
+                                        <label id="total-price" style="font-size:20px;font-weight:bold;color:red"> </label>
+                                    </div>
+                                    <form id="chitietdathang" action="/GioHang/form_DatHang" method="post">
+                                        @*<input type="text" name="listInput" id="listInput" class="listInput" />*@
+                                        <div class="col-md-6" style="margin-top:50px">
+                                            <input type="submit" value=" ĐẶT HÀNG" style="width:120px;height:40px;background-color:chocolate;border-radius:10px" />
+                                        </div>
+                                    </form>
+
+
+                                    @* <a href="/GioHang/form_DatHang" style="font-weight: 400;font-size:20px;">*@
+
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix">
+                </div>
+                <div class="our-brand">
+                    <h3 class="title">
+                        <strong>
+                            Our
+                        </strong>
+                        Brands
+                    </h3>
+                    <div class="control">
+                        <a id="prev_brand" class="prev" href="#">
+                            &lt;
+                        </a>
+                        <a id="next_brand" class="next" href="#">
+                            &gt;
+                        </a>
+                    </div>
+                    <ul id="braldLogo">
+                        <li>
+                            <ul class="brand_item">
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <ul class="brand_item">
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/themeforest.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/photodune.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/activeden.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <div class="brand-logo">
+                                            <img src="~/assets/KhachHang/images/envato.png" alt="">
+                                        </div>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix">
+        </div>
+        <div class="footer">
+            <div class="footer-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="footer-logo">
+                                <a href="#">
+                                    <img src="images/logo.png" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <h4 class="title">
+                                Contact
+                                <strong>
+                                    Info
+                                </strong>
+                            </h4>
+                            <p>
+                                No. 08, Nguyen Trai, Hanoi , Vietnam
+                            </p>
+                            <p>
+                                Call Us : (084) 1900 1008
+                            </p>
+                            <p>
+                                Email : michael@leebros.us
+                            </p>
+                        </div>
+                        <div class="col-md-3 col-sm-6">
+                            <h4 class="title">
+                                Customer
+                                <strong>
+                                    Support
+                                </strong>
+                            </h4>
+                            <ul class="support">
+                                <li>
+                                    <a href="#">
+                                        FAQ
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Payment Option
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Booking Tips
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        Infomation
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-md-3">
+                            <h4 class="title">
+                                Get Our
+                                <strong>
+                                    Newsletter
+                                </strong>
+                            </h4>
+                            <p>
+                                Lorem ipsum dolor ipsum dolor.
+                            </p>
+                            <form class="newsletter">
+                                <input type="text" name="" placeholder="Type your email....">
+                                <input type="submit" value="SignUp" class="button">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright-info">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <p>
+                                Copyright © 2012. Designed by
+                                <a href="#">
+                                    Michael Lee
+                                </a>
+                                . All rights reseved
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="social-icon">
+                                <li>
+                                    <a href="#" class="linkedin">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="google-plus">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="twitter">
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="facebook">
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap core JavaScript==================================================-->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        var selectedItems = []; // Danh sách các sản phẩm đã chọn
+        var tongtien = 0; // Biến lưu tổng số tiền
+
+        function updateTotalPrice() {
+            var totalPriceDisplay = document.getElementById('total-price');
+            totalPriceDisplay.textContent = "Tổng Tiền: " + tongtien.toLocaleString() + ' VND'; // Hiển thị tổng giá tiền với định dạng số ngăn cách hàng nghìn
+        }
+        function calculatePriceAndAdd(row, quantity) {
+            var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, '')); // Lấy giá hàng từ phần tử HTML và chuyển đổi thành số
+            var phanTramGiamGia = parseFloat(row.querySelector('.phantram-giamgia-label').textContent.replace(/\D/g, '')); // Lấy phần trăm giảm giá từ phần tử HTML và chuyển đổi thành số
+
+            if (isNaN(phanTramGiamGia)) {
+                phanTramGiamGia = 0; // Nếu không có giảm giá, đặt phần trăm giảm giá là 0
+            }
+
+            var giaTien = giaHang * quantity * (1 - phanTramGiamGia / 100); // Tính toán giá tiền dựa trên giá hàng, số lượng và phần trăm
+
+            var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
+            var chitietDatHang = {
+                MAMATHANG: mamathang,
+                SOLUONG: quantity,
+                GiaTien: giaTien,
+                GIABAN: giaHang * quantity,
+            };
+
+            var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+            if (index === -1) { // Nếu sản phẩm chưa được chọn
+                selectedItems.push(chitietDatHang); // Thêm sản phẩm vào danh sách
+            } else { // Nếu sản phẩm đã được chọn
+                selectedItems[index].SOLUONG = quantity; // Cập nhật số lượng mới
+                selectedItems[index].GiaTien = giaTien; // Cập nhật giá tiền mới
+            }
+
+            tongtien = selectedItems.reduce(function (total, item) {
+                return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+            }, 0);
+
+            updateTotalPrice(); // Cập nhật tổng giá tiền
+        }
+        function toggleQuantityControl(row, show) {
+            var quantityControl = row.querySelector('.quantity-control');
+            quantityControl.style.display = 'flex'; // Hiển thị điều khiển số lượng luôn
+        }
+
+        var increaseButtons = document.querySelectorAll('.quantity-increase');
+        var decreaseButtons = document.querySelectorAll('.quantity-decrease');
+        var checkboxes = document.querySelectorAll('.product-checkbox');
+
+        increaseButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = this.closest('tr');
+                var checkbox = row.querySelector('.product-checkbox');
+                var quantityInput = row.querySelector('.quantity-input');
+                var quantity = parseInt(quantityInput.value) + 1;
+
+                // Kiểm tra checkbox có được chọn không
+                if (checkbox.checked) {
+                    quantityInput.value = quantity;
+                    calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
+                }
+            });
+        });
+        decreaseButtons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var row = this.closest('tr');
+                var quantityInput = row.querySelector('.quantity-input');
+                var quantity = parseInt(quantityInput.value) - 1;
+                if (quantity >= 1) { // Kiểm tra số lượng không nhỏ hơn 1
+                    quantityInput.value = quantity;
+                    calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
+                }
+            });
+        });
+
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var row = this.closest('tr');
+                var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
+                var quantityInput = row.querySelector('.quantity-input');
+
+                if (this.checked) {
+                    if (parseInt(quantityInput.value) === 0) {
+                        quantityInput.value = 1; // Chỉ đặt giá trị mặc định là 1 nếu số lượng là 0
+                    }
+                    calculatePriceAndAdd(row, parseInt(quantityInput.value)); // Cập nhật giá trị số lượng và tính giá tiền mới khi checkbox được chọn
+                } else {
+                    quantityInput.value = 0; // Đặt số lượng về 0
+                    var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+                    if (index !== -1) {
+                        selectedItems.splice(index, 1); // Loại bỏ sản phẩm khỏi danh sách nếu checkbox không được chọn
+                    }
+                    tongtien = selectedItems.reduce(function (total, item) {
+                        return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+                    }, 0);
+                    updateTotalPrice(); // Cập nhật tổng giá tiền
+                }
+            });
+        });
+
+            $('#chitietdathang').submit(function (event) {
+                event.preventDefault();
+                var requestData = {
+                    selectedItemsData: selectedItems,
+                    giatien: tongtien,
+                };
+                console.log(requestData)
+                $.ajax({
+                    type: 'POST',
+                    url: '/DatHang/DonHang',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function (response) {
+                     
+                        console.log('Data sent successfully');
+                        window.location.href = `/GioHang/form_DatHang?selectedItemsData=${encodeURIComponent(JSON.stringify(requestData.selectedItemsData))}&giatien=${encodeURIComponent(requestData.giatien)}`;
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
+    </script>
+    <script type="text/javascript" src="~/assets/KhachHang/js/jquery-1.10.2.min.js">
+    </script>
+    <script type="text/javascript" src="~/assets/KhachHang/js/bootstrap.min.js">
+    </script>
+    <script defer src="~/assets/KhachHang/js/jquery.flexslider.js">
+    </script>
+    <script type="text/javascript" src="~/assets/KhachHang/js/jquery.carouFredSel-6.2.1-packed.js">
+    </script>
+    <script type="text/javascript" src="~/assets/KhachHang/js/script.min.js">
+    </script>
+
+</body>
+</html>

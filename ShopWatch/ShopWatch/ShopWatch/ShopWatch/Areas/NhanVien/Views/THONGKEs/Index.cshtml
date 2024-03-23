@@ -1,0 +1,128 @@
+﻿@model IEnumerable<ShopWatch.Models.THONGKE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<style>
+    .edit-button,
+    .delete-button {
+        display: inline-block;
+        padding: 8px 16px;
+        margin-right: 10px;
+        background: linear-gradient(to right, #87CEFA, #4682B4);
+        border: none;
+        color: white;
+        font-size: 14px;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .bnts {
+        background-color: burlywood;
+        margin-left: 20px;
+    }
+
+    .seache {
+        display: flex;
+        padding: 20px
+    }
+</style>
+<div class="row">
+    <div class="col-xs-12">
+        @using (Html.BeginForm("index", "THONGKEs", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            <div class="input-group-container">
+                <div class="seache row">
+                    <div class="col-sm-4">
+                        <input type="number" name="month" class="form-control" placeholder="Tháng" min="1" max="12" aria-label="thang" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="col-sm-4">
+                        <input type="number" name="year" class="form-control" placeholder="Năm" min="1900" max="2100" aria-label="nam" aria-describedby="basic-addon2">
+                    </div>
+                    <div class="col-sm-4">
+                        <button class="btn btn-outline-secondary bnts" type="submit">Thống kê</button>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-xs-12">
+        <div class="box ">
+            <div class="box-header">
+            </div>
+            <div class="box-body">
+                <table id="example" class="tablet">
+                    <tr style="background-color:#04AA6D; color: white;">
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.MATHONGKE)
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.NGAYTHONGKE)
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.TONGTIEN)
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.SOLUONGBANRA)
+                        </th>
+
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.MASPBANCHAY)
+                        </th>
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.SANPHAMBANCHAY)
+                        </th>
+
+                        <th style=" padding: 15px; text-align: center;">
+                            @Html.DisplayNameFor(model => model.SOLUONGBANCHAY)
+                        </th>
+                        <th></th>
+                    </tr>
+
+                    @foreach (var item in Model)
+                    {
+                <tr>
+                    <td class="text-center" style="font-weight:700;height:60px;">
+
+                        @Html.DisplayFor(modelItem => item.MATHONGKE)
+                    </td>
+                    <td class="text-center" style="font-weight:700;height:60px;">
+                        @String.Format("{0:dd/MM/yyyy}", item.NGAYTHONGKE)
+
+                    </td>
+                    <td class="text-center" style="font-size:16px;color:brown;font-weight:500">
+                        @String.Format("{0:N0}", item.TONGTIEN) <!-- Sử dụng String.Format để định dạng số -->
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SOLUONGBANRA)
+                    </td>
+
+
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.MASPBANCHAY)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SANPHAMBANCHAY)
+                    </td>
+                    <td class="text-center">
+                        @Html.DisplayFor(modelItem => item.SOLUONGBANCHAY)
+                    </td>
+                    @*<td class="text-center">
+                    @Html.ActionLink("Edit", "Edit", new { id = item.MATHONGKE }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.MATHONGKE }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.MATHONGKE })
+                </td>*@
+                </tr>
+                    }
+
+                </table>
+
+            </div>
+        </div>
+    </div>
+</div>

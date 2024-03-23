@@ -1,5 +1,5 @@
-﻿@model ShopWatch.Models.KHACHHANG
-@using ShopWatch.Models
+﻿@model ShopWatch.Models.MetaDATA.DatHangMetaData
+
 
 @{
     ViewBag.Title = "form_DatHang";
@@ -17,51 +17,117 @@
 
 
             <div style="width: 600px; font-weight: 500; font-family: 'Times New Roman', Times, serif; color: black ">
-
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                @Html.HiddenFor(model => model.MAKHACHHANG)
-
                 <div class="form-group" style=" text-align:center;">
-                    @Html.LabelFor(model => model.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-10" style="">
-                        @Html.EditorFor(model => model.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.TENKHACHHANG, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.KHACHHANG.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @{
+                    bool hasXu = Model.KHACHHANG.XU != null && Model.KHACHHANG.XU != 0;
+                }
+
+                @if (hasXu)
+                {
+                    <div class="form-group" style="text-align: center;">
+                       
+                        <div class="col-md-10">
+                            <div class="checkbox" style="flex-direction:row">
+                                <input type="checkbox" />
+                                <label>
+                                    @Html.LabelFor(model => model.KHACHHANG.XU, new { @class = "text-danger" })
+                                    Có xu
+                                </label>
+                            </div>
+                            <div id="xuDisplay">
+                                @Html.DisplayFor(model => model.KHACHHANG.XU) XU
+                            </div>
+                            @Html.ValidationMessageFor(model => model.KHACHHANG.XU, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NGAYMUA, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NGAYMUA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NGAYMUA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MAVANDON, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MAVANDON, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MAVANDON, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="button" onclick="toggleAddressList('addressList')">Chọn dịa chỉ nhận hàng</button>
+                    <center>
+                        <div id="addressList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 300px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
+                            @foreach (var address in ViewBag.DIACHI)
+                            {
+                                <div onclick="selectAddress('@address.TENDIACHI', '@address.SDT')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
+                                    <label style="font-size: 15px;">@address.TENDIACHI - @address.SDT</label>
+                                </div>
+                            }
+                        </div>
+                    </center>
+                    <div class="col-md-10">
+                        <label id="selectedAddressLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 720px; height: 30px;"></label>
+                        <input type="hidden" id="selectedAddressId" />
                     </div>
                 </div>
 
-
                 <div class="form-group">
-                    @Html.LabelFor(model => model.DIACHI, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <button type="button" onclick="toggleAddressList('voucherList')">Chọn voucher thanh toán</button>
+                    <center>
+                        <div id="voucherList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 300px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
+                           @* @foreach (var voucher in ViewBag.VOUCHER)
+                            {
+                                <div onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.GHICHU')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
+                                    <label style="font-size: 15px;">@voucher.GHICHU</label>
+                                </div>
+                            }*@
+                        </div>
+                    </center>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DIACHI, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DIACHI, "", new { @class = "text-danger" })
+                        <label id="selectedVoucherLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 720px; height: 30px;"></label>
+                        <input type="hidden" id="selectedVoucherId" />
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.SDT, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <label class="control-label col-md-2" style="font-size:15px">Hình thức thanh toán</label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.SDT, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.SDT, "", new { @class = "text-danger" })
+                        <select class="form-control" name="TypePayment" id="drTypePayment">
+                            <option value="1" selected>COD</option>
+                            <option value="2">Chuyển khoản</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="addressDetails" style="display: none;">
+                    <h4>Selected Address Details</h4>
+                    <p id="addressInfo"></p>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.EMAIL, "EMAIL", htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.TextArea("EMAIL", null, htmlAttributes: new { @class = "form-control" })
-                        @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Save" class="btn btn-default" />
                     </div>
                 </div>
             </div>
-
-            <div class="form-group">
-                <div class="col-md-offset-2 col-md-10">
-                    <input type="submit" value="Save" class="btn btn-default" />
-                </div>
-            </div>
-        </div>
     </center>
 
     <center>
@@ -85,45 +151,68 @@
                     </th>
                     <th></th>
                 </tr>
-                @if (ViewBag.danhsachGH != null)
-                {
+                @*  @if (ViewBag.danhsachGH != null)
+                    {
 
-                }
-                @foreach (var item in ViewBag.danhsachGH as List<CHITIETGIOHANG>)
-                {
-                    <tr>
-                        <td>
-                            @item.MATHANG.TENHANG
-                        </td>
-                        <td>
-                            @item.SOLUONGMUA
-                        </td>
-                        <td>
-                            @String.Format("{0:N0}", item.DONGIA)
-                           
-                        </td>
-                        <td>
-                            @{
-                                double tempTong = (double)(item.DONGIA * item.SOLUONGMUA);
-                                @String.Format("{0:N0}", tempTong)
-                            }
-                        </td>
-                        <td>
-                            @Html.ActionLink("Xóa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
-                        </td>
+                    }
+                    @foreach (var item in ViewBag.danhsachGH as List<CHITIETGIOHANG>)*@
+                <!--{
+                <tr>
+                    <td>-->
+                @* @item.MATHANG.TENHANG*@
+                <!--</td>
+                <td>-->
+                @*  @item.SOLUONGMUA*@
+                <!--</td>-->
+                @* <td>
+                        @String.Format("{0:N0}", item.DONGIA)
+
+                    </td>
+                    <td>
+                        @{
+                            double tempTong = (double)(item.DONGIA * item.SOLUONGMUA);
+                            @String.Format("{0:N0}", tempTong)
+                        }
+                    </td>*@
+                <!--<td>-->
+                @*             @Html.ActionLink("Xóa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })*@
+                <!--</td>
                     </tr>
-                }
+                }-->
             </table>
 
-            <div>
-                <button>
-                    @Html.ActionLink("Đặt Hàng", "DatHang", "DatHang");
-                </button>
-            </div>
+
+            <button>
+                @Html.ActionLink("Đặt Hàng", "DatHang", "DatHang");
+            </button>
         </div>
+
     </center>
 
+    <script>
+        function toggleAddressList(listId) {
+            var addressList = document.getElementById(listId);
+            addressList.style.display = addressList.style.display === "none" ? "block" : "none";
+        }
 
+        function selectAddress(tenDiaChi, sdt) {
+            var selectedAddressLabel = document.getElementById("selectedAddressLabel");
+            selectedAddressLabel.innerHTML = "Địa chỉ nhận hàng: " + tenDiaChi + " - " + sdt;
+            selectedAddressLabel.style.display = "block";
+            var selectedAddressId = document.getElementById("selectedAddressId");
+            selectedAddressId.value = tenDiaChi;
+            toggleAddressList('addressList');
+        }
+
+        function selectVoucher(maQuanLyVoucher, ghichu) {
+            var selectedVoucherLabel = document.getElementById("selectedVoucherLabel");
+            selectedVoucherLabel.innerHTML = "Voucher thanh toán: " + ghichu;
+            selectedVoucherLabel.style.display = "block";
+            var selectedVoucherId = document.getElementById("selectedVoucherId");
+            selectedVoucherId.value = maQuanLyVoucher;
+            toggleAddressList('voucherList');
+        }
+    </script>
 
 
 

@@ -1,0 +1,52 @@
+﻿@model ShopWatch.Models.NHAPHANG
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+<center style=" background: linear-gradient(to bottom, white, purple);height:75%";>
+    <div style="width: 70%;height:80%; ">
+
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="form-horizontal" style="margin-top:10% ">
+            <h4 style="font-weight:900">NHÂP HÀNG</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group" style="display:flex;margin-top:40px">
+                <label class="control-label col-md-2" style="width:200px">NGÀY NHẬP HÀNG:</label>
+                <div class="col-md-10">
+                    <input type="date" id="NGAYNHAP" name="NGAYNHAP" class="form-control" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    @Html.ValidationMessageFor(model => model.NGAYNHAP, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="display:flex;margin-top:40px">
+                <label class="control-label col-md-2" style="width:200px">MÃ NHÂN VIÊN:</label>
+                <div class="col-md-10">
+                    <label class="control-label col-md-2" style="width:250px">@Session["MaNV"]</label>
+
+                    @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group" style="display:flex;margin-top:40px">
+                <label class="control-label col-md-2" style="width:200px">TÊN NHÂN VIÊN :</label>
+                <div class="col-md-10">
+                    <label class="control-label col-md-2" style="width:250px">@Session["TenHienThi"]</label>
+                    @Html.ValidationMessageFor(model => model.MANV, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group" style="padding-top:10%">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Tạo phiếu" class="btn btn-default" style="width:120px;background-color:coral" />
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</center>
+

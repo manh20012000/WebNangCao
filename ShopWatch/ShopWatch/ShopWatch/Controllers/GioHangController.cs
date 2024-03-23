@@ -18,7 +18,7 @@ namespace ShopWatch.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            var user = Session["UserEmail"] as string;
+            var user = Session["EmailClient"] as string;
 
             if (user != null)
             {
@@ -77,28 +77,25 @@ namespace ShopWatch.Controllers
         
         public ActionResult AddToCart(String sanpham)
         {
-
-            var user = Session["UserEmail"] as string;
+            var user = Session["EmailClient"] as string;
 
             if (user != null)
             {
                 var Khachhang = db.KHACHHANGs.FirstOrDefault(m => m.EMAIL == user);
                 var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == Khachhang.MAKHACHHANG);
-                    var check_sp = db.CHITIETGIOHANGs.Where(m => m.MAMATHANG == sanpham).FirstOrDefault();
-                    if(check_sp == null)
-                    {
+                var checksp = db.CHITIETGIOHANGs.FirstOrDefault(ms => ms.MAGIOHANG == giohang.MAGIOHANG && ms.MAMATHANG == sanpham);
+                if (checksp!=null)
+                {
+                    return RedirectToAction("Index", "GioHang");
+                }
                         db.CHITIETGIOHANGs.Add(new CHITIETGIOHANG
                         {
                             MAGIOHANG = giohang.MAGIOHANG,
                             MAMATHANG = sanpham,
                             SOLUONGMUA = 1,
-                           /* DONGIA = find_sp.GIAHANG*/
+                           
                         });
-                    }
-                    else
-                    {
-                        check_sp.SOLUONGMUA += 1;
-                    }
+                   
             }
             db.SaveChanges();
             return RedirectToAction("Index","GioHang");
@@ -142,30 +139,59 @@ namespace ShopWatch.Controllers
             }
             return RedirectToAction("Index");
         }
-      
-        // đăt hàng
-        public ActionResult form_DatHang()
+        public ActionResult form_DatHang(List<CHITIETDATHANG> selectedItemsData, double giatien)
         {
-            int? khachhang = GetMaKH();
-            if (khachhang != null)
+            if (Session["EmailClient"] != null)
             {
-                var thongtinkh = db.KHACHHANGs.Find(khachhang);
-                var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang);
-                if (giohang != null)
+                Session["SelectedItemsData"] = selectedItemsData;
+                var email = Session["EmailClient"] as string;
+                KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
+                var NGAYMUA = DateTime.Now;
+                var danhsachdonhang = db.DATHANGs.Where(m => m.MAKHACHHANG == user.MAKHACHHANG).ToList();
+                Random random = new Random();
+                int Numrd = random.Next(1000000, 9000000);
+                ViewBag.DIACHI = db.DIADIEMs
+                  .Where(d => d.MAKHACHHANG == user.MAKHACHHANG)
+                  .ToList();
+                /* ViewBag.VouCher=new Se*/
+                DatHangMetaData dathang = new DatHangMetaData
                 {
-                    ViewBag.danhsachGH = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList();
-                }
-                return View(thongtinkh);
+                    NGAYMUA = NGAYMUA,
+                    KHACHHANG = user,
+                    TONGTIEN = giatien,
+                    MAVANDON = Numrd,
+                };
+                
+                return View("form_DatHang", dathang);
+
+
             }
-            return View();
+            return RedirectToAction("Dangnhap", "TAIKHOANs");
         }
-        [HttpPost]
+
+        // đăt hàng
+        /* public ActionResult form_DatHang()
+         {
+             int? khachhang = GetMaKH();
+             if (khachhang != null)
+             {
+                 var thongtinkh = db.KHACHHANGs.Find(khachhang);
+                 var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == khachhang);
+                 if (giohang != null)
+                 {
+                     ViewBag.danhsachGH = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList();
+                 }
+                 return View(thongtinkh);
+             }
+             return View();
+         }*/
+       /* [HttpPost]
         public ActionResult form_DatHang(KHACHHANG model)
         {
             var update = db.KHACHHANGs.Find(model.MAKHACHHANG);
             update.TENKHACHHANG = model.TENKHACHHANG;
             update.SDT = model.SDT;
-   /*         update.DIACHI = model.DIACHI;*/
+   *//*         update.DIACHI = model.DIACHI;*//*
             db.SaveChanges();
 
             var giohang = db.GIOHANGs.FirstOrDefault(m => m.MAKHACHHANG == model.MAKHACHHANG);
@@ -174,7 +200,7 @@ namespace ShopWatch.Controllers
                 ViewBag.danhsachGH = db.CHITIETGIOHANGs.Where(ctgh => ctgh.MAGIOHANG == giohang.MAGIOHANG).ToList();
             }
             return View(model);
-        }
+        }*/
 
     }
 }

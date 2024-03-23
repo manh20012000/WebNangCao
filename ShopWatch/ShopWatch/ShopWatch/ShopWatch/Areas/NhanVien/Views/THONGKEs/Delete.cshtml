@@ -1,0 +1,73 @@
+﻿@model ShopWatch.Models.THONGKE
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>THONGKE</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYTHONGKE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYTHONGKE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TONGTIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MASPBANCHAY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MASPBANCHAY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SANPHAMBANCHAY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SANPHAMBANCHAY)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONGBANRA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGBANRA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SOLUONGBANCHAY)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SOLUONGBANCHAY)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

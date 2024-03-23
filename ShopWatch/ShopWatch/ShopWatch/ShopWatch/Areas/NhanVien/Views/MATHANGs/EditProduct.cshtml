@@ -1,0 +1,183 @@
+﻿@model ShopWatch.Models.MATHANG
+
+
+@{
+    ViewBag.Title = "EditProduct";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<style>
+    #saleInfoContainer {
+        padding-left: 20%; /* Thụt lùi sang phải 120px */
+    }
+</style>
+
+<h3 style="margin:2%" class="nameThem">Cập nhật sản phẩm </h3>
+@using (Html.BeginForm("EditProduct", "MATHANGs", FormMethod.Post, new { enctype = "multipart/form-data" }))
+
+{
+    @Html.AntiForgeryToken()
+
+    <div class="row g-3">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group" style="display: none;">
+            @Html.LabelFor(model => model.MAMATHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.MAMATHANG, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TENHANG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.TENHANG, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TENHANG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.NGAYSANXUAT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.NGAYSANXUAT, new { type = "date", @class = "form-control", @Value = Model.NGAYSANXUAT?.ToString("yyyy-MM-dd") })
+                @Html.ValidationMessageFor(model => model.NGAYSANXUAT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.SALE, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MASALE", (SelectList)ViewBag.MASALE, "--Mời bạn chọn mã sale --", new { @class = "form-control", onchange = "getSaleInfo(this.value)" })
+            </div>
+            <br />
+            <br />
+            <div id="saleInfoContainer">
+                <!-- Nội dung HTML của SALE sẽ được cập nhật tại đây -->
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.TENHANGSANXUAT, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*   @Html.DropDownListFor(model => model.TENHANGSANXUAT, ViewBag.WatchBrands as List<SelectListItem>, "Chọn thương hiệu", new { @class = "form-control" })*@
+                @Html.DropDownListFor(model => model.TENHANGSANXUAT, new SelectList(
+                   new List<SelectListItem>
+                   {
+                new SelectListItem { Value = "TAG Heuer", Text = "TAG Heuer" },
+                new SelectListItem { Value = "A.Lange & Söhne", Text = "A.Lange & Söhne" },
+                new SelectListItem { Value = "Jaeger-LeCoultre", Text = "Jaeger-LeCoultre" },
+                new SelectListItem { Value = "Rolex", Text = "Rolex" },
+                new SelectListItem { Value = "Hublot", Text = "Hublot" }
+                   }, "Value", "Text"), "Chọn thương hiệu",
+                   new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.TENHANGSANXUAT, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.BAOHANH, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextBoxFor(model => model.BAOHANH, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.BAOHANH, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.GIAHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GIAHANG, new { htmlAttributes = new { @class = "form-control", Value = String.Format("{0:0}", Model.GIAHANG) } })
+                @Html.ValidationMessageFor(model => model.GIAHANG, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LOAI, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.LOAI, new SelectList(
+                    new List<SelectListItem>
+                    {
+                        new SelectListItem { Value = "ĐH CƠ", Text = "Đồng hồ cơ" },
+                        new SelectListItem { Value = "ĐH ĐIỆN TỬ", Text = "Đồng hồ điện tử" },
+                        new SelectListItem { Value = "ĐH SMARTWATCH", Text = "Đồng hồ thông minh" },
+                        new SelectListItem { Value = "ĐH THỜI TRANG", Text = "Đồng hồ thời trang cao cấp" },
+                    }, "Value", "Text"),
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.LOAI, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.KICHTHUOC, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.KICHTHUOC, new { htmlAttributes = new { type = "number", @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.KICHTHUOC, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ANHSANPHAM, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="file" class="form-control" name="imageFile" id="imageFile" onchange="previewImage(event)">
+                @Html.ValidationMessageFor(model => model.ANHSANPHAM, "", new { @class = "text-danger" })
+                <img id="previewImage" src="@Model.ANHSANPHAM" class="previewImage" style="width: 150px; height: 150px" />
+            </div>
+        </div>
+        @* <script>
+                function previewImage(event) {
+                    var input = event.target;
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById('previewImage').src = e.target.result;
+                        };
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+            </script>*@
+        <script>
+    function getSaleInfo(saleId) {
+        // Gửi yêu cầu AJAX để lấy thông tin SALE
+        $.get('/NhanVien/MATHANGs/GetSaleInfor', { saleId: saleId }, function (data) {
+            function formatJsonDate(jsonDate) {
+                // Chuyển đổi ngày từ dạng "/Date(milliseconds)/" sang đối tượng Date
+                var date = new Date(parseInt(jsonDate.substr(6)));
+
+                // Lấy thông tin ngày, tháng, năm
+                var day = date.getDate();
+                var month = date.getMonth() + 1; // Tháng bắt đầu từ 0
+                var year = date.getFullYear();
+
+                // Trả về chuỗi định dạng ngày tháng năm
+                return day + '/' + month + '/' + year;
+            }
+            var ngayBatDau = formatJsonDate(data.NGAYBATDAU);
+            var ngayHetHan = formatJsonDate(data.NGAYHETHAN);
+            // Cập nhật nội dung HTML với thông tin SALE
+            $('#saleInfoContainer').html(`
+            <br/>
+            <label class="sale-label">PHẦN TRĂM SALE: <span class="sale-value">${data.PHANTRAMSALE}%</span></label><br/>
+
+            <label class="sale-label">NGÀY BẮT ĐẦU: <span class="sale-value">${ngayBatDau}</span></label><br/>
+            <label class="sale-label">NGÀY KẾT THÚC: <span class="sale-value">${ngayHetHan}</span></label><br/>
+            <!-- Thêm các thông tin khác tùy theo mô hình SALE của bạn -->
+        `);
+        });
+      @*  $.ajax({
+            url: '/NhanVien/MATHANGs/GetSaleInfor/' + selectedValue,
+            type: 'POST',
+            success: function (data) {
+                console.log("haodhsj" + typeof (data.GIAHANG))
+                console.log(JSON.stringify(data) + "gía trị data")
+                $('#saleInfoContainer').html(`
+                <p>PHANTRAMSALE: ${data.PHANTRAMSALE}</p>
+                <p>NGAYBATDAU: ${data.NGAYBATDAU}</p>
+                <p>NGAYHETHAN: ${data.NGAYHETHAN}</p>
+                <!-- Thêm các thông tin khác tùy theo mô hình SALE của bạn -->
+            `);
+            },
+            error: function (error) {
+                console.log(error);
+            }
+        });*@
+    }
+        </script>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}

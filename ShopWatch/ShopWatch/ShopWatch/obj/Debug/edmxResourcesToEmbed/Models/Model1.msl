@@ -1,6 +1,17 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="DHModelStoreContainer" CdmEntityContainer="DHEntities">
+    <EntitySetMapping Name="CHITIETDATHANGs">
+      <EntityTypeMapping TypeName="DHModel.CHITIETDATHANG">
+        <MappingFragment StoreEntitySet="CHITIETDATHANG">
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
+          <ScalarProperty Name="MACTDH" ColumnName="MACTDH" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <EntitySetMapping Name="CHITIETGIOHANGs">
       <EntityTypeMapping TypeName="DHModel.CHITIETGIOHANG">
         <MappingFragment StoreEntitySet="CHITIETGIOHANG">
@@ -22,13 +33,18 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="DIADIEMs">
-      <EntityTypeMapping TypeName="DHModel.DIADIEM">
-        <MappingFragment StoreEntitySet="DIADIEM">
-          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+    <EntitySetMapping Name="DATHANGs">
+      <EntityTypeMapping TypeName="DHModel.DATHANG">
+        <MappingFragment StoreEntitySet="DATHANG">
+          <ScalarProperty Name="MADH" ColumnName="MADH" />
+          <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
+          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
           <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+          <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
+          <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
+          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -38,6 +54,15 @@
           <ScalarProperty Name="MAGIOHANG" ColumnName="MAGIOHANG" />
           <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HINHANHs">
+      <EntityTypeMapping TypeName="DHModel.HINHANH">
+        <MappingFragment StoreEntitySet="HINHANH">
+          <ScalarProperty Name="MAHINHANH" ColumnName="MAHINHANH" />
+          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+          <ScalarProperty Name="ANHS" ColumnName="ANHS" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -51,6 +76,23 @@
           <ScalarProperty Name="AVATAR" ColumnName="AVATAR" />
           <ScalarProperty Name="THANHVIEN" ColumnName="THANHVIEN" />
           <ScalarProperty Name="XU" ColumnName="XU" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MATHANGs">
+      <EntityTypeMapping TypeName="DHModel.MATHANG">
+        <MappingFragment StoreEntitySet="MATHANG">
+          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
+          <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
+          <ScalarProperty Name="ANHSANPHAM" ColumnName="ANHSANPHAM" />
+          <ScalarProperty Name="NGAYSANXUAT" ColumnName="NGAYSANXUAT" />
+          <ScalarProperty Name="TENHANGSANXUAT" ColumnName="TENHANGSANXUAT" />
+          <ScalarProperty Name="GIAHANG" ColumnName="GIAHANG" />
+          <ScalarProperty Name="BAOHANH" ColumnName="BAOHANH" />
+          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
+          <ScalarProperty Name="KICHTHUOC" ColumnName="KICHTHUOC" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+          <ScalarProperty Name="MASALE" ColumnName="MASALE" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -75,6 +117,42 @@
           <ScalarProperty Name="NGAYNHAP" ColumnName="NGAYNHAP" />
           <ScalarProperty Name="MANV" ColumnName="MANV" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QUANLYVOUCHERs">
+      <EntityTypeMapping TypeName="DHModel.QUANLYVOUCHER">
+        <MappingFragment StoreEntitySet="QUANLYVOUCHER">
+          <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
+          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+          <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
+          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
+          <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
+          <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+          <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SALEs">
+      <EntityTypeMapping TypeName="DHModel.SALE">
+        <MappingFragment StoreEntitySet="SALE">
+          <ScalarProperty Name="MASALE" ColumnName="MASALE" />
+          <ScalarProperty Name="PHANTRAMSALE" ColumnName="PHANTRAMSALE" />
+          <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
+          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
+          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="DHModel.sysdiagram">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -115,6 +193,10 @@
         <MappingFragment StoreEntitySet="THONGKENHAPHANG">
           <ScalarProperty Name="MATHONGKE" ColumnName="MATHONGKE" />
           <ScalarProperty Name="NGAYTHONGKE" ColumnName="NGAYTHONGKE" />
+          <ScalarProperty Name="MANHAPHANG" ColumnName="MANHAPHANG" />
+          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
+          <ScalarProperty Name="TENNHANVIEN" ColumnName="TENNHANVIEN" />
+          <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
           <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
         </MappingFragment>
       </EntityTypeMapping>
@@ -129,101 +211,23 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="MATHANGs">
-      <EntityTypeMapping TypeName="DHModel.MATHANG">
-        <MappingFragment StoreEntitySet="MATHANG">
-          <ScalarProperty Name="MASALE" ColumnName="MASALE" />
-          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="KICHTHUOC" ColumnName="KICHTHUOC" />
-          <ScalarProperty Name="LOAI" ColumnName="LOAI" />
-          <ScalarProperty Name="BAOHANH" ColumnName="BAOHANH" />
-          <ScalarProperty Name="GIAHANG" ColumnName="GIAHANG" />
-          <ScalarProperty Name="TENHANGSANXUAT" ColumnName="TENHANGSANXUAT" />
-          <ScalarProperty Name="NGAYSANXUAT" ColumnName="NGAYSANXUAT" />
-          <ScalarProperty Name="ANHSANPHAM" ColumnName="ANHSANPHAM" />
-          <ScalarProperty Name="TENHANG" ColumnName="TENHANG" />
-          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="SALEs">
-      <EntityTypeMapping TypeName="DHModel.SALE">
-        <MappingFragment StoreEntitySet="SALE">
-          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="NGAYHETHAN" ColumnName="NGAYHETHAN" />
-          <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
-          <ScalarProperty Name="PHANTRAMSALE" ColumnName="PHANTRAMSALE" />
-          <ScalarProperty Name="MASALE" ColumnName="MASALE" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="HINHANHs">
-      <EntityTypeMapping TypeName="DHModel.HINHANH">
-        <MappingFragment StoreEntitySet="HINHANH">
-          <ScalarProperty Name="ANHS" ColumnName="ANHS" />
-          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-          <ScalarProperty Name="MAHINHANH" ColumnName="MAHINHANH" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="QUANLYVOUCHERs">
-      <EntityTypeMapping TypeName="DHModel.QUANLYVOUCHER">
-        <MappingFragment StoreEntitySet="QUANLYVOUCHER">
-          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="NGAYKETTHUC" ColumnName="NGAYKETTHUC" />
-          <ScalarProperty Name="NGAYBATDAU" ColumnName="NGAYBATDAU" />
-          <ScalarProperty Name="NOIDUNG" ColumnName="NOIDUNG" />
-          <ScalarProperty Name="GHICHU" ColumnName="GHICHU" />
-          <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
-          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-          <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="VOUCHERs">
       <EntityTypeMapping TypeName="DHModel.VOUCHER">
         <MappingFragment StoreEntitySet="VOUCHER">
-          <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
-          <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
           <ScalarProperty Name="MAVOUCHER" ColumnName="MAVOUCHER" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="CHITIETDATHANGs">
-      <EntityTypeMapping TypeName="DHModel.CHITIETDATHANG">
-        <MappingFragment StoreEntitySet="CHITIETDATHANG">
-          <ScalarProperty Name="MACTDH" ColumnName="MACTDH" />
-          <ScalarProperty Name="GIABAN" ColumnName="GIABAN" />
-          <ScalarProperty Name="SOLUONG" ColumnName="SOLUONG" />
-          <ScalarProperty Name="MAMATHANG" ColumnName="MAMATHANG" />
-          <ScalarProperty Name="MADH" ColumnName="MADH" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DATHANGs">
-      <EntityTypeMapping TypeName="DHModel.DATHANG">
-        <MappingFragment StoreEntitySet="DATHANG">
-          <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
-          <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
-          <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
-          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+          <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
+          <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-          <ScalarProperty Name="TONGTIEN" ColumnName="TONGTIEN" />
-          <ScalarProperty Name="NGAYMUA" ColumnName="NGAYMUA" />
-          <ScalarProperty Name="MADH" ColumnName="MADH" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="DHModel.sysdiagram">
-        <MappingFragment StoreEntitySet="sysdiagrams">
-          <ScalarProperty Name="definition" ColumnName="definition" />
-          <ScalarProperty Name="version" ColumnName="version" />
-          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-          <ScalarProperty Name="name" ColumnName="name" />
+    <EntitySetMapping Name="DIADIEMs">
+      <EntityTypeMapping TypeName="DHModel.DIADIEM">
+        <MappingFragment StoreEntitySet="DIADIEM">
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
+          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
+          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

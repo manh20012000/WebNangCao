@@ -1,0 +1,286 @@
+﻿@model ShopWatch.Models.MetaDATA.DatHangMetaData
+
+
+@{
+
+    ViewBag.Title = "form_DatHang";
+}
+
+<h2 style=" text-align:center;color:black;margin-bottom:30px;font-weight:400;font-family:'Times New Roman', Times, serif">ĐẶT HÀNG </h2>
+
+@**@
+
+@using (Html.BeginForm(null, null, FormMethod.Post,new { id = "submitForm" }))
+{
+    @Html.AntiForgeryToken()
+    <center>
+        <div class="form-horizontal" style="margin-left: 320px;text-align:center ">
+
+
+            <div style="width: 600px; font-weight: 500; font-family: 'Times New Roman', Times, serif; color: black ">
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group" style=" text-align:center;">
+                    @Html.LabelFor(model => model.KHACHHANG.TENKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="">
+                        @Html.EditorFor(model => model.KHACHHANG.TENKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.KHACHHANG.TENKHACHHANG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group" style=" text-align:center;display:none">
+                    @Html.LabelFor(model => model.KHACHHANG.MAKHACHHANG, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10" style="">
+                        @Html.EditorFor(model => model.KHACHHANG.MAKHACHHANG, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.KHACHHANG.MAKHACHHANG, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                @{
+                    bool hasXu = Model.KHACHHANG.XU != null && Model.KHACHHANG.XU != 0;
+                }
+
+                @if (hasXu)
+                {
+                    <div class="form-group" style="text-align: center;">
+
+                        <div class="col-md-10">
+                            <div class="checkbox" style="flex-direction:row">
+                                <input type="checkbox" />
+                                <label name="XU">
+                                    @Html.LabelFor(model => model.KHACHHANG.XU, new { @class = "text-danger" })
+                                    Có xu
+                                </label>
+                            </div>
+                            <div id="xuDisplay">
+                                @Html.DisplayFor(model => model.KHACHHANG.XU) XU
+                            </div>
+                            @Html.ValidationMessageFor(model => model.KHACHHANG.XU, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                }
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NGAYMUA, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NGAYMUA, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NGAYMUA, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.MAVANDON, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.MAVANDON, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.MAVANDON, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <button type="button" onclick="toggleAddressList('addressList')">Chọn địa chỉ nhận hàng</button>
+                <center>
+                    <div id="addressList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 500px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
+                        @foreach (var address in ViewBag.DIACHI.Items)
+                        {
+                            <div onclick="selectAddress('@address.MADIADIEM','@address.TENDIACHI', '@address.SDT')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
+                                <label style="font-size: 15px;">@address.TENDIACHI - @address.SDT</label>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label id="selectedAddressLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 720px; height: 30px;"></label>
+                            <input name="MADIADIEM" type="hidden" id="selectedAddressId" />
+                        </div>
+                    </div>
+                </center>
+
+
+                <button type="button" onclick="toggleAddressList('voucherList')">Chọn voucher thanh toán</button>
+                <center>
+                    <div id="voucherList" class="col-md-10" style="display: none; position: absolute; z-index: 1; background-color: white; border: 1px solid #ccc; padding: 10px; height: 300px; width: 504px; overflow-y: auto; background-color: antiquewhite;">
+                        @foreach (var voucher in ViewBag.VOUCHER.Items)
+                        {
+                            <div onclick="selectVoucher('@voucher.MAQUANLYVOUCHER', '@voucher.VOUCHER.PHANTRAMGIAMGIA')" style="width: 400px; height: 50px; border-radius: 10px; border: 1px solid #ccc; padding: 10px; margin-bottom: 10px; cursor: pointer;">
+                                <label style="font-size: 15px;">Phần trăm giảm giá: @voucher.VOUCHER.PHANTRAMGIAMGIA %</label>
+                                <label style="font-size: 15px;">Hết hạn: @voucher.NGAYKETTHUC - Áp dụng cho: @voucher.VOUCHER.DIEUKIEN</label>
+                            </div>
+                        }
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-10">
+                            <label id="selectedVoucherLabel" class="control-label col-md-2" style="font-size: 15px; display: none; width: 350px; height: 30px;"></label>
+                            <input name="MAQUANLYVOUCHER" type="hidden" id="selectedVoucherId" />
+                        </div>
+                    </div>
+                </center>
+
+                <div class="form-group">
+                    <label class="control-label col-md-2" style="font-size:15px">Hình thức thanh toán</label>
+                    <div class="col-md-10">
+                        <select class="form-control" name="HINHTHUCTHANHTOAN" id="drTypePayment">
+                            <option value="false" selected>COD</option>
+                            <option value="true">Chuyển khoản</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group" id="load_form_payment" style="display:none;">
+                    <h4> <label>Chọn phương thức thanh toán:</label><br /></h4>
+                    <h5>Cách 1: Chuyển hướng sang VNPAY chọn phương thức thanh toán</h5>
+                    <label><input type="radio" name="TypePaymentVN" value="0" checked /> Cổng thanh toán VNPAYQR </label>
+                    <h5>Cách 2: Tách phương thức thanh toán tại site của Merchant</h5>
+                    <label><input type="radio" name="TypePaymentVN" value="1" /> Thanh toán qua ứng dụng hỗ trợ VNPAYQR </label><br />
+                    <label><input type="radio" name="TypePaymentVN" value="2" /> ATM-Tài khoản ngân hàng nội địa </label><br />
+                    <label><input type="radio" name="TypePaymentVN" value="3" /> Thanh toán qua thẻ quốc tế </label><br />
+                </div>
+                <input type="hidden" id="typePaymentHidden" name="TypePaymentVN" />
+                <div id="addressDetails" style="display: none;">
+                    <h4>Selected Address Details</h4>
+                    <p id="addressInfo"></p>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.TONGTIEN, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.TONGTIEN, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.TONGTIEN, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="THANH TOÁN" class="btn btn-default" />
+                    </div>
+                </div>
+            </div>
+    </center>
+
+    <center>
+        <div class="row" style="width:600px;margin-left:10px;font-weight:600;font-size:16px; margin-bottom:20px;">
+
+            <table class="table" id="sortableTable">
+
+                <tr>
+
+                    <th class="filter__link" data-column="1">
+                        Tên sản phẩm
+                    </th>
+                    <th class="filter__link" data-column="2">
+                        Số lượng
+                    </th>
+                    <th class="filter__link" data-column="3">
+                        Đơn giá
+                    </th>
+                    <th class="filter__link" data-column="5">
+                        Tổng
+                    </th>
+                    <th></th>
+                </tr>
+
+
+
+                @*   @foreach (var item in ViewBag.danhsachGH)*@
+                <!--{
+
+                <tr>
+                    <td>-->
+                @*  @item.MATHANG.TENHANG*@
+                <!--</td>
+                <td>-->
+                @*     @item.SOLUONGMUA*@
+                <!--</td>
+                 <td>-->
+                @* @String.Format("{0:N0}", item.DONGIA)*@
+
+                <!--</td>
+                <td>-->
+                @{
+                    @*                                double tempTong = (double)(item.GIABAN);*@
+                    @*  @String.Format("{0:N0}", tempTong)*@
+                    <!--}
+                    </td>-->
+                    @* <td>
+                               @Html.ActionLink("Xóa", "xoa_sanpham", new { id_ctgh = item.MACHITIETGIOHANG })
+                        </td>*@
+                    <!--</tr>-->
+
+                }
+            </table>
+
+
+            @* <button>
+                    @Html.ActionLink("Đặt Hàng", "DatHang", "DatHang");
+                </button>*@
+        </div>
+
+    </center>
+
+    <script>
+        function toggleAddressList(listId) {
+            var addressList = document.getElementById(listId);
+            addressList.style.display = addressList.style.display === "none" ? "block" : "none";
+        }
+
+        function selectAddress(maDiaChi, tenDiaChi, sdt) {
+            var selectedAddressLabel = document.getElementById("selectedAddressLabel");
+            selectedAddressLabel.innerHTML = "Địa chỉ nhận hàng: " + tenDiaChi + " - " + sdt;
+            selectedAddressLabel.style.display = "block";
+            var selectedAddressId = document.getElementById("selectedAddressId");
+            selectedAddressId.value = maDiaChi; // Gán giá trị MADIADIEM vào input ẩn
+            toggleAddressList('addressList');
+        }
+
+        function selectVoucher(maQuanLyVoucher, phanTramGiamGia) {
+            // Tính toán tổng số tiền sau khi áp dụng giảm giá
+            var tongTien = parseFloat(document.getElementById("TONGTIEN").value);
+            var tongTienSauGiamGia = tongTien - (tongTien * parseFloat(phanTramGiamGia) / 100);
+
+            // Cập nhật giá trị tổng tiền
+            document.getElementById("TONGTIEN").value = tongTienSauGiamGia.toFixed(2);
+
+            // Ẩn danh sách voucher sau khi chọn
+            toggleAddressList('voucherList');
+
+            // Hiển thị thông tin voucher đã chọn
+            var selectedVoucherLabel = document.getElementById("selectedVoucherLabel");
+            selectedVoucherLabel.innerHTML = "Voucher thanh toán: Phần trăm giảm giá " + phanTramGiamGia + "%";
+            selectedVoucherLabel.style.display = "block";
+
+            // Lưu ID của voucher đã chọn vào input ẩn
+            var selectedVoucherId = document.getElementById("selectedVoucherId");
+            selectedVoucherId.value = maQuanLyVoucher;
+        }
+          document.getElementById('drTypePayment').onchange = function () {
+            var selectedValue = this.value;
+            var loadFormPayment = document.getElementById('load_form_payment');
+
+            // Nếu người dùng chọn phương thức thanh toán là "Chuyển khoản"
+            if (selectedValue === 'true') {
+                // Hiển thị phần tử chứa các lựa chọn thanh toán
+                loadFormPayment.style.display = 'block';
+            } else {
+                // Nếu không, ẩn phần tử chứa các lựa chọn thanh toán
+                loadFormPayment.style.display = 'none';
+            }
+        };
+         document.getElementById('drTypePayment').onchange = function() {
+        var selectedValue = this.value;
+        var form = document.getElementById('submitForm');
+        var typePaymentHidden = document.getElementById('typePaymentHidden');
+
+        // Cập nhật tên của input ẩn
+        typePaymentHidden.name = selectedValue;
+
+        // Nếu người dùng chọn "true" (thanh toán online)
+        if (selectedValue === 'true') {
+            // Hiển thị phần chọn phương thức thanh toán online
+            document.getElementById('load_form_payment').style.display = 'block';
+        } else {
+            // Ẩn phần chọn phương thức thanh toán online
+            document.getElementById('load_form_payment').style.display = 'none';
+        }
+        // Cập nhật action của form
+        if (selectedValue === 'false') {
+            form.action = "@Url.Action("AccepDonhang", "DatHang")";
+        } else {
+            form.action = "@Url.Action("PayOnline", "DatHang")";
+        }
+    };
+    </script>
+}
+

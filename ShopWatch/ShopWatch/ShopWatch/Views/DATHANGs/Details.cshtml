@@ -1,0 +1,83 @@
+﻿@model ShopWatch.Models.DATHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>DATHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYMUA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYMUA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TONGTIEN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DIADIEM.TENDIACHI)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.KHACHHANG.TENKHACHHANG)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.QUANLYVOUCHER.GHICHU)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.QUANLYVOUCHER.GHICHU)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.THANHTOAN.PHUONGTHUCTHANHTOAN)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TRANGTHAIGIAOHANG.VITRI)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TRANGTHAIGIAOHANG.VITRI)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MADH }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

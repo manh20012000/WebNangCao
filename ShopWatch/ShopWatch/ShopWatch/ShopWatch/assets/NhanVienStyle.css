@@ -1,0 +1,51 @@
+﻿body {
+}
+#example{
+    font-family: sans-serif;
+    font-weight:100;
+    border-collapse:collapse;
+    overflow:hidden;
+    box-shadow:0 0 20px #808080;
+
+}
+#hang{
+      background-color:#00ffff;
+      color:#000000;
+
+}
+
+.tble{
+    text-align:center;
+ background-color: coral;
+}
+    .tble:hover {
+    }
+th{
+    background-color: #04AA6D;
+    color: white;
+}
+
+#create{
+      display:flex;
+}
+#Input {
+    flex: 1; /* Mỗi thẻ con chiếm 50% không gian */
+    border: 1px solid #ccc; /* Để hiển thị ranh giới */
+    box-sizing: border-box; /* Đảm bảo kích thước tính cả border và padding */
+}
+
+.bnt{
+    border-radius:10px
+}
+.tablet {
+    border-collapse: collapse;
+    width: 100%;
+    text-align: center;
+}
+
+.td {
+    text-align: center;
+}
+.tablet, td, th {
+    border: 1px solid black;
+}

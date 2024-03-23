@@ -1,0 +1,792 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4AB21D20-D921-47B0-A993-1B048CC471F0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ShopWatch</RootNamespace>
+    <AssemblyName>ShopWatch</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations, Version=4242.42.42.42, Culture=neutral, PublicKeyToken=1010a0d8d6380325, processorArchitecture=MSIL">
+      <HintPath>..\packages\JetBrains.Annotations.2022.3.1\lib\net20\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.EntityFramework, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.EntityFramework.1.0.1\lib\net45\PagedList.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.7.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.7\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.7\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.7\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="X.PagedList, Version=8.4.7.0, Culture=neutral, PublicKeyToken=525ccaa9023f010c, processorArchitecture=MSIL">
+      <HintPath>..\packages\X.PagedList.8.4.7\lib\netstandard2.0\X.PagedList.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\BackToPemissionController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\CHITIETPHIEUNHAPs1Controller.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\MATHANGsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\NHANVIENsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\NHAPHANGsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\QUANLYVOUCHERsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\SALEsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\TAIKHOANsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\THONGKENHAPHANGController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\THONGKEsController.cs" />
+    <Compile Include="Areas\NhanVien\Controllers\VOUCHERController.cs" />
+    <Compile Include="Areas\NhanVien\NhanVienAreaRegistration.cs" />
+    <Compile Include="Common\Common.cs" />
+    <Compile Include="Common\SettingHelper.cs" />
+    <Compile Include="Controllers\AllController.cs" />
+    <Compile Include="Controllers\CHITIETDATHANGsController.cs" />
+    <Compile Include="Controllers\CHITIETMATHANGController.cs" />
+    <Compile Include="Controllers\DatHangController.cs" />
+    <Compile Include="Controllers\DIADIEMsController.cs" />
+    <Compile Include="Controllers\GioHangController.cs" />
+    <Compile Include="Controllers\HOADONsController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\KHACHHANGsController.cs" />
+    <Compile Include="Controllers\TAIKHOANsController.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETDATHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETGIOHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CHITIETPHIEUNHAP.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DATHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\DIADIEM.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GIOHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HINHANH.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\KHACHHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MATHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\MetaDATA\ChitietgiohangViewModel.cs" />
+    <Compile Include="Models\MetaDATA\DataCHITIETNHAPHANG.cs" />
+    <Compile Include="Models\MetaDATA\DataChitietVoucher.cs" />
+    <Compile Include="Models\MetaDATA\DatHangMetaData.cs" />
+    <Compile Include="Models\MetaDATA\MathangViewModel.cs" />
+    <Compile Include="Models\MetaDATA\OderView.cs" />
+    <Compile Include="Models\Model1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Model1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHANVIEN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NHAPHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\QUANLYVOUCHER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SALE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TAIKHOAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THANHTOAN.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGKE.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\THONGKENHAPHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TRANGTHAIGIAOHANG.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VOUCHER.cs">
+      <DependentUpon>Model1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Payment\MomoPayment\ConfigeMomo\Momoconfige.cs" />
+    <Compile Include="Payment\VnPayLibrary.cs" />
+    <Compile Include="Payment\ZaloPayment\Confige\ZalopayConfige.cs" />
+    <Compile Include="Payment\ZaloPayment\Request\CreateZaloPayRequest.cs" />
+    <Compile Include="Payment\ZaloPayment\Response\CreateZalopayResponse.cs" />
+    <Compile Include="Payment\zalopay\Request\CreateZalopayPayRequest.cs" />
+    <Compile Include="Payment\zalopay\Response\CreateZalopayPayResponse.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Session\NhanVienLogin.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\Admin\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\Admin\bootstrap\css\fileinput.min.css" />
+    <Content Include="assets\Admin\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\Admin\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\Admin\bootstrap\js\fileinput.min.js" />
+    <Content Include="assets\Admin\dist\css\AdminLTE.min.css" />
+    <Content Include="assets\Admin\dist\css\skins\_all-skins.min.css" />
+    <Content Include="assets\Admin\dist\img\avatar.png" />
+    <Content Include="assets\Admin\dist\img\avatar04.png" />
+    <Content Include="assets\Admin\dist\img\avatar2.png" />
+    <Content Include="assets\Admin\dist\img\avatar3.png" />
+    <Content Include="assets\Admin\dist\img\avatar5.png" />
+    <Content Include="assets\Admin\dist\img\boxed-bg.jpg" />
+    <Content Include="assets\Admin\dist\img\boxed-bg.png" />
+    <Content Include="assets\Admin\dist\img\credit\american-express.png" />
+    <Content Include="assets\Admin\dist\img\credit\cirrus.png" />
+    <Content Include="assets\Admin\dist\img\credit\mastercard.png" />
+    <Content Include="assets\Admin\dist\img\credit\mestro.png" />
+    <Content Include="assets\Admin\dist\img\credit\paypal.png" />
+    <Content Include="assets\Admin\dist\img\credit\paypal2.png" />
+    <Content Include="assets\Admin\dist\img\credit\visa.png" />
+    <Content Include="assets\Admin\dist\img\default-50x50.gif" />
+    <Content Include="assets\Admin\dist\img\icons.png" />
+    <Content Include="assets\Admin\dist\img\photo1.png" />
+    <Content Include="assets\Admin\dist\img\photo2.png" />
+    <Content Include="assets\Admin\dist\img\photo3.jpg" />
+    <Content Include="assets\Admin\dist\img\photo4.jpg" />
+    <Content Include="assets\Admin\dist\img\user1-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user2-160x160.jpg" />
+    <Content Include="assets\Admin\dist\img\user3-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user4-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user5-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user6-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user7-128x128.jpg" />
+    <Content Include="assets\Admin\dist\img\user8-128x128.jpg" />
+    <Content Include="assets\Admin\dist\js\app.min.js" />
+    <Content Include="assets\Admin\dist\js\demo.js" />
+    <Content Include="assets\Admin\dist\js\pages\dashboard2.js" />
+    <Content Include="assets\Admin\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.all.min.js" />
+    <Content Include="assets\Admin\plugins\bootstrap-wysihtml5\bootstrap3-wysihtml5.min.css" />
+    <Content Include="assets\Admin\plugins\datatables\dataTables.alphabetSearch.js" />
+    <Content Include="assets\Admin\plugins\datatables\dataTables.bootstrap.css" />
+    <Content Include="assets\Admin\plugins\datatables\dataTables.bootstrap.min.js" />
+    <Content Include="assets\Admin\plugins\datatables\jquery.dataTables.min.js" />
+    <Content Include="assets\Admin\plugins\fastclick\fastclick.min.js" />
+    <Content Include="assets\Admin\plugins\font-awesome\css\font-awesome.min.css" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\Admin\plugins\iCheck\all.css" />
+    <Content Include="assets\Admin\plugins\iCheck\icheck.min.js" />
+    <Content Include="assets\Admin\plugins\iCheck\minimal\blue%402x.png" />
+    <Content Include="assets\Admin\plugins\iCheck\minimal\blue.css" />
+    <Content Include="assets\Admin\plugins\iCheck\minimal\blue.png" />
+    <Content Include="assets\Admin\plugins\iCheck\minimal\_all.css" />
+    <Content Include="assets\Admin\plugins\ionicons\css\ionicons.min.css" />
+    <Content Include="assets\Admin\plugins\ionicons\fonts\ionicons.svg" />
+    <Content Include="assets\Admin\plugins\jQuery\jQuery-2.1.4.min.js" />
+    <Content Include="assets\Admin\plugins\select2\select2.full.min.js" />
+    <Content Include="assets\Admin\plugins\select2\select2.min.css" />
+    <Content Include="assets\Admin\plugins\slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="assets\data.xml" />
+    <Content Include="assets\KhachHang\css\bootstrap.css" />
+    <Content Include="assets\KhachHang\css\flexslider.css" />
+    <Content Include="assets\KhachHang\css\font-awesome.min.css" />
+    <Content Include="assets\KhachHang\css\sequence-looptheme.css" />
+    <Content Include="assets\KhachHang\css\style.css" />
+    <Content Include="assets\KhachHang\Dangnhap\StyleSheet1.css" />
+    <Content Include="assets\KhachHang\fonts\fontawesome-webfont.svg" />
+    <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="assets\KhachHang\images\activeden.png" />
+    <Content Include="assets\KhachHang\images\address.png" />
+    <Content Include="assets\KhachHang\images\arow_left.png" />
+    <Content Include="assets\KhachHang\images\arow_right.png" />
+    <Content Include="assets\KhachHang\images\banner-01.jpg" />
+    <Content Include="assets\KhachHang\images\banner-02.jpg" />
+    <Content Include="assets\KhachHang\images\banner-small-01.png" />
+    <Content Include="assets\KhachHang\images\bg.jpg" />
+    <Content Include="assets\KhachHang\images\black_transparent50.png" />
+    <Content Include="assets\KhachHang\images\carticon.png" />
+    <Content Include="assets\KhachHang\images\down-arow-2.png" />
+    <Content Include="assets\KhachHang\images\down-arow.png" />
+    <Content Include="assets\KhachHang\images\envato.png" />
+    <Content Include="assets\KhachHang\images\f.png" />
+    <Content Include="assets\KhachHang\images\favicon.png" />
+    <Content Include="assets\KhachHang\images\fbicon.png" />
+    <Content Include="assets\KhachHang\images\fblike.png" />
+    <Content Include="assets\KhachHang\images\gplus.png" />
+    <Content Include="assets\KhachHang\images\grid-icon.png" />
+    <Content Include="assets\KhachHang\images\in.png" />
+    <Content Include="assets\KhachHang\images\list-icon.png" />
+    <Content Include="assets\KhachHang\images\loginbg.png" />
+    <Content Include="assets\KhachHang\images\logo.png" />
+    <Content Include="assets\KhachHang\images\message.png" />
+    <Content Include="assets\KhachHang\images\more-icon.png" />
+    <Content Include="assets\KhachHang\images\phone.png" />
+    <Content Include="assets\KhachHang\images\photodune.png" />
+    <Content Include="assets\KhachHang\images\products\ck-campaign-2015-2-768x401.jpg" />
+    <Content Include="assets\KhachHang\images\products\large\products-01.jpg" />
+    <Content Include="assets\KhachHang\images\products\logo.jpg" />
+    <Content Include="assets\KhachHang\images\products\medium\products-01.jpg" />
+    <Content Include="assets\KhachHang\images\products\removebg-preview.png" />
+    <Content Include="assets\KhachHang\images\products\Screen Shot 2022-04-13 at 23_02_40.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-01.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-02.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-03.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-04.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-05.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-06.png" />
+    <Content Include="assets\KhachHang\images\products\small\products-07.png" />
+    <Content Include="assets\KhachHang\images\products\Thiết kế chưa có tên.png" />
+    <Content Include="assets\KhachHang\images\products\thum\products-01.png" />
+    <Content Include="assets\KhachHang\images\products\thum\products-02.png" />
+    <Content Include="assets\KhachHang\images\products\thum\products-03.png" />
+    <Content Include="assets\KhachHang\images\products\thum\products-04.png" />
+    <Content Include="assets\KhachHang\images\products\thum\products-05.png" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu1.png" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu10.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu2.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu4.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu5.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu7.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu8.jpg" />
+    <Content Include="assets\KhachHang\images\products\thuonghieu9.jpg" />
+    <Content Include="assets\KhachHang\images\products\thươnghieu3.jpg" />
+    <Content Include="assets\KhachHang\images\products\Watch-brands-for-women-1024x576.jpg" />
+    <Content Include="assets\KhachHang\images\promotion-01.png" />
+    <Content Include="assets\KhachHang\images\promotion-02.png" />
+    <Content Include="assets\KhachHang\images\promotion-03.png" />
+    <Content Include="assets\KhachHang\images\regbg.png" />
+    <Content Include="assets\KhachHang\images\remove.png" />
+    <Content Include="assets\KhachHang\images\search-bg.png" />
+    <Content Include="assets\KhachHang\images\share.png" />
+    <Content Include="assets\KhachHang\images\slider-image-01.png" />
+    <Content Include="assets\KhachHang\images\slider-image-02.png" />
+    <Content Include="assets\KhachHang\images\slider-image-03.png" />
+    <Content Include="assets\KhachHang\images\star.png" />
+    <Content Include="assets\KhachHang\images\themeforest.png" />
+    <Content Include="assets\KhachHang\images\twi.png" />
+    <Content Include="assets\KhachHang\images\up-arow.png" />
+    <Content Include="assets\KhachHang\js\bootstrap.min.js" />
+    <Content Include="assets\KhachHang\js\jquery-1.10.2.min.js" />
+    <Content Include="assets\KhachHang\js\jquery.carouFredSel-6.2.1-packed.js" />
+    <Content Include="assets\KhachHang\js\jquery.easing.1.3.js" />
+    <Content Include="assets\KhachHang\js\jquery.elevatezoom.js" />
+    <Content Include="assets\KhachHang\js\jquery.flexslider.js" />
+    <Content Include="assets\KhachHang\js\jquery.sequence-min.js" />
+    <Content Include="assets\KhachHang\js\script.min.js" />
+    <Content Include="assets\KhachHang\LogIn\LogIn.css" />
+    <Content Include="assets\KhachHang\LogIn\LogIn.js" />
+    <Content Include="assets\NhanVienStyle.css" />
+    <Content Include="assets\NhanVien\controllerAjax.js" />
+    <Content Include="assets\NhanVien\css\demo.css" />
+    <Content Include="assets\NhanVien\css\jquery.datetimepicker.min.css" />
+    <Content Include="assets\NhanVien\css\Tucss.css" />
+    <Content Include="assets\NhanVien\img\avatars\1.png" />
+    <Content Include="assets\NhanVien\img\avatars\5.png" />
+    <Content Include="assets\NhanVien\img\avatars\6.png" />
+    <Content Include="assets\NhanVien\img\avatars\7.png" />
+    <Content Include="assets\NhanVien\img\backgrounds\18.jpg" />
+    <Content Include="assets\NhanVien\img\elements\1.jpg" />
+    <Content Include="assets\NhanVien\img\elements\11.jpg" />
+    <Content Include="assets\NhanVien\img\elements\12.jpg" />
+    <Content Include="assets\NhanVien\img\elements\13.jpg" />
+    <Content Include="assets\NhanVien\img\elements\17.jpg" />
+    <Content Include="assets\NhanVien\img\elements\18.jpg" />
+    <Content Include="assets\NhanVien\img\elements\19.jpg" />
+    <Content Include="assets\NhanVien\img\elements\2.jpg" />
+    <Content Include="assets\NhanVien\img\elements\20.jpg" />
+    <Content Include="assets\NhanVien\img\elements\3.jpg" />
+    <Content Include="assets\NhanVien\img\elements\4.jpg" />
+    <Content Include="assets\NhanVien\img\elements\5.jpg" />
+    <Content Include="assets\NhanVien\img\elements\7.jpg" />
+    <Content Include="assets\NhanVien\img\favicon\favicon.ico" />
+    <Content Include="assets\NhanVien\img\icons\brands\asana.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\behance.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\dribbble.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\facebook.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\github.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\google.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\instagram.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\mailchimp.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\slack.png" />
+    <Content Include="assets\NhanVien\img\icons\brands\twitter.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\cc-primary.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\cc-success.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\cc-warning.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\chart-success.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\chart.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\paypal.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\wallet-info.png" />
+    <Content Include="assets\NhanVien\img\icons\unicons\wallet.png" />
+    <Content Include="assets\NhanVien\img\illustrations\girl-doing-yoga-light.png" />
+    <Content Include="assets\NhanVien\img\illustrations\man-with-laptop-light.png" />
+    <Content Include="assets\NhanVien\img\illustrations\page-misc-error-light.png" />
+    <Content Include="assets\NhanVien\img\layouts\layout-container-light.png" />
+    <Content Include="assets\NhanVien\img\layouts\layout-fluid-light.png" />
+    <Content Include="assets\NhanVien\img\layouts\layout-without-menu-light.png" />
+    <Content Include="assets\NhanVien\img\layouts\layout-without-navbar-light.png" />
+    <Content Include="assets\NhanVien\js\config.js" />
+    <Content Include="assets\NhanVien\js\dashboards-analytics.js" />
+    <Content Include="assets\NhanVien\js\extended-ui-perfect-scrollbar.js" />
+    <Content Include="assets\NhanVien\js\form-basic-inputs.js" />
+    <Content Include="assets\NhanVien\js\clocPicker.js" />
+    <Content Include="assets\NhanVien\js\jquery.datetimepicker.full.js" />
+    <Content Include="assets\NhanVien\js\main.js" />
+    <Content Include="assets\NhanVien\js\nhanvien.js" />
+    <Content Include="assets\NhanVien\js\pages-account-settings-account.js" />
+    <Content Include="assets\NhanVien\js\Tulam.js" />
+    <Content Include="assets\NhanVien\js\ui-modals.js" />
+    <Content Include="assets\NhanVien\js\ui-popover.js" />
+    <Content Include="assets\NhanVien\js\ui-toasts.js" />
+    <Content Include="assets\NhanVien\infornhanvien.css" />
+    <Content Include="assets\NhanVien\vendor\css\core.css" />
+    <Content Include="assets\NhanVien\vendor\css\pages\LoadHang.css" />
+    <Content Include="assets\NhanVien\vendor\css\pages\page-account-settings.css" />
+    <Content Include="assets\NhanVien\vendor\css\pages\page-auth.css" />
+    <Content Include="assets\NhanVien\vendor\css\pages\page-icons.css" />
+    <Content Include="assets\NhanVien\vendor\css\pages\page-misc.css" />
+    <Content Include="assets\NhanVien\vendor\css\theme-default.css" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons.css" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons\boxicons.svg" />
+    <Content Include="assets\NhanVien\vendor\js\bootstrap.js" />
+    <Content Include="assets\NhanVien\vendor\js\helpers.js" />
+    <Content Include="assets\NhanVien\vendor\js\menu.js" />
+    <Content Include="assets\NhanVien\vendor\libs\apex-charts\apex-charts.css" />
+    <Content Include="assets\NhanVien\vendor\libs\apex-charts\apexcharts.js" />
+    <Content Include="assets\NhanVien\vendor\libs\highlight\highlight-github.css" />
+    <Content Include="assets\NhanVien\vendor\libs\highlight\highlight.css" />
+    <Content Include="assets\NhanVien\vendor\libs\highlight\highlight.js" />
+    <Content Include="assets\NhanVien\vendor\libs\jquery\jquery.js" />
+    <Content Include="assets\NhanVien\vendor\libs\masonry\masonry.js" />
+    <Content Include="assets\NhanVien\vendor\libs\perfect-scrollbar\perfect-scrollbar.css" />
+    <Content Include="assets\NhanVien\vendor\libs\perfect-scrollbar\perfect-scrollbar.js" />
+    <Content Include="assets\NhanVien\vendor\libs\popper\popper.js" />
+    <Content Include="assets\Upload\anhduocluu.png" />
+    <Content Include="assets\Upload\avtar.jpg" />
+    <Content Include="assets\Upload\dh003z4932391298458_264748485fd4c18e75b4b8641ffb3123-removebg-preview.png" />
+    <Content Include="assets\Upload\dh003z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16.jpg" />
+    <Content Include="assets\Upload\dh003z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932391298458_264748485fd4c18e75b4b8641ffb3123-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932391298458_264748485fd4c18e75b4b8641ffb3123.jpg" />
+    <Content Include="assets\Upload\dh01z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16.jpg" />
+    <Content Include="assets\Upload\dh01z4932393334839_fee5a7b11c267437f92e79a67ead7568-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932393334839_fee5a7b11c267437f92e79a67ead7568.jpg" />
+    <Content Include="assets\Upload\dh01z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932395185535_c830652ae862c57cb2fc58791d90d42c.jpg" />
+    <Content Include="assets\Upload\dh01z4932396204753_930e716e3df0f93fcd952e45202d4a9a.jpg" />
+    <Content Include="assets\Upload\dh01z4932396889951_802009dcec08e030084aa738162fba18.jpg" />
+    <Content Include="assets\Upload\dh01z4932397580165_95474bb12eac04ddd91108875c5a9999-removebg-preview.png" />
+    <Content Include="assets\Upload\dh01z4932397580165_95474bb12eac04ddd91108875c5a9999.jpg" />
+    <Content Include="assets\Upload\dh01z5042128892796_20a2897d2dabfcc1ef70d13dcb333ff2-removebg-preview.png" />
+    <Content Include="assets\Upload\dh02z4932391298458_264748485fd4c18e75b4b8641ffb3123-removebg-preview.png" />
+    <Content Include="assets\Upload\dh02z4932391298458_264748485fd4c18e75b4b8641ffb3123.jpg" />
+    <Content Include="assets\Upload\dh02z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16.jpg" />
+    <Content Include="assets\Upload\dh02z4932393334839_fee5a7b11c267437f92e79a67ead7568.jpg" />
+    <Content Include="assets\Upload\dh02z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview.png" />
+    <Content Include="assets\Upload\dh02z4932396204753_930e716e3df0f93fcd952e45202d4a9a.jpg" />
+    <Content Include="assets\Upload\dh02z5042128892796_20a2897d2dabfcc1ef70d13dcb333ff2-removebg-preview.png" />
+    <Content Include="assets\Upload\dh03tải xuống %282%29.jpg" />
+    <Content Include="assets\Upload\dh03z4932391298458_264748485fd4c18e75b4b8641ffb3123.jpg" />
+    <Content Include="assets\Upload\dh03z4932394278696_35d2b45fdd119bd549a2041aa5fd47b6-removebg-preview.png" />
+    <Content Include="assets\Upload\dh03z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview %281%29.png" />
+    <Content Include="assets\Upload\dh03z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview.png" />
+    <Content Include="assets\Upload\dh03z4932396204753_930e716e3df0f93fcd952e45202d4a9a.jpg" />
+    <Content Include="assets\Upload\dh03z4932396889951_802009dcec08e030084aa738162fba18.jpg" />
+    <Content Include="assets\Upload\dh93z4932391298458_264748485fd4c18e75b4b8641ffb3123-removebg-preview.png" />
+    <Content Include="assets\Upload\dh93z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16.jpg" />
+    <Content Include="assets\Upload\dh93z4932393334839_fee5a7b11c267437f92e79a67ead7568-removebg-preview.png" />
+    <Content Include="assets\Upload\dh93z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview %281%29.png" />
+    <Content Include="assets\Upload\hinh-anh-con-gai-1.jpg" />
+    <Content Include="assets\Upload\sh30z4932394278696_35d2b45fdd119bd549a2041aa5fd47b6 - Copy.jpg" />
+    <Content Include="assets\Upload\sh30z4932394278696_35d2b45fdd119bd549a2041aa5fd47b6-removebg-preview.png" />
+    <Content Include="assets\Upload\sh30z4932395185535_c830652ae862c57cb2fc58791d90d42c-removebg-preview %281%29.png" />
+    <Content Include="assets\Upload\tải xuống %282%29.jpg" />
+    <Content Include="assets\Upload\z4932391298458_264748485fd4c18e75b4b8641ffb3123-removebg-preview.png" />
+    <Content Include="assets\Upload\z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16-removebg-preview.png" />
+    <Content Include="assets\Upload\z4932392454057_1e15dc7a133c4e0b9e1612a168b77c16.jpg" />
+    <Content Include="assets\Upload\z4932393334839_fee5a7b11c267437f92e79a67ead7568.jpg" />
+    <Content Include="assets\Upload\z5042128892796_20a2897d2dabfcc1ef70d13dcb333ff2.jpg" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Default.aspx" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Models\Model1.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Model1.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.cs</LastGenOutput>
+    </Content>
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons\boxicons.eot" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons\boxicons.ttf" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons\boxicons.woff" />
+    <Content Include="assets\NhanVien\vendor\fonts\boxicons\boxicons.woff2" />
+    <Content Include="assets\Admin\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\Admin\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\Admin\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\Admin\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\Admin\plugins\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="assets\Admin\plugins\ionicons\fonts\ionicons.eot" />
+    <Content Include="assets\Admin\plugins\ionicons\fonts\ionicons.ttf" />
+    <Content Include="assets\Admin\plugins\ionicons\fonts\ionicons.woff" />
+    <Content Include="libman.json" />
+    <Content Include="assets\KhachHang\Dangnhap\jsconfig.json" />
+    <Content Include="assets\KhachHang\fonts\fontawesome-webfont.eot" />
+    <Content Include="assets\KhachHang\fonts\fontawesome-webfont.ttf" />
+    <Content Include="assets\KhachHang\fonts\fontawesome-webfont.woff" />
+    <Content Include="assets\KhachHang\fonts\fontawesome-webfont.woff2" />
+    <Content Include="assets\KhachHang\fonts\FontAwesome.otf" />
+    <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="assets\KhachHang\fonts\glyphicons-halflings-regular.woff2" />
+    <EntityDeploy Include="Models\Model1.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Model1.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Model1.edmx.diagram">
+      <DependentUpon>Model1.edmx</DependentUpon>
+    </Content>
+    <Content Include="Areas\NhanVien\Views\BackToPemission\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\CreateMulti.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\deleteReceipt.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\DeTailReceipt.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\EditDetail.cshtml" />
+    <Content Include="Areas\NhanVien\Views\CHITIETPHIEUNHAPs1\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\CreateMatHang.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\EditProduct.cshtml" />
+    <Content Include="Areas\NhanVien\Views\MATHANGs\Product.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHANVIENs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHANVIENs\EditProfile.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHAPHANGs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHAPHANGs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHAPHANGs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHAPHANGs\EditNhapHang.cshtml" />
+    <Content Include="Areas\NhanVien\Views\NHAPHANGs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\QUANLYVOUCHERs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\SALEs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\SALEs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\SALEs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\SALEs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\SALEs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\Shared\SalePartialView.cshtml" />
+    <Content Include="Areas\NhanVien\Views\Shared\_Layout1.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Confirm.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\getMail.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\TAIKHOANs\LoginUser.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKENHAPHANG\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKENHAPHANG\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKENHAPHANG\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKENHAPHANG\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKENHAPHANG\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\Index.cshtml" />
+    <Content Include="Areas\NhanVien\Views\THONGKEs\statistical_Month.cshtml" />
+    <Content Include="Areas\NhanVien\Views\VOUCHER\Create.cshtml" />
+    <Content Include="Areas\NhanVien\Views\VOUCHER\Delete.cshtml" />
+    <Content Include="Areas\NhanVien\Views\VOUCHER\Details.cshtml" />
+    <Content Include="Areas\NhanVien\Views\VOUCHER\Edit.cshtml" />
+    <Content Include="Areas\NhanVien\Views\VOUCHER\VoucherIndex.cshtml" />
+    <Content Include="Areas\NhanVien\Views\web.config" />
+    <Content Include="Areas\NhanVien\Views\_ViewStart.cshtml" />
+    <Content Include="Payment\appsetting.json" />
+    <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.4.1.js" />
+    <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.js" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="vnpay_return.aspx" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\CHITIETDATHANGs\Create.cshtml" />
+    <Content Include="Views\CHITIETDATHANGs\Delete.cshtml" />
+    <Content Include="Views\CHITIETDATHANGs\Details.cshtml" />
+    <Content Include="Views\CHITIETDATHANGs\Edit.cshtml" />
+    <Content Include="Views\CHITIETDATHANGs\Index.cshtml" />
+    <Content Include="Views\CHITIETMATHANG\Index.cshtml" />
+    <Content Include="Views\DatHang\DonHang.cshtml" />
+    <Content Include="Views\GioHang\form_DatHang.cshtml" />
+    <Content Include="Views\GioHang\Index.cshtml" />
+    <Content Include="Views\Home\danhsach.cshtml" />
+    <Content Include="Views\Home\homeIndex.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\KHACHHANGs\Edit.cshtml" />
+    <Content Include="Views\KHACHHANGs\edit_2.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\TAIKHOANs\Create.cshtml" />
+    <Content Include="Views\TAIKHOANs\Dangnhap.cshtml" />
+    <Content Include="Views\TAIKHOANs\Delete.cshtml" />
+    <Content Include="Views\TAIKHOANs\Details.cshtml" />
+    <Content Include="Views\TAIKHOANs\Edit.cshtml" />
+    <Content Include="Views\TAIKHOANs\Index.cshtml" />
+    <Content Include="Views\TAIKHOANs\Register.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\DIADIEMs\Create.cshtml" />
+    <Content Include="Views\DIADIEMs\Delete.cshtml" />
+    <Content Include="Views\DIADIEMs\Details.cshtml" />
+    <Content Include="Views\DIADIEMs\Edit.cshtml" />
+    <Content Include="Views\DIADIEMs\Index.cshtml" />
+    <Content Include="Views\DatHang\CheckOut.cshtml" />
+    <Content Include="Views\DatHang\CheckOutSuccess.cshtml" />
+    <Content Include="Views\DatHang\Partial_CheckOut.cshtml" />
+    <Content Include="Views\DatHang\Partial_Item_Cart.cshtml" />
+    <Content Include="Views\DatHang\Partial_Item_ThanhToan.cshtml" />
+    <Content Include="Views\DatHang\VnpayReturn.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\NhanVien\Views\Alert\" />
+    <Folder Include="Areas\NhanVien\Views\Base\" />
+    <Folder Include="Payment\MomoPayment\Lib\" />
+    <Folder Include="Payment\MomoPayment\Request\" />
+    <Folder Include="Payment\MomoPayment\Response\" />
+    <Folder Include="Payment\Service\" />
+    <Folder Include="Payment\zalopay\confige\" />
+    <Folder Include="Views\All\" />
+    <Folder Include="Views\HOADONs\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.4.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.4.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>56917</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:56917/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,115 @@
+﻿@model IEnumerable<ShopWatch.Models.DATHANG>
+
+@{
+    ViewBag.Title = "Đơn hàng đã đặt";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body>
+
+
+    <h2 style="text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif;margin-bottom:30px;">THÔNG TIN ĐƠN HÀNG ĐÃ ĐẶT</h2>
+
+    <table style="width:100%; text-align:center;font-weight: 400; font-family: 'Times New Roman' , Times, serif">
+
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NGAYMUA)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TONGTIEN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.KHACHHANG.TENKHACHHANG)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.MAVANDON)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.HINHTHUCTHANHTOAN)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIADIEM.SDT)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DIADIEM.TENDIACHI)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.TRANGTHAI)
+                </th>
+                @foreach (var item in Model)
+                {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NGAYMUA)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TONGTIEN)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.KHACHHANG.TENKHACHHANG)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MAVANDON)
+                </td>
+                <td>
+                    @if (item.HINHTHUCTHANHTOAN == false)
+                    {
+                        <text>COD</text>
+                    }
+                    else
+                    {
+                        <text>THANHTOANONLINE</text>
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIADIEM.SDT)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DIADIEM.TENDIACHI)
+                </td>
+                <td>
+                    @if (item.TRANGTHAI == false)
+                    {
+                        <text>Chưa thanh toán</text>
+                    }
+                    else
+                    {
+                        <text>Đã thanh toán</text>
+                    }
+                </td>
+            </tr>
+            }
+
+        </table>
+    </table>
+
+
+
+
+
+</body>
+</html>
+
+

@@ -1,0 +1,35 @@
+﻿@model ShopWatch.Models.THONGKENHAPHANG
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/NhanVien/Views/Shared/_Layout1.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>THONGKENHAPHANG</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NGAYTHONGKE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NGAYTHONGKE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TONGTIEN)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TONGTIEN)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.MATHONGKE }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

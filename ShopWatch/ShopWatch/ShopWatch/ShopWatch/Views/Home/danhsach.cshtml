@@ -1,0 +1,77 @@
+﻿@model IEnumerable<ShopWatch.Models.MATHANG>
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>danhsach</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.TENHANG)
+            </th>
+            <th>
+              @*  @Html.DisplayNameFor(model => model.ANHSANPHAM)*@
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.GIAHANG)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BAOHANH)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LOAI)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.KICHTHUOC)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TRANGTHAI)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TENHANG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ANHSANPHAM)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GIAHANG)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BAOHANH)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LOAI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.KICHTHUOC)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TRANGTHAI)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.MAMATHANG }) |
+                @Html.ActionLink("Details", "Details", new { id=item.MAMATHANG }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.MAMATHANG })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>

@@ -48,24 +48,16 @@ namespace ShopWatch.Controllers
                 db.KHACHHANGs.Add(Khachhang);
                 db.SaveChanges();
                 int id_khachhang = Khachhang.MAKHACHHANG;
-                VOUCHER newVoucher = new VOUCHER
-                {
-                    DIEUKIEN = "chưa có",
-                    TRANGTHAI = true,
-                    PHANTRAMGIAMGIA = 10,
-                };
-                db.VOUCHERs.Add(newVoucher);
-                db.SaveChanges();
-                int id_newVoucher = newVoucher.MAVOUCHER;
+
                 DateTime StartDate = DateTime.Today;
                 DateTime EndDate = StartDate.AddMonths(1);
+
                 QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                 {
                     MAKHACHHANG = id_khachhang,
-                    MAVOUCHER = id_newVoucher,
+                    MAVOUCHER = 1,
                     NGAYBATDAU = StartDate,
                     NGAYKETTHUC = EndDate,
-                    MAQUANLYVOUCHER=1,
                 };
                 db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
                 db.SaveChanges();
@@ -77,10 +69,6 @@ namespace ShopWatch.Controllers
                 ViewBag.error = "Email already exists";
                 return View();
             }
-
-
-
-            return View();
 
 
         }
@@ -115,7 +103,7 @@ namespace ShopWatch.Controllers
                 var data_khachhang = db.KHACHHANGs.Where(s => s.EMAIL.Equals(tAIKHOAN.EMAIL)).FirstOrDefault();
                 if (data_khachhang != null)
                 {
-                    Session["UserEmail"] = data_khachhang.EMAIL;
+                    Session["EmailClient"] = data_khachhang.EMAIL;
 
                     SetMaKH(data_khachhang.MAKHACHHANG);
                     return RedirectToAction("homeIndex", "Home");

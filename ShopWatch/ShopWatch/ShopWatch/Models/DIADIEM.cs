@@ -23,10 +23,10 @@ namespace ShopWatch.Models
         public int MADIADIEM { get; set; }
         public Nullable<int> MAKHACHHANG { get; set; }
         public string TENDIACHI { get; set; }
-        public Nullable<int> SDT { get; set; }
+        public string SDT { get; set; }
     
-        public virtual KHACHHANG KHACHHANG { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DATHANG> DATHANGs { get; set; }
+        public virtual KHACHHANG KHACHHANG { get; set; }
     }
 }
