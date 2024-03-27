@@ -33,8 +33,6 @@ namespace ShopWatch.Areas.NhanVien.Controllers
 
         public ActionResult LoginUser(TAIKHOAN taikhoan)
         {
-
-
             string f_password = GetMD5(taikhoan.MATKHAU);
 
             try

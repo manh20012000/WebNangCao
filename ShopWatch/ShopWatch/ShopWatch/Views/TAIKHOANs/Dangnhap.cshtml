@@ -188,8 +188,6 @@
         <div id="formId">
 
             <h1>Login</h1>
-
-
             @Html.EditorFor(model => model.EMAIL, new { htmlAttributes = new { placeholder = "   Tài khoản", id = "txtdn", @class = "form-control input1  ip1" } })
             @Html.ValidationMessageFor(model => model.EMAIL, "", new { @class = "text-danger" })
 
@@ -211,12 +209,7 @@
 
             <div class="remember-forgot">
                 <input type="checkbox" id="chebox" value="show" class="radiobtn" onclick="ischeck()" /> Remember
-
-
             </div>
-
-
-
             <div class="form-group">
                 <div class="col-md-offset-2 col-md-10">
                     <input type="submit" value="Login" class="btn btn-default btndangnhap" id="btndangnhap" />

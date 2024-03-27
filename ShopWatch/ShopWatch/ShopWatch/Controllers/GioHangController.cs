@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Newtonsoft.Json;
 using ShopWatch.Models;
 using ShopWatch.Models.MetaDATA;
 namespace ShopWatch.Controllers
@@ -139,21 +141,31 @@ namespace ShopWatch.Controllers
             }
             return RedirectToAction("Index");
         }
-        public ActionResult form_DatHang(List<CHITIETDATHANG> selectedItemsData, double giatien)
+        public ActionResult form_DatHang(string  selectedItemsData, double giatien)
         {
             if (Session["EmailClient"] != null)
             {
-                Session["SelectedItemsData"] = selectedItemsData;
+                string decodedData = HttpUtility.UrlDecode(selectedItemsData);
+                // Chuyển đổi chuỗi JSON thành mảng đối tượng
+                var itemsArray = JsonConvert.DeserializeObject<List<CHITIETDATHANG>>(decodedData);
                 var email = Session["EmailClient"] as string;
+                Session["SelectedItemsData"] = itemsArray;
                 KHACHHANG user = db.KHACHHANGs.FirstOrDefault(u => u.EMAIL == email);
                 var NGAYMUA = DateTime.Now;
                 var danhsachdonhang = db.DATHANGs.Where(m => m.MAKHACHHANG == user.MAKHACHHANG).ToList();
                 Random random = new Random();
                 int Numrd = random.Next(1000000, 9000000);
-                ViewBag.DIACHI = db.DIADIEMs
-                  .Where(d => d.MAKHACHHANG == user.MAKHACHHANG)
-                  .ToList();
-                /* ViewBag.VouCher=new Se*/
+                var quanLyVoucherList = db.QUANLYVOUCHERs
+                      .Where(quanLyVoucher => quanLyVoucher.MAKHACHHANG == user.MAKHACHHANG &&
+                            quanLyVoucher.TRANGTHAI == true &&
+                            quanLyVoucher.NGAYKETTHUC >= DateTime.Today)
+                            .Include(quanLyVoucher => quanLyVoucher.KHACHHANG)
+                            .Include(quanLyVoucher => quanLyVoucher.VOUCHER)
+                            .ToList();
+
+                ViewBag.VOUCHER = new SelectList(quanLyVoucherList.ToList(), "VOUCHER");
+                ViewBag.danhsachGH = selectedItemsData;
+                ViewBag.DIACHI = new SelectList(db.DIADIEMs.Where(dd => dd.MAKHACHHANG == user.MAKHACHHANG).ToList(),"MADIADIEM");
                 DatHangMetaData dathang = new DatHangMetaData
                 {
                     NGAYMUA = NGAYMUA,

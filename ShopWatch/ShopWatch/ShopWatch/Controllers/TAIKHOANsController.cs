@@ -58,6 +58,7 @@ namespace ShopWatch.Controllers
                     MAVOUCHER = 1,
                     NGAYBATDAU = StartDate,
                     NGAYKETTHUC = EndDate,
+                    TRANGTHAI = true,
                 };
                 db.QUANLYVOUCHERs.Add(newQuanlyVoucher);
                 db.SaveChanges();

@@ -248,9 +248,9 @@
 
 
                                                             <td class="text-center">
-                                                                <div class="quantity-control" id="quantity-control" style="display:none;flex-direction:row">
+                                                                <div class="quantity-control" id="quantity-control" style="flex-direction:row">
                                                                     <button class="quantity-decrease " style="background-color:coral">-</button>
-                                                                    <input type="text" id="quantityInput" class="quantity-input" value="0" style="width:40px;height:40px" />
+                                                                    <input type="text" id="quantityInput" class="quantity-input" value="1" style="width:40px;height:40px" />
                                                                     <button class="quantity-increase" style="background-color:coral">+</button>
                                                                 </div>
                                                             </td>
@@ -311,6 +311,7 @@
                                 <div class="shippingbox">
                                     <h5>
                                         MÃ GIẢM GIÁ
+                                        <a href="~/Views/DIADIEMs/Edit.cshtml">~/Views/DIADIEMs/Edit.cshtml</a>
                                     </h5>
                                     <form>
                                         <label>
@@ -566,131 +567,127 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        let tongtien = 0;
-        var selectedItems = []; // Danh sách các mathang chọn  đã chọn
-        function updateTotalPrice() {
-            var totalPrice = selectedItems.reduce(function (total, item) {
-                tongtien = total + item.GiaTien;
-                return total + item.GiaTien;
-            }, 0);
-            var totalPriceDisplay = document.getElementById('total-price');
+        var selectedItems = []; // Danh sách các sản phẩm đã chọn
+        var tongtien = 0; // Biến lưu tổng số tiền
 
-            totalPriceDisplay.textContent = "Tổng Tiền: " + totalPrice + ' VND'; // Hiển thị tổng giá tiền với 2 chữ số thập phân
+        function updateTotalPrice() {
+            var totalPriceDisplay = document.getElementById('total-price');
+            totalPriceDisplay.textContent = "Tổng Tiền: " + tongtien.toLocaleString() + ' VND'; // Hiển thị tổng giá tiền với định dạng số ngăn cách hàng nghìn
         }
         function calculatePriceAndAdd(row, quantity) {
-            var giaHangElement = row.querySelector('.gia-hang-label');
-            var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, ''));
-            var phanTramGiamGia = parseFloat(row.querySelector('.phantram-giamgia-label').textContent.replace(/\D/g, ''));
-        
-            if (isNaN(phanTramGiamGia)) {
-                phanTramGiamGia = 0;
+            var giaHang = parseFloat(row.querySelector('.gia-hang-label').textContent.replace(/\D/g, '')); // Lấy giá hàng từ phần tử HTML và chuyển đổi thành số
+            var phanTramGiamGia = parseFloat(row.querySelector('.phantram-giamgia-label').textContent.replace(/\D/g, '')); // Lấy phần trăm giảm giá từ phần tử HTML và chuyển đổi thành số
 
+            if (isNaN(phanTramGiamGia)) {
+                phanTramGiamGia = 0; // Nếu không có giảm giá, đặt phần trăm giảm giá là 0
             }
 
-            var giaTien = giaHang * quantity * (1 - phanTramGiamGia / 100);
-            console.log(giaTien, 'giaten')
-            var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim();
+            var giaTien = giaHang * quantity * (1 - phanTramGiamGia / 100); // Tính toán giá tiền dựa trên giá hàng, số lượng và phần trăm
+
+            var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
             var chitietDatHang = {
                 MAMATHANG: mamathang,
                 SOLUONG: quantity,
                 GiaTien: giaTien,
-                GIANHAP: giaHang * quantity,
-
+                GIABAN: giaHang * quantity,
             };
 
-            var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang);
-            if (index === -1) {
-                selectedItems.push(chitietDatHang);
-            } else {
-                selectedItems[index].SOLUONG = quantity;
-                selectedItems[index].GiaTien = giaTien;
+            var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+            if (index === -1) { // Nếu sản phẩm chưa được chọn
+                selectedItems.push(chitietDatHang); // Thêm sản phẩm vào danh sách
+            } else { // Nếu sản phẩm đã được chọn
+                selectedItems[index].SOLUONG = quantity; // Cập nhật số lượng mới
+                selectedItems[index].GiaTien = giaTien; // Cập nhật giá tiền mới
             }
-           
-            updateTotalPrice();
+
+            tongtien = selectedItems.reduce(function (total, item) {
+                return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+            }, 0);
+
+            updateTotalPrice(); // Cập nhật tổng giá tiền
         }
-
-
         function toggleQuantityControl(row, show) {
             var quantityControl = row.querySelector('.quantity-control');
-            quantityControl.style.display = show ? 'block' : 'none';
+            quantityControl.style.display = 'flex'; // Hiển thị điều khiển số lượng luôn
         }
 
-        var checkboxes = document.querySelectorAll('.product-checkbox');
-        checkboxes.forEach(function (checkbox) {
-            checkbox.addEventListener('change', function () {
-                var row = this.closest('tr');
-                toggleQuantityControl(row, this.checked);
-                if (!checkbox.checked) {
-                   
-                    var index = selectedItems.findIndex(item => item.MAMATHANG === row.querySelector('.text-center:nth-child(1)').textContent);
-                    if (index !== -1) {
-                        selectedItems.splice(index, 1);
-                    }
-                   
-                    var Mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim();
-                    var sotien = 0;
-                    var selectedItem = selectedItems.find(item => item.MAMATHANG === Mamathang);
-                    if (selectedItem) {
-                        sotien = selectedItem.GiaTien;
-                    }
-                    // Trừ sotien từ tổng giá tiền và cập nhật lại total view
-                    tongtien -= sotien;
-                    var totalPriceDisplay = document.getElementById('total-price');
-                    totalPriceDisplay.textContent = "Tổng Tiền: " + tongtien + ' VND'; // Hiển thị tổng giá tiền với 2 chữ số thập phân
-                    // Loại bỏ item khỏi selectedItems
-                    var index = selectedItems.findIndex(item => item.MAMATHANG === Mamathang);
-                    if (index !== -1) {
-                        selectedItems.splice(index, 1);
-                    }
-                }
-            });
-        });
         var increaseButtons = document.querySelectorAll('.quantity-increase');
         var decreaseButtons = document.querySelectorAll('.quantity-decrease');
+        var checkboxes = document.querySelectorAll('.product-checkbox');
 
         increaseButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 var row = this.closest('tr');
+                var checkbox = row.querySelector('.product-checkbox');
                 var quantityInput = row.querySelector('.quantity-input');
                 var quantity = parseInt(quantityInput.value) + 1;
-                quantityInput.value = quantity;
-                calculatePriceAndAdd(row, quantity);
+
+                // Kiểm tra checkbox có được chọn không
+                if (checkbox.checked) {
+                    quantityInput.value = quantity;
+                    calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
+                }
             });
         });
-
         decreaseButtons.forEach(function (button) {
             button.addEventListener('click', function () {
                 var row = this.closest('tr');
                 var quantityInput = row.querySelector('.quantity-input');
                 var quantity = parseInt(quantityInput.value) - 1;
-                if (quantity >= 0) {
+                if (quantity >= 1) { // Kiểm tra số lượng không nhỏ hơn 1
                     quantityInput.value = quantity;
-                    calculatePriceAndAdd(row, quantity);
+                    calculatePriceAndAdd(row, quantity); // Cập nhật giá trị số lượng và tính giá tiền mới
                 }
             });
         });
 
-        $('#chitietdathang').submit(function (event) {
-            event.preventDefault();
-            var requestData = {
-                selectedItemsData: selectedItems,
-                giatien: tongtien,
-                    };
-            $.ajax({
-                type: 'POST',
-                url: '/DatHang/DonHang',
-                contentType: 'application/json',
-                data: JSON.stringify(requestData),
-                success: function (response) {
-                    
-                    console.log('Data sent successfully');
-                    window.location.href = `/GioHang/form_DatHang?selectedItemsData=${encodeURIComponent(JSON.stringify(requestData.selectedItemsData))}&giatien=${encodeURIComponent(requestData.giatien)}`;
-                },
-                error: function (error) {
-                    console.error('Error:', error);
+        checkboxes.forEach(function (checkbox) {
+            checkbox.addEventListener('change', function () {
+                var row = this.closest('tr');
+                var mamathang = row.querySelector('.text-center:nth-child(2)').textContent.trim(); // Lấy mã mặt hàng từ phần tử HTML
+                var quantityInput = row.querySelector('.quantity-input');
+
+                if (this.checked) {
+                    if (parseInt(quantityInput.value) === 0) {
+                        quantityInput.value = 1; // Chỉ đặt giá trị mặc định là 1 nếu số lượng là 0
+                    }
+                    calculatePriceAndAdd(row, parseInt(quantityInput.value)); // Cập nhật giá trị số lượng và tính giá tiền mới khi checkbox được chọn
+                } else {
+                    quantityInput.value = 0; // Đặt số lượng về 0
+                    var index = selectedItems.findIndex(item => item.MAMATHANG === mamathang); // Tìm kiếm sản phẩm trong danh sách đã chọn
+                    if (index !== -1) {
+                        selectedItems.splice(index, 1); // Loại bỏ sản phẩm khỏi danh sách nếu checkbox không được chọn
+                    }
+                    tongtien = selectedItems.reduce(function (total, item) {
+                        return total + item.GiaTien; // Tính tổng giá tiền từ danh sách các sản phẩm đã chọn
+                    }, 0);
+                    updateTotalPrice(); // Cập nhật tổng giá tiền
                 }
             });
         });
+
+            $('#chitietdathang').submit(function (event) {
+                event.preventDefault();
+                var requestData = {
+                    selectedItemsData: selectedItems,
+                    giatien: tongtien,
+                };
+                console.log(requestData)
+                $.ajax({
+                    type: 'POST',
+                    url: '/DatHang/DonHang',
+                    contentType: 'application/json',
+                    data: JSON.stringify(requestData),
+                    success: function (response) {
+                     
+                        console.log('Data sent successfully');
+                        window.location.href = `/GioHang/form_DatHang?selectedItemsData=${encodeURIComponent(JSON.stringify(requestData.selectedItemsData))}&giatien=${encodeURIComponent(requestData.giatien)}`;
+                    },
+                    error: function (error) {
+                        console.error('Error:', error);
+                    }
+                });
+            });
     </script>
     <script type="text/javascript" src="~/assets/KhachHang/js/jquery-1.10.2.min.js">
     </script>

@@ -45,6 +45,17 @@
           <ScalarProperty Name="MAQUANLYVOUCHER" ColumnName="MAQUANLYVOUCHER" />
           <ScalarProperty Name="MATHANHTOAN" ColumnName="MATHANHTOAN" />
           <ScalarProperty Name="MAVANDON" ColumnName="MAVANDON" />
+          <ScalarProperty Name="HINHTHUCTHANHTOAN" ColumnName="HINHTHUCTHANHTOAN" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DIADIEMs">
+      <EntityTypeMapping TypeName="DHModel.DIADIEM">
+        <MappingFragment StoreEntitySet="DIADIEM">
+          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
+          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
+          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
+          <ScalarProperty Name="SDT" ColumnName="SDT" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -218,16 +229,6 @@
           <ScalarProperty Name="PHANTRAMGIAMGIA" ColumnName="PHANTRAMGIAMGIA" />
           <ScalarProperty Name="DIEUKIEN" ColumnName="DIEUKIEN" />
           <ScalarProperty Name="TRANGTHAI" ColumnName="TRANGTHAI" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="DIADIEMs">
-      <EntityTypeMapping TypeName="DHModel.DIADIEM">
-        <MappingFragment StoreEntitySet="DIADIEM">
-          <ScalarProperty Name="SDT" ColumnName="SDT" />
-          <ScalarProperty Name="TENDIACHI" ColumnName="TENDIACHI" />
-          <ScalarProperty Name="MAKHACHHANG" ColumnName="MAKHACHHANG" />
-          <ScalarProperty Name="MADIADIEM" ColumnName="MADIADIEM" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

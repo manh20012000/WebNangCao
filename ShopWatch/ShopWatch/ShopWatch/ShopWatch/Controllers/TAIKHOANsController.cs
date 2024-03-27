@@ -51,7 +51,12 @@ namespace ShopWatch.Controllers
 
                 DateTime StartDate = DateTime.Today;
                 DateTime EndDate = StartDate.AddMonths(1);
-
+                GIOHANG Giohang = new GIOHANG
+                {
+                    MAKHACHHANG = id_khachhang,
+                    TRANGTHAI = true,
+                };
+                db.GIOHANGs.Add(Giohang);
                 QUANLYVOUCHER newQuanlyVoucher = new QUANLYVOUCHER
                 {
                     MAKHACHHANG = id_khachhang,

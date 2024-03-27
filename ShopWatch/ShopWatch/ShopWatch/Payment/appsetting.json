@@ -1,9 +1,0 @@
-{
-  "Logging": {
-    "LogLevel": {
-      "Default": "Infomation",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  
-}

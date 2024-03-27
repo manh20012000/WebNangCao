@@ -42,6 +42,7 @@
     <Property Name="MAQUANLYVOUCHER" Type="int" />
     <Property Name="MATHANHTOAN" Type="int" />
     <Property Name="MAVANDON" Type="int" />
+    <Property Name="HINHTHUCTHANHTOAN" Type="bit" />
   </EntityType>
   <EntityType Name="DIADIEM">
     <Key>

@@ -114,17 +114,17 @@ namespace ShopWatch.Controllers
                     var ItemsData = Session["SelectedItemsData"] as List<CHITIETDATHANG>;
                     if (Dathang.HINHTHUCTHANHTOAN == false) // Kiểm tra hình thức thanh toán
                     {
-                        var diadiem = db.DIADIEMs.Find(Dathang.MADIADIEM);
+                        var diadiems = db.DIADIEMs.Find(Dathang.MADIADIEM);
                         TRANGTHAIGIAOHANG giaohang = new TRANGTHAIGIAOHANG
                         {
                             MAVANDON = (int)Dathang.MAVANDON,
-                            VITRI = diadiem.TENDIACHI,
+                            VITRI = diadiems.TENDIACHI,
                             THOIGIANGIAOHANG = DateTime.Now,
                         };
                         db.TRANGTHAIGIAOHANGs.Add(giaohang);
                         DATHANG dathang = new DATHANG
                         {
-                            HINHTHUCTHANHTOAN = false,
+                            HINHTHUCTHANHTOAN = true,
                             TONGTIEN = Dathang.TONGTIEN,
                             MAKHACHHANG = Dathang.KHACHHANG.MAKHACHHANG,
                             MADIADIEM = Dathang.MADIADIEM,
@@ -154,52 +154,53 @@ namespace ShopWatch.Controllers
                             var voucher = db.QUANLYVOUCHERs.Find(Dathang.MAQUANLYVOUCHER);
                             voucher.TRANGTHAI = false;
                         }
-                        db.SaveChanges();
+                     /*   db.SaveChanges();*/
                     }
                     /*return RedirectToAction("DonHang");*/
-                }
+               
                 var strSanPham = "";
-                var thanhtien = decimal.Zero;
-                var TongTien = decimal.Zero;
-              /*  foreach (var sp in cart.Items)
+                double thanhtien =0;
+                double TongTien = 0;
+                foreach (var sp in ItemsData)
                 {
                     strSanPham += "<tr>";
-                    strSanPham += "<td>" + sp.ProductName + "</td>";
-                    strSanPham += "<td>" + sp.Quantity + "</td>";
-                    strSanPham += "<td>" + WebBanHangOnline.Common.Common.FormatNumber(sp.TotalPrice, 0) + "</td>";
+                    strSanPham += "<td>" + sp.MAMATHANG + "</td>";
+                    strSanPham += "<td>" + sp.SOLUONG + "</td>";
+                    strSanPham += "<td>" + ShopWatch.Common.Common.FormatNumber(sp.GIABAN, 0) + "</td>";
                     strSanPham += "</tr>";
-                    thanhtien += sp.Price * sp.Quantity;
-                }*/
+                    thanhtien = (double)Dathang.TONGTIEN;
+                }
+                var diadiem = db.DIADIEMs.Find(Dathang.MADIADIEM);
                 TongTien = thanhtien;
                 string contentCustomer = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send2.html"));
                 contentCustomer = contentCustomer.Replace("{{MaDon}}", Dathang.MADH);
                 contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
                 contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
                 contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", Dathang.KHACHHANG.TENKHACHHANG);
-                contentCustomer = contentCustomer.Replace("{{Phone}}", Dathang.DIADIEM.SDT);
+                contentCustomer = contentCustomer.Replace("{{Phone}}", diadiem.SDT);
                 contentCustomer = contentCustomer.Replace("{{Email}}", Dathang.KHACHHANG.EMAIL);
-                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", Dathang.DIADIEM.TENDIACHI);
+                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", diadiem.TENDIACHI);
                 contentCustomer = contentCustomer.Replace("{{ThanhTien}}", Dathang.TONGTIEN.ToString());
                 contentCustomer = contentCustomer.Replace("{{TongTien}}", Dathang.TONGTIEN.ToString());
-                contentCustomer = contentCustomer.Replace("{{TongTien}}", ShopWatch.Common.Common.FormatNumber(TongTien, 0));
-               /* ShopWatch.Common.Common.SendMail("ShopOnline", "Đơn hàng #" + order.Code, contentCustomer.ToString(), req.Email);*/
+                contentCustomer = contentCustomer.Replace("{{TongTien}}", ShopWatch.Common.Common.FormatNumber(TongTien*100, 0));
+                ShopWatch.Common.Common.SendMail("ShopOnline", "Đơn hàng #" + Dathang.MADH, contentCustomer.ToString(), Dathang.KHACHHANG.EMAIL);
                 string contentAdmin = System.IO.File.ReadAllText(Server.MapPath("~/Content/templates/send1.html"));
                 contentCustomer = contentCustomer.Replace("{{MaDon}}", Dathang.MADH);
                 contentCustomer = contentCustomer.Replace("{{SanPham}}", strSanPham);
                 contentCustomer = contentCustomer.Replace("{{NgayDat}}", DateTime.Now.ToString("dd/MM/yyyy"));
                 contentCustomer = contentCustomer.Replace("{{TenKhachHang}}", Dathang.KHACHHANG.TENKHACHHANG);
-                contentCustomer = contentCustomer.Replace("{{Phone}}", Dathang.DIADIEM.SDT);
+                contentCustomer = contentCustomer.Replace("{{Phone}}", diadiem.SDT);
                 contentCustomer = contentCustomer.Replace("{{Email}}", Dathang.KHACHHANG.EMAIL);
-                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}", Dathang.DIADIEM.TENDIACHI);
-                contentCustomer = contentCustomer.Replace("{{ThanhTien}}", Dathang.TONGTIEN.ToString());
-                contentCustomer = contentCustomer.Replace("{{TongTien}}", Dathang.TONGTIEN.ToString());
-                /*ShopWatch.Common.Common.SendMail("ShopOnline", "Đơn hàng mới #" + order.Code, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);*/
+                contentCustomer = contentCustomer.Replace("{{DiaChiNhanHang}}",diadiem.TENDIACHI);
+                contentCustomer = contentCustomer.Replace("{{ThanhTien}}", (Dathang.TONGTIEN * 100).ToString());
+                contentCustomer = contentCustomer.Replace("{{TongTien}}", (Dathang.TONGTIEN * 100).ToString());
+                ShopWatch.Common.Common.SendMail("ShopOnline", "Đơn hàng mới #" + Dathang.MADH, contentAdmin.ToString(), ConfigurationManager.AppSettings["EmailAdmin"]);
                 code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = "" };
                 //var url = "";
 
                 if (Dathang.HINHTHUCTHANHTOAN == true)
                 {
-                    var url = UrlPayment(Dathang, TypePaymentVN);
+                    var url = UrlPayment(Dathang, TypePaymentVN, randomString);
                     code = new { Success = true, Code = Dathang.HINHTHUCTHANHTOAN, Url = url };
                 }
 
@@ -208,15 +209,21 @@ namespace ShopWatch.Controllers
                 //return RedirectToAction("CheckOutSuccess");
 
             }
-
-            Json(code);
-            return RedirectToAction("DonHang", "DatHang");
+            return Redirect(code.Url);
+            /*return Json(code);*/
+            /* Response.Redirect(code);*/
+            /*return RedirectToAction("DonHang", "DatHang");*/
+            }
+            return RedirectToAction("Dangnhap", "TAIKHOANs");
         }
 
 
-
+        public ActionResult CheckOutSuccess()
+        {
+            return View();
+        }
         // thanh toán với payment vnpay
-        public string  UrlPayment(DATHANG dathang, int typementVn )
+        public string  UrlPayment(DATHANG dathang, int typementVn,string MADH )
         {
             //Get Config Info
             string vnp_Returnurl = ConfigurationManager.AppSettings["vnp_Returnurl"]; //URL nhan ket qua tra ve 
@@ -233,7 +240,7 @@ namespace ShopWatch.Controllers
             vnpay.AddRequestData("vnp_Version", VnPayLibrary.VERSION);
             vnpay.AddRequestData("vnp_Command", "pay");
             vnpay.AddRequestData("vnp_TmnCode", vnp_TmnCode);
-            vnpay.AddRequestData("vnp_Amount", (dathang.TONGTIEN*100).ToString()); //Số tiền thanh toán. Số tiền không mang các ký tự phân tách thập phân, phần nghìn, ký tự tiền tệ. Để gửi số tiền thanh toán là 100,000 VND (một trăm nghìn VNĐ) thì merchant cần nhân thêm 100 lần (khử phần thập phân), sau đó gửi sang VNPAY là: 10000000
+            vnpay.AddRequestData("vnp_Amount", (dathang.TONGTIEN).ToString()); //Số tiền thanh toán. Số tiền không mang các ký tự phân tách thập phân, phần nghìn, ký tự tiền tệ. Để gửi số tiền thanh toán là 100,000 VND (một trăm nghìn VNĐ) thì merchant cần nhân thêm 100 lần (khử phần thập phân), sau đó gửi sang VNPAY là: 10000000
             if (typementVn == 1)
             {
                 vnpay.AddRequestData("vnp_BankCode", "VNPAYQR");
@@ -250,10 +257,10 @@ namespace ShopWatch.Controllers
             vnpay.AddRequestData("vnp_CurrCode", "VND");
             vnpay.AddRequestData("vnp_IpAddr", Utils.GetIpAddress());
             vnpay.AddRequestData("vnp_Locale", "vn");
-            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toan don hang:" +dathang.MADH);
+            vnpay.AddRequestData("vnp_OrderInfo", "Thanh toan don hang:" + MADH);
             vnpay.AddRequestData("vnp_OrderType", "other"); //default value: other
             vnpay.AddRequestData("vnp_ReturnUrl", vnp_Returnurl);
-            vnpay.AddRequestData("vnp_TxnRef",dathang.MADH.ToString());
+            vnpay.AddRequestData("vnp_TxnRef", MADH);
             // Mã tham chiếu của giao dịch tại hệ thống của merchant. Mã này là duy nhất dùng để phân biệt các đơn hàng gửi sang VNPAY. Không được trùng lặp trong ngày
             string paymentUrl = vnpay.CreateRequestUrl(vnp_Url, vnp_HashSecret);
             return paymentUrl;
@@ -314,7 +321,21 @@ namespace ShopWatch.Controllers
                     //displayBankCode.InnerText = "Ngân hàng thanh toán:" + bankCode;
                 }
             }
-            //var a = UrlPayment(0, "DH3574");
+
+            /* DATHANG da = new DATHANG
+             {
+                 HINHTHUCTHANHTOAN = false,
+                 TONGTIEN = 127790,
+                 MAKHACHHANG = 1,
+                 MADIADIEM = 1,
+                 MAQUANLYVOUCHER = null,
+                 NGAYMUA = DateTime.Now,
+                 MAVANDON = 3874,
+                 TRANGTHAI = false,
+                 MADH = "fgdhf4",
+
+             };
+              var a = UrlPayment(da, 2);*/
             return View();
         }
         protected override void Dispose(bool disposing)

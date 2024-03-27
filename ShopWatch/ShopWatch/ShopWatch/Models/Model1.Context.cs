@@ -28,7 +28,6 @@ namespace ShopWatch.Models
         public virtual DbSet<CHITIETDATHANG> CHITIETDATHANGs { get; set; }
         public virtual DbSet<CHITIETGIOHANG> CHITIETGIOHANGs { get; set; }
         public virtual DbSet<CHITIETPHIEUNHAP> CHITIETPHIEUNHAPs { get; set; }
-        public virtual DbSet<DATHANG> DATHANGs { get; set; }
         public virtual DbSet<GIOHANG> GIOHANGs { get; set; }
         public virtual DbSet<HINHANH> HINHANHs { get; set; }
         public virtual DbSet<KHACHHANG> KHACHHANGs { get; set; }
@@ -45,5 +44,6 @@ namespace ShopWatch.Models
         public virtual DbSet<TRANGTHAIGIAOHANG> TRANGTHAIGIAOHANGs { get; set; }
         public virtual DbSet<VOUCHER> VOUCHERs { get; set; }
         public virtual DbSet<DIADIEM> DIADIEMs { get; set; }
+        public virtual DbSet<DATHANG> DATHANGs { get; set; }
     }
 }
